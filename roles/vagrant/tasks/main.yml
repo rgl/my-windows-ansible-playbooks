@@ -1,0 +1,7 @@
+- name: Install vagrant
+  chocolatey.chocolatey.win_chocolatey:
+    name: vagrant
+    version: '{{ vagrant_version }}'
+    state: upgrade
+
+# TODO install plugins.

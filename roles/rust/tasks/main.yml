@@ -1,0 +1,12 @@
+# see https://community.chocolatey.org/packages/rust-ms
+
+- name: Install Visual Studio 2019 Visual C++ Tools
+  chocolatey.chocolatey.win_chocolatey:
+    name: visualstudio2019-workload-vctools
+    state: present
+
+- name: Install rust-ms
+  chocolatey.chocolatey.win_chocolatey:
+    name: rust-ms
+    version: '{{ rust_version }}'
+    state: upgrade

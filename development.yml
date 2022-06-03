@@ -1,0 +1,19 @@
+- hosts:
+    - all
+  gather_facts: true
+  roles:
+    - base
+    - hyper-v
+    - docker
+    - msys2
+    - k8s-client
+    - azure-client
+    - packer
+    - terraform
+    - vagrant
+    - dotnet-sdk
+    - go
+    - rust
+    - dagger
+    - visual-studio-code
+    - visual-studio

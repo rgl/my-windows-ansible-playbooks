@@ -1,0 +1,303 @@
+- name: Uninstall Windows Defender
+  ansible.windows.win_feature:
+    name: Windows-Defender
+    state: absent
+  register: win_feature
+
+- name: Reboot
+  when: win_feature.reboot_required
+  ansible.windows.win_reboot:
+
+- name: Install Windows Updates
+  # see https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_updates_module.html
+  ansible.windows.win_updates:
+    reboot: yes
+    skip_optional: yes
+    category_names:
+      - CriticalUpdates
+      - DefinitionUpdates
+      - SecurityUpdates
+      - UpdateRollups
+      - Updates
+
+- name: Set region
+  community.windows.win_region:
+    location: 193
+    format: pt-PT           # date format, number format, etc.
+    unicode_language: en-US # UI language.
+    copy_settings: yes
+
+- name: Set keyboard layout
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'set-keyboard-layout.ps1') }}"
+    parameters:
+      languageTag: pt-PT
+
+- name: Set timezone
+  community.windows.win_timezone:
+    timezone: GMT Standard Time
+
+- name: Show window content while dragging
+  ansible.windows.win_regedit:
+    path: HKCU:\Control Panel\Desktop
+    name: DragFullWindows
+    data: 1
+    type: dword
+
+- name: Show hidden files
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: Hidden
+    data: 1
+    type: dword
+
+- name: Show protected operating system files
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: ShowSuperHidden
+    data: 1
+    type: dword
+
+- name: Show file extensions
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: HideFileExt
+    data: 0
+    type: dword
+
+- name: Hide the search button
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: SearchboxTaskbarMode
+    data: 0
+    type: dword
+
+- name: Hide the task view button
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: ShowTaskViewButton
+    data: 0
+    type: dword
+
+- name: Never combine the taskbar buttons
+  # possibe values:
+  #   0: always combine and hide labels (default)
+  #   1: combine when taskbar is full
+  #   2: never combine
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: TaskbarGlomLevel
+    data: 2
+    type: dword
+
+- name: Display full path in the title bar
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState
+    name: FullPath
+    data: 1
+    type: dword
+
+- name: Disable Cortana
+  ansible.windows.win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowCortana
+    data: 0
+    type: dword
+
+- name: Disable Web search
+  ansible.windows.win_regedit:
+    path: HKLM:\Software\Policies\Microsoft\Windows\Windows Search
+    name: ConnectedSearchUseWeb
+    data: 0
+    type: dword
+
+- name: Install Chocolatey
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/chocolatey
+    name: chocolatey
+    version: '1.1.0'
+    state: upgrade
+
+- name: Install Notepad3
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/notepad3
+    name: notepad3
+    version: '5.21.1129.1'
+    state: upgrade
+
+- name: Install 7-Zip
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/7zip.install
+    name: 7zip.install
+    version: '21.7'
+    state: upgrade
+
+- name: Install HWiNFO
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/hwinfo.install
+    name: hwinfo.install
+    version: '7.24'
+    state: upgrade
+
+- name: Install CPU-Z
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/cpu-z.install
+    name: cpu-z.install
+    version: '2.01'
+    state: upgrade
+
+- name: Install HWMonitor
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/hwmonitor
+    name: hwmonitor
+    version: '1.46.0.20220509'
+    state: upgrade
+
+- name: Install Firefox
+  block:
+    - name: Install Firefox
+      chocolatey.chocolatey.win_chocolatey:
+        # https://community.chocolatey.org/packages/firefox
+        name: firefox
+        version: '101.0'
+        package_params: /l:en-US
+        state: upgrade
+    - name: Install SetDefaultBrowser
+      chocolatey.chocolatey.win_chocolatey:
+        # https://community.chocolatey.org/packages/setdefaultbrowser
+        name: setdefaultbrowser
+        version: '1.5.0'
+        state: upgrade
+    - name: Set Firefox as the default browser
+      ansible.windows.win_powershell:
+        script: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $Ansible.Changed = $false
+          $browser = @((SetDefaultBrowser | Where-Object {$_ -like 'HKLM Firefox-*'}) -split ' ')
+          $browserId = $browser[1]
+          $path = "$($Ansible.Tmpdir)\AppAssociations.xml"
+          Dism /Online "/Export-DefaultAppAssociations:$path"
+          [xml]$doc = Get-Content $path
+          $node = $doc.SelectSingleNode("/DefaultAssociations/Association[@ApplicationName='Firefox']")
+          if (!$node) {
+            SetDefaultBrowser @browser
+            $Ansible.Changed = $true
+          }
+
+- name: Install Meld
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/meld
+    name: meld
+    version: '3.20.4'
+    state: upgrade
+
+- name: Install Git
+  block:
+    - name: Install Git
+      chocolatey.chocolatey.win_chocolatey:
+        # https://community.chocolatey.org/packages/git
+        name: git
+        version: '2.36.0'
+        state: upgrade
+        package_params: /GitOnlyOnPath /NoAutoCrlf /SChannel
+    - name: Configure Git
+      ansible.windows.win_powershell:
+        script: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $Ansible.Changed = $false
+          function Set-GitConfig($name, $value) {
+            $currentValue = git config --global $name
+            if ($LASTEXITCODE -or $currentValue -cne $value) {
+              git config --global $name ($value -replace '\\','\\' -replace '"','\"')
+              if ($LASTEXITCODE) {
+                throw "failed to execute git config with exit code $LASTEXITCODE"
+              }
+              $Ansible.Changed = $true
+            }
+          }
+          Set-GitConfig user.name 'Rui Lopes'
+          Set-GitConfig user.email 'rgl@ruilopes.com'
+          Set-GitConfig diff.guitool meld
+          Set-GitConfig difftool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
+          Set-GitConfig difftool.meld.cmd '"C:/Program Files (x86)/Meld/Meld.exe" "$LOCAL" "$REMOTE"'
+          Set-GitConfig merge.tool meld
+          Set-GitConfig mergetool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
+          Set-GitConfig mergetool.meld.cmd '"C:/Program Files (x86)/Meld/Meld.exe" "$LOCAL" "$BASE" "$REMOTE" --auto-merge --output "$MERGED"'
+
+- name: Install Git Extensions
+  block:
+    - name: Install Git Extensions
+      chocolatey.chocolatey.win_chocolatey:
+        # https://community.chocolatey.org/packages/gitextensions
+        name: gitextensions
+        version: '3.5.4'
+        state: upgrade
+    - name: Configure Git Extensions
+      ansible.windows.win_powershell:
+        script: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $Ansible.Changed = $false
+          function Set-GitExtensionsStringSetting($name, $value) {
+            $settingsPath = "$env:APPDATA\GitExtensions\GitExtensions\GitExtensions.settings"
+            [xml]$settingsDocument = Get-Content $settingsPath
+            $node = $settingsDocument.SelectSingleNode("/dictionary/item[key/string[text()='$name']]")
+            if (!$node) {
+              $node = $settingsDocument.CreateElement('item')
+              $node.InnerXml = "<key><string>$name</string></key><value><string/></value>"
+              $settingsDocument.dictionary.AppendChild($node) | Out-Null
+            }
+            if ($value -cne $node.value.string) {
+              $node.value.string = $value
+              $settingsDocument.Save($settingsPath)
+              $Ansible.Changed = $true
+            }
+          }
+          Set-GitExtensionsStringSetting TelemetryEnabled false
+          Set-GitExtensionsStringSetting translation English
+          Set-GitExtensionsStringSetting gitbindir 'C:\Program Files\Git\bin\'
+
+- name: Install Wireshark
+  block:
+    - name: Install Wireshark
+      chocolatey.chocolatey.win_chocolatey:
+        # https://community.chocolatey.org/packages/wireshark
+        name: wireshark
+        version: '3.6.5'
+        state: upgrade
+    - name: Install Wireshark Desktop shortcut
+      community.windows.win_shortcut:
+        src: C:\Program Files\Wireshark\Wireshark.exe
+        dest: '%USERPROFILE%\Desktop\Wireshark.lnk'
+
+# leave npcap on the desktop for the user to install manually.
+# (it does not have a silent installer).
+# see https://nmap.org/npcap/#download
+# see https://github.com/nmap/npcap/releases
+# TODO only do this when the installed npcap version is not the expected one.
+- name: Download npcap
+  ansible.windows.win_get_url:
+    dest: '%USERPROFILE%\Desktop\npcap-1.60.exe'
+    url: https://npcap.com/dist/npcap-1.60.exe
+    checksum: 87d3624772b8272767a3a4ffcceecc3052489cd09e494a6c352dce5e5efa4070
+    checksum_algorithm: sha256
+
+- name: Configure the firewall
+  block:
+    - name: Allow ICMPv4 Echo (ping)
+      community.windows.win_firewall_rule:
+        name: ICMPv4 Echo Request (ICMPv4-In)
+        enabled: yes
+        action: allow
+        direction: in
+        protocol: icmpv4
+        icmp_type_code:
+          - '8:*'
+        profiles:
+          - domain
+          - private

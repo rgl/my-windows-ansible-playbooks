@@ -1,0 +1,7 @@
+- name: Install vscode
+  chocolatey.chocolatey.win_chocolatey:
+    name: vscode
+    version: '{{ vscode_version }}'
+    state: upgrade
+
+# TODO install extensions.

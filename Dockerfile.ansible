@@ -1,0 +1,41 @@
+#syntax=docker/dockerfile:1.4
+
+# debian 11 (bullseye).
+FROM debian:11-slim
+
+# install ansible dependencies.
+# see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip
+RUN <<EOF
+apt-get update
+apt-get install -y --no-install-recommends \
+    python3-argcomplete \
+    python3-pip \
+    python3-cryptography \
+    python3-openssl \
+    python3-yaml \
+    pylint \
+    openssh-client \
+    sshpass
+rm -rf /var/lib/apt/lists/*
+install -d /etc/bash_completion.d
+activate-global-python-argcomplete3
+EOF
+
+# install ansible.
+# NB this pip install will display several "error: invalid command 'bdist_wheel'"
+#    messages, those can be ignored.
+COPY requirements.txt .
+RUN <<EOF
+python3 -m pip install -r requirements.txt
+EOF
+
+# install ansible collections.
+COPY requirements.yml .
+RUN <<EOF
+ansible-galaxy collection install \
+    -r requirements.yml \
+    -p /usr/share/ansible/collections
+EOF
+
+# set the working directory.
+WORKDIR /playbooks

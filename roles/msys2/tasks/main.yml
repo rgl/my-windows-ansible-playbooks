@@ -1,0 +1,78 @@
+- name: Install MSYS2
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/msys2
+    name: msys2
+    package_params: /NoPath
+    state: upgrade
+
+- name: Install MSYS2 Start Menu Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\msys2.exe
+    dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\MSYS2.lnk
+
+- name: Install MINGW64 Start Menu Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\mingw64.exe
+    dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\MINGW64.lnk
+
+- name: Install MSYS2 Desktop Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\msys2.exe
+    dest: '%USERPROFILE%\Desktop\MSYS2.lnk'
+
+- name: Install MINGW64 Desktop Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\mingw64.exe
+    dest: '%USERPROFILE%\Desktop\MINGW64.lnk'
+
+- name: Configure the msys2 launcher to let the shell inherith the PATH
+  community.windows.win_lineinfile:
+    path: 'C:/tools/msys64/{{ item }}'
+    regexp: '^#?(MSYS2_PATH_TYPE=).+'
+    line: '$1inherit'
+    backrefs: yes
+  loop:
+    - mingw64.ini
+    - msys2.ini
+
+- name: Configure msys2 to get the user home from Windows
+  # see https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-home
+  community.windows.win_lineinfile:
+    path: C:/tools/msys64/etc/nsswitch.conf
+    regexp: '^(db_home:).+'
+    line: '$1 windows'
+    backrefs: yes
+
+- name: Configure msys2 to mount C:/Users at /home
+  community.windows.win_lineinfile:
+    path: C:/tools/msys64/etc/fstab
+    line: C:/Users /home
+
+- name: Install login profile
+  ansible.windows.win_copy:
+    src: login.sh
+    dest: C:/tools/msys64/etc/profile.d/login.sh
+
+- name: Install libreadline inputrc
+  ansible.windows.win_copy:
+    src: inputrc
+    dest: C:/tools/msys64/etc/inputrc
+
+- name: Install packages
+  win_msys2_pacman:
+    name:
+      - dos2unix
+      - gnu-netcat
+      - make
+      - p7zip
+      - procps
+      - tar
+      - unzip
+      - vim
+      - xorriso
+      - zip
+
+- name: Configure vim
+  ansible.windows.win_copy:
+    src: vimrc
+    dest: C:/tools/msys64/etc/vimrc

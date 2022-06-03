@@ -1,0 +1,5 @@
+- name: Install dagger
+  chocolatey.chocolatey.win_chocolatey:
+    name: dagger
+    version: '{{ dagger_version }}'
+    state: upgrade

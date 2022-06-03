@@ -1,0 +1,11 @@
+- name: Opt-out of telemetry
+  ansible.builtin.win_environment:
+    level: machine
+    name: DOTNET_CLI_TELEMETRY_OPTOUT
+    value: 1
+
+- name: Install dotnet-sdk
+  chocolatey.chocolatey.win_chocolatey:
+    name: dotnet-sdk
+    version: '{{ dotnet_sdk_version }}'
+    state: upgrade

@@ -1,0 +1,5 @@
+- name: Install helm
+  chocolatey.chocolatey.win_chocolatey:
+    name: kubernetes-helm
+    version: '{{ helm_version }}'
+    state: upgrade

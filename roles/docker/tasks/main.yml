@@ -1,0 +1,43 @@
+- name: Install the Containers Windows feature
+  ansible.windows.win_feature:
+    name: Containers
+    include_management_tools: yes
+  register: win_feature
+
+- name: Reboot
+  when: win_feature.reboot_required
+  ansible.windows.win_reboot:
+
+- name: Create the docker-users local group
+  # NB this group can use the docker engine named pipe.
+  # see https://github.com/moby/moby/commit/0906195fbbd6f379c163b80f23e4c5a60bcfc5f0
+  # see https://github.com/moby/moby/blob/8e610b2b55bfd1bfa9436ab110d311f5e8a74dcb/daemon/listeners/listeners_windows.go#L25
+  ansible.windows.win_group:
+    name: docker-users
+    description: Docker engine users
+
+- name: Install binaries
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-docker.ps1') }}"
+    parameters:
+      version: '{{ docker_version }}'
+      checksum: '{{ docker_checksum }}'
+  notify:
+    - restart docker
+
+- name: Create the configuration directory
+  ansible.windows.win_file:
+    path: C:\Program Data\docker\config
+    state: directory
+
+- name: Create the configuration
+  # see https://docs.docker.com/engine/reference/commandline/dockerd/#windows-configuration-file
+  ansible.windows.win_copy:
+    src: daemon.json
+    dest: C:\Program Data\docker\config\daemon.json
+  notify:
+    - restart docker
+
+- name: Add binaries to PATH
+  ansible.builtin.win_path:
+    elements: C:\Program Files\docker

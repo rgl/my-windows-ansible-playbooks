@@ -1,0 +1,11 @@
+- name: Install the Hyper-V Windows feature
+  ansible.windows.win_feature:
+    name: Hyper-V
+    include_management_tools: yes
+  register: win_feature
+
+- name: Reboot
+  when: win_feature.reboot_required
+  ansible.windows.win_reboot:
+
+# TODO install https://github.com/rgl/WinDHCP.

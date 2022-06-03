@@ -1,0 +1,5 @@
+- name: Install go
+  chocolatey.chocolatey.win_chocolatey:
+    name: go
+    version: '{{ go_version }}'
+    state: upgrade

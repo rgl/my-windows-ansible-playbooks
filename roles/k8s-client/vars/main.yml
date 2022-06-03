@@ -1,0 +1,12 @@
+# see https://community.chocolatey.org/packages/kubernetes-cli
+# see https://github.com/kubernetes/kubernetes/releases
+# see https://kubernetes.io/releases/
+kubectl_version: '1.23.6'
+
+# see https://community.chocolatey.org/packages/k9s
+# see https://github.com/derailed/k9s/releases
+k9s_version: '0.25.18'
+
+# see https://community.chocolatey.org/packages/kubernetes-helm
+# see https://github.com/helm/helm/releases
+helm_version: '3.8.2'
