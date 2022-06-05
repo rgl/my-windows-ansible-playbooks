@@ -1,12 +1,60 @@
-- name: Uninstall Windows Defender
-  ansible.windows.win_feature:
-    name: Windows-Defender
-    state: absent
-  register: win_feature
+- name: Uninstall Windows Defender (Windows Server)
+  when: ansible_os_installation_type != 'Client'
+  block:
+    - name: Uninstall Windows Defender
+      ansible.windows.win_feature:
+        name: Windows-Defender
+        state: absent
+      register: win_feature
+    - name: Reboot
+      when: win_feature.reboot_required
+      ansible.windows.win_reboot:
 
-- name: Reboot
-  when: win_feature.reboot_required
-  ansible.windows.win_reboot:
+- name: Partial disable Windows Defender (Windows Client)
+  when: ansible_os_installation_type == 'Client'
+  block:
+    - name: Exclude Drives
+      register: defender_exclude_drives
+      ansible.windows.win_powershell:
+        script: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $Ansible.Changed = $false
+          $expectedExclusionPath = @('C:\', 'D:\')
+          $settings = Get-MpPreference
+          if (($settings.ExclusionPath -join '|') -ne ($expectedExclusionPath -join '|')) {
+            Set-MpPreference `
+              -ExclusionPath $expectedExclusionPath
+            $Ansible.Changed = $true
+          }
+          # NB Set-MpPreference -DisableRealtimeMonitoring $true does not seem
+          #    to work anymore... so we set a policy.
+    - name: Disable Realtime Monitoring
+      register: defender_realtime_monitoring
+      ansible.windows.win_regedit:
+        path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+        name: DisableRealtimeMonitoring
+        data: 1
+        type: dword
+    # NB we can no longer disable most of Defender in Windows Client. For
+    #    example, the following setting keeps getting reset to the default
+    #    value by the "Tamper Protection" feature that prevents non-os
+    #    applications from changing these settings. if you really want to
+    #    permanently nuking defender, see:
+    #     https://github.com/jeremybeaume/tools/blob/master/disable-defender.ps1
+    # - name: Disable Anti-Spyware
+    #   register: defender_anti_spyware
+    #   ansible.windows.win_regedit:
+    #     path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender
+    #     name: DisableAntiSpyware
+    #     data: 1
+    #     type: dword
+    - name: Reboot
+      when: >
+        defender_exclude_drives.changed or
+        defender_realtime_monitoring.changed
+      ansible.windows.win_reboot:
 
 - name: Install Windows Updates
   # see https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_updates_module.html
