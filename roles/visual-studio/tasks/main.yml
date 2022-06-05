@@ -1,3 +1,10 @@
+- name: Enable the Windows Developer Mode
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock
+    name: AllowDevelopmentWithoutDevLicense
+    data: 1
+    type: dword
+
 - name: Install Visual Studio 2022
   chocolatey.chocolatey.win_chocolatey:
     name: visualstudio2022community
