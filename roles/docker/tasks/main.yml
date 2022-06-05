@@ -1,11 +1,18 @@
-- name: Install the Containers Windows feature
+- name: Install Windows Containers (Windows Server)
+  when: ansible_os_installation_type != 'Client'
   ansible.windows.win_feature:
     name: Containers
     include_management_tools: yes
-  register: win_feature
+  register: win_containers
+
+- name: Install Windows Containers (Windows Client)
+  when: ansible_os_installation_type == 'Client'
+  ansible.windows.win_optional_feature:
+    name: Containers
+  register: win_containers
 
 - name: Reboot
-  when: win_feature.reboot_required
+  when: win_containers.reboot_required
   ansible.windows.win_reboot:
 
 - name: Create the docker-users local group
