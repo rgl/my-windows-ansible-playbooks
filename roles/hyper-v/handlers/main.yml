@@ -1,0 +1,4 @@
+- name: restart WinDHCP
+  ansible.windows.win_service:
+    name: WinDHCP
+    state: restarted

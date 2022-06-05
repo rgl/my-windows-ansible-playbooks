@@ -15,4 +15,15 @@
   when: hyper_v.reboot_required
   ansible.windows.win_reboot:
 
-# TODO install https://github.com/rgl/WinDHCP.
+- name: Create the Vagrant vSwitch
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-vagrant-vswitch.ps1') }}"
+
+- name: Install WinDHCP
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-windhcp.ps1') }}"
+    parameters:
+      version: '{{ windhcp_version }}'
+      checksum: '{{ windhcp_checksum }}'
+  notify:
+    - restart WinDHCP
