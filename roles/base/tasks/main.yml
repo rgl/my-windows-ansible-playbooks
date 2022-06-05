@@ -275,17 +275,36 @@
         src: C:\Program Files\Wireshark\Wireshark.exe
         dest: '%USERPROFILE%\Desktop\Wireshark.lnk'
 
-# leave npcap on the desktop for the user to install manually.
-# (it does not have a silent installer).
+# download npcap to the desktop for the user to install manually
+# (it does not have a silent installer) iif the installed version
+# is different than the expected one.
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
-# TODO only do this when the installed npcap version is not the expected one.
 - name: Download npcap
-  ansible.windows.win_get_url:
-    dest: '%USERPROFILE%\Desktop\npcap-1.60.exe'
-    url: https://npcap.com/dist/npcap-1.60.exe
-    checksum: 87d3624772b8272767a3a4ffcceecc3052489cd09e494a6c352dce5e5efa4070
-    checksum_algorithm: sha256
+  block:
+    - name: Check npcap
+      ansible.windows.win_powershell:
+        script: |
+          Set-StrictMode -Version Latest
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $Ansible.Changed = $false
+          $npcapVersion = '1.60'
+          $npcapPath = 'C:\Program Files\Npcap\npcap.sys'
+          if (Test-Path $npcapPath) {
+            $actualVersion = (Get-ChildItem $npcapPath).VersionInfo.ProductVersion
+            $Ansible.Changed = $actualVersion -ne $npcapVersion
+          } else {
+            $Ansible.Changed = $true
+          }
+      register: npcap
+    - name: Download npcap
+      when: npcap.changed
+      ansible.windows.win_get_url:
+        dest: '%USERPROFILE%\Desktop\npcap-1.60.exe'
+        url: https://npcap.com/dist/npcap-1.60.exe
+        checksum: 87d3624772b8272767a3a4ffcceecc3052489cd09e494a6c352dce5e5efa4070
+        checksum_algorithm: sha256
 
 - name: Configure the firewall
   block:
