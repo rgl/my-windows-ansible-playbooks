@@ -2,6 +2,8 @@
 
 This is My Windows Ansible Playbooks Playground.
 
+This targets Windows Server 2022 and Windows 11.
+
 # Disclaimer
 
 * These playbooks might work only when you start from scratch, in a machine that only has a minimal installation.
