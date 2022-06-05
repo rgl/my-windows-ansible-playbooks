@@ -1,11 +1,18 @@
-- name: Install the Hyper-V Windows feature
+- name: Install Hyper-V (Windows Server)
+  when: ansible_os_installation_type != 'Client'
   ansible.windows.win_feature:
     name: Hyper-V
     include_management_tools: yes
-  register: win_feature
+  register: hyper_v
+
+- name: Install Hyper-V (Windows Client)
+  when: ansible_os_installation_type == 'Client'
+  ansible.windows.win_optional_feature:
+    name: Microsoft-Hyper-V-All
+  register: hyper_v
 
 - name: Reboot
-  when: win_feature.reboot_required
+  when: hyper_v.reboot_required
   ansible.windows.win_reboot:
 
 # TODO install https://github.com/rgl/WinDHCP.
