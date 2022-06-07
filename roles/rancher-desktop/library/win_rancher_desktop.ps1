@@ -75,7 +75,7 @@ function Test-RancherDesktop {
     }
 }
 
-function Set-RancherDesktop([string]$containerEngine, [bool]$kubernesEnabled, [string]$kubernesVersion) {
+function Set-RancherDesktop([string]$containerEngine, [bool]$kubernetesEnabled, [string]$kubernetesVersion) {
     $rdStarted = $false
     try {
         # start rancher desktop in background.
@@ -92,13 +92,13 @@ function Set-RancherDesktop([string]$containerEngine, [bool]$kubernesEnabled, [s
 
         # modify the settings when required.
         if (
-            ($settings.kubernetes.enabled -ne $kubernesEnabled) -or
-            ($settings.kubernetes.version -ne $kubernesVersion) -or
+            ($settings.kubernetes.enabled -ne $kubernetesEnabled) -or
+            ($settings.kubernetes.version -ne $kubernetesVersion) -or
             ($settings.kubernetes.containerEngine -ne $containerEngine)
         ) {
             &$rdctlPath set `
-                "--kubernetes-enabled=$(if ($kubernesEnabled) {'true'} else {'false'})" `
-                "--kubernetes-version=$kubernesVersion" `
+                "--kubernetes-enabled=$(if ($kubernetesEnabled) {'true'} else {'false'})" `
+                "--kubernetes-version=$kubernetesVersion" `
                 "--container-engine=$containerEngine"
             return $true
         }
@@ -113,8 +113,8 @@ function Set-RancherDesktop([string]$containerEngine, [bool]$kubernesEnabled, [s
 
 $version = $module.Params.version
 $containerEngine = $module.Params.container_engine
-$kubernesEnabled = $module.Params.kubernetes_enabled
-$kubernesVersion = $module.Params.kubernetes_version
+$kubernetesEnabled = $module.Params.kubernetes_enabled
+$kubernetesVersion = $module.Params.kubernetes_version
 
 # install.
 if (Install-RancherDesktop $version) {
@@ -122,7 +122,7 @@ if (Install-RancherDesktop $version) {
 }
 
 # configure.
-if (Set-RancherDesktop $containerEngine $kubernesEnabled $kubernesVersion) {
+if (Set-RancherDesktop $containerEngine $kubernetesEnabled $kubernetesVersion) {
     $module.Result.changed = $true
 }
 
