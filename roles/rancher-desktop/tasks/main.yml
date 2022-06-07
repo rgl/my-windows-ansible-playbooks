@@ -1,0 +1,5 @@
+- name: Install Rancher Desktop
+  win_rancher_desktop:
+    version: '1.3.0'
+    container_engine: 'moby'
+    kubernetes_version: '1.23.6'
