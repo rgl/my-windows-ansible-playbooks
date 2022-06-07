@@ -1,0 +1,4 @@
+- name: Install Intel ME Drivers (HP EliteDesk 800 G4 DM 65W)
+  when: ansible_product_name == 'HP EliteDesk 800 G4 DM 65W'
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-intel-me-drivers-hp.ps1') }}"

@@ -3,6 +3,7 @@
   gather_facts: true
   roles:
     - base
+    - intel-me-drivers
     - hyper-v
     - name: wsl
       when: ansible_os_installation_type == 'Client'
