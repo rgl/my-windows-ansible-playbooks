@@ -4,6 +4,8 @@
   roles:
     - base
     - hyper-v
+    - name: wsl
+      when: ansible_os_installation_type == 'Client'
     - docker
     - msys2
     - k8s-client
