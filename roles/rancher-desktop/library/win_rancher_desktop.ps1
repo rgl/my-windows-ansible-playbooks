@@ -14,11 +14,15 @@ $spec = @{
 }
 
 $module = [Ansible.Basic.AnsibleModule]::Create($args, $spec)
+$module.Result.changed = $false
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
-$module.Result.changed = $false
+
+$rancherHome = 'C:\Program Files\Rancher Desktop'
+$rdctlPath = "$rancherHome\resources\resources\win32\bin\rdctl.exe"
+$rdPath = "$rancherHome\Rancher Desktop.exe"
 
 function Install-RancherDesktop($version) {
     #
@@ -58,15 +62,50 @@ function Install-RancherDesktop($version) {
     return $true
 }
 
-function Set-RancherDesktop($containerEngine, $kubernesVersion) {
-    $rancherHome = 'C:\Program Files\Rancher Desktop'
-    $rdctlPath = "$rancherHome\resources\resources\win32\bin\rdctl.exe"
-    $rdPath = "$rancherHome\Rancher Desktop.exe"
+# test whether rancher desktop is started.
+function Test-RancherDesktop {
+    $eap = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'SilentlyContinue'
+        &$rdctlPath list-settings 2>&1 | Out-Null
+        return $LASTEXITCODE -eq 0
+    } finally {
+        $ErrorActionPreference = $eap
+    }
+}
 
-    # TODO implement.
-    #      see https://github.com/rancher-sandbox/rancher-desktop/issues/2340
+function Set-RancherDesktop([string]$containerEngine, [string]$kubernesVersion) {
+    $rdStarted = $false
+    try {
+        # start rancher desktop in background.
+        if (!(Test-RancherDesktop)) {
+            Start-Process -FilePath $rdctlPath -ArgumentList 'start','--path',"`"$rdPath`""
+            $rdStarted = $true
+            while (!(Test-RancherDesktop)) {
+                Start-Sleep -Seconds 3
+            }
+        }
 
-    return $false
+        # get the current settings.
+        $settings = &$rdctlPath list-settings | ConvertFrom-Json
+
+        # modify the settings when required.
+        if (
+            ($settings.kubernetes.version -ne $kubernesVersion) -or
+            ($settings.kubernetes.containerEngine -ne $containerEngine)
+        ) {
+            &$rdctlPath set `
+                "--kubernetes-version=$kubernesVersion" `
+                "--container-engine=$containerEngine"
+            return $true
+        }
+
+        return $false
+    } finally {
+        if ($rdStarted) {
+            &$rdctlPath shutdown
+        }
+    }
 }
 
 $version = $module.Params.version
