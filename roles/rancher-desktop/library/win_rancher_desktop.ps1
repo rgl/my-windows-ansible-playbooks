@@ -7,6 +7,7 @@ $spec = @{
     options = @{
         version = @{ type = "str"; required = $true }
         container_engine = @{ type = "str"; required = $true }
+        kubernetes_enabled = @{ type = "bool"; required = $true }
         kubernetes_version = @{ type = "str"; required = $true }
         # TODO support state: present and absent.
     }
@@ -74,7 +75,7 @@ function Test-RancherDesktop {
     }
 }
 
-function Set-RancherDesktop([string]$containerEngine, [string]$kubernesVersion) {
+function Set-RancherDesktop([string]$containerEngine, [bool]$kubernesEnabled, [string]$kubernesVersion) {
     $rdStarted = $false
     try {
         # start rancher desktop in background.
@@ -91,10 +92,12 @@ function Set-RancherDesktop([string]$containerEngine, [string]$kubernesVersion) 
 
         # modify the settings when required.
         if (
+            ($settings.kubernetes.enabled -ne $kubernesEnabled) -or
             ($settings.kubernetes.version -ne $kubernesVersion) -or
             ($settings.kubernetes.containerEngine -ne $containerEngine)
         ) {
             &$rdctlPath set `
+                "--kubernetes-enabled=$(if ($kubernesEnabled) {'true'} else {'false'})" `
                 "--kubernetes-version=$kubernesVersion" `
                 "--container-engine=$containerEngine"
             return $true
@@ -110,6 +113,7 @@ function Set-RancherDesktop([string]$containerEngine, [string]$kubernesVersion) 
 
 $version = $module.Params.version
 $containerEngine = $module.Params.container_engine
+$kubernesEnabled = $module.Params.kubernetes_enabled
 $kubernesVersion = $module.Params.kubernetes_version
 
 # install.
@@ -118,7 +122,7 @@ if (Install-RancherDesktop $version) {
 }
 
 # configure.
-if (Set-RancherDesktop $containerEngine $kubernesVersion) {
+if (Set-RancherDesktop $containerEngine $kubernesEnabled $kubernesVersion) {
     $module.Result.changed = $true
 }
 

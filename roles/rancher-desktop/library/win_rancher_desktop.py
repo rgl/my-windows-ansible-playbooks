@@ -18,6 +18,10 @@ options:
       - Container engine to use.
       - Use one of: moby or containerd.
     type: str
+  kubernetes_enabled:
+    description:
+      - Whether Kubernetes is enabled.
+    type: bool
   kubernetes_version:
     description:
       - Kubernetes Version to install.
@@ -34,6 +38,7 @@ EXAMPLES = '''
   win_rancher_desktop:
     version: '1.3.0'
     container_engine: 'moby'
+    kubernetes_enabled: true
     kubernetes_version: '1.23.6'
 '''
 
