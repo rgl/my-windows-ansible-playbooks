@@ -106,7 +106,7 @@ function Set-RancherDesktop([string]$containerEngine, [bool]$kubernetesEnabled, 
         return $false
     } finally {
         if ($rdStarted) {
-            &$rdctlPath shutdown
+            &$rdctlPath shutdown | Out-Null
         }
     }
 }
