@@ -48,6 +48,12 @@
     path: C:/tools/msys64/etc/fstab
     line: C:/Users /home
 
+- name: Configure mintty
+  # see https://mintty.github.io/mintty.1.html
+  ansible.windows.win_copy:
+    src: minttyrc
+    dest: C:/tools/msys64/etc/minttyrc
+
 - name: Install login profile
   ansible.windows.win_copy:
     src: login.sh
