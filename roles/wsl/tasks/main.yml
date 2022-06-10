@@ -31,6 +31,16 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-wsl-ubuntu.ps1') }}"
 
+- name: Configure WSL Host
+  # NB we disable wslg because it starts consuming too much cpu.
+  #    and because I do not really need/use it.
+  #    see wsl.exe --system -d Ubuntu-20.04 top
+  #    see https://github.com/microsoft/WSL/issues/6982
+  #    see https://github.com/microsoft/wslg#wslg-system-distro
+  ansible.windows.win_copy:
+    src: .wslconfig
+    dest: '%USERPROFILE%\.wslconfig'
+
 - name: Install WSL Ubuntu Shortcut
   block:
     - name: Copy Ubuntu icon
