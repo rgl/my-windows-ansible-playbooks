@@ -159,6 +159,19 @@
     data: 0
     type: dword
 
+- name: Install the NuGet PowerShell Package Provider
+  ansible.windows.win_powershell:
+    script: |
+      Set-StrictMode -Version Latest
+      $ErrorActionPreference = 'Stop'
+      $ProgressPreference = 'SilentlyContinue'
+      $Ansible.Changed = $false
+      $nugetPackageProvider = Get-PackageProvider | Where-Object {$_.Name -eq 'NuGet'}
+      if (!$nugetPackageProvider) {
+        Get-PackageProvider -Name NuGet -Force | Out-Null
+        $Ansible.Changed = $true
+      }
+
 - name: Install Chocolatey
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/chocolatey
