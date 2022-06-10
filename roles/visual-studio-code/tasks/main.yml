@@ -4,4 +4,14 @@
     version: '{{ vscode_version }}'
     state: upgrade
 
+- name: Create the configuration directory
+  ansible.windows.win_file:
+    path: '%APPDATA%\Code\User'
+    state: directory
+
+- name: Configure vscode
+  ansible.windows.win_copy:
+    src: settings.json
+    dest: '%APPDATA%\Code\User\settings.json'
+
 # TODO install extensions.
