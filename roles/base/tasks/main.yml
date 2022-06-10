@@ -337,7 +337,7 @@
           $ErrorActionPreference = 'Stop'
           $ProgressPreference = 'SilentlyContinue'
           $Ansible.Changed = $false
-          $npcapVersion = '1.60'
+          $npcapVersion = '{{ npcap_version }}'
           $npcapPath = 'C:\Program Files\Npcap\npcap.sys'
           if (Test-Path $npcapPath) {
             $actualVersion = (Get-ChildItem $npcapPath).VersionInfo.ProductVersion
@@ -349,9 +349,9 @@
     - name: Download npcap
       when: npcap.changed
       ansible.windows.win_get_url:
-        dest: '%USERPROFILE%\Desktop\npcap-1.60.exe'
-        url: https://npcap.com/dist/npcap-1.60.exe
-        checksum: 87d3624772b8272767a3a4ffcceecc3052489cd09e494a6c352dce5e5efa4070
+        dest: '%USERPROFILE%\Desktop\npcap-{{ npcap_version }}.exe'
+        url: 'https://npcap.com/dist/npcap-{{ npcap_version }}.exe'
+        checksum: '{{ npcap_checksum }}'
         checksum_algorithm: sha256
 
 - name: Configure the firewall
