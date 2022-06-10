@@ -166,6 +166,16 @@
     version: '1.1.0'
     state: upgrade
 
+- name: Install DejaVu Mono Nerd Font
+  # see https://www.programmingfonts.org/#dejavu
+  # see https://www.programmingfonts.org/#meslo
+  # see https://www.nerdfonts.com
+  # https://community.chocolatey.org/packages/font-nerd-dejavusansmono
+  chocolatey.chocolatey.win_chocolatey:
+    name: font-nerd-dejavusansmono
+    version: '2.1.0'
+    state: upgrade
+
 - name: Install Notepad3
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/notepad3
