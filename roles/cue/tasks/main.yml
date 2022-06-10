@@ -1,0 +1,5 @@
+- name: Install cue
+  chocolatey.chocolatey.win_chocolatey:
+    name: cue-cli
+    version: '{{ cue_version }}'
+    state: upgrade

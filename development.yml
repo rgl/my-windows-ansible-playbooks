@@ -19,6 +19,7 @@
     - dotnet-sdk
     - go
     - rust
+    - cue
     - dagger
     - visual-studio-code
     - visual-studio
