@@ -9,3 +9,32 @@
     name: dotnet-sdk
     version: '{{ dotnet_sdk_version }}'
     state: upgrade
+
+- name: Add the dotnet nuget nuget.org package source
+  ansible.windows.win_powershell:
+    # see https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-nuget-add-source
+    script: |
+      Set-StrictMode -Version Latest
+      $ErrorActionPreference = 'Stop'
+      $ProgressPreference = 'SilentlyContinue'
+
+      $sourceUrl = 'https://api.nuget.org/v3/index.json'
+
+      $sources = dotnet nuget list source --format short | ForEach-Object {
+        # e.g. E https://api.nuget.org/v3/index.json
+        $parts = $_ -split '\s+',2
+        [PSCustomObject]@{
+          Flags = $parts[0]
+          SourceUrl = $parts[1]
+        }
+      }
+
+      if ($sources.SourceUrl -eq $sourceUrl) {
+        $Ansible.Changed = $false
+      } else {
+        dotnet nuget add source --name nuget.org $sourceUrl
+        if ($LASTEXITCODE) {
+          throw "failed with exit code $LASTEXITCODE"
+        }
+        $Ansible.Changed = $true
+      }
