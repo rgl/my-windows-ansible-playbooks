@@ -490,6 +490,14 @@
     # NB setting the version is moot because the upstream is not versioned.
     name: winobj
 
+- name: Install Dependencies
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/dependencies
+    # see https://github.com/lucasg/Dependencies
+    name: dependencies
+    version: '1.11.1'
+    state: upgrade
+
 - name: Configure the firewall
   block:
     - name: Allow ICMPv4 Echo (ping)
