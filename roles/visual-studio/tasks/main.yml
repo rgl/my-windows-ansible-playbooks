@@ -32,6 +32,10 @@
   win_visual_studio_component:
     name: Microsoft.VisualStudio.Component.VC.Tools.x86.x64
 
+- name: Install Windows 10 SDK 19041 Component
+  win_visual_studio_component:
+    name: Microsoft.VisualStudio.Component.Windows10SDK.19041
+
 - name: Install Windows App SDK C# Templates Component # for WinUI.
   win_visual_studio_component:
     # see https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
