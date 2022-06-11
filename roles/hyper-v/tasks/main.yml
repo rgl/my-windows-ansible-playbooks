@@ -25,6 +25,10 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-vagrant-vswitch.ps1') }}"
 
+- name: Remove the Vagrant vSwitch from the Windows Firewall
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'remove-vagrant-vswitch-from-firewall.ps1') }}"
+
 - name: Install WinDHCP
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-windhcp.ps1') }}"
