@@ -21,5 +21,6 @@
     - rust
     - cue
     - dagger
+    - httptoolkit
     - visual-studio-code
     - visual-studio

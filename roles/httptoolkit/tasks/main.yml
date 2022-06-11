@@ -1,0 +1,13 @@
+- name: Install HTTP Toolkit
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-httptoolkit.ps1') }}"
+
+- name: Install HTTP Toolkit Start Menu Shortcut
+  community.windows.win_shortcut:
+    src: C:\Program Files\HTTP Toolkit\HTTP Toolkit.exe
+    dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\HTTP Toolkit.lnk
+
+- name: Install HTTP Toolkit Desktop Shortcut
+  community.windows.win_shortcut:
+    src: C:\Program Files\HTTP Toolkit\HTTP Toolkit.exe
+    dest: '%USERPROFILE%\Desktop\HTTP Toolkit.lnk'
