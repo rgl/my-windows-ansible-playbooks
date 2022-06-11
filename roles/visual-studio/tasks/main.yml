@@ -29,3 +29,24 @@
   win_visual_studio_component:
     # see https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
     name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs
+
+- name: Configure Visual Studio
+  # NB tracking the .vssettings changes is too hard to implement. mainly,
+  #    because when visual studio closes, it modifies the file in an
+  #    unpredictable way (e.g. xml elements and attributes are re-ordered),
+  #    so this will only set the settings when no .vssettings exists.
+  # NB to redo this after visual studio is started, you have to delete the
+  #    whole settings directory:
+  #     Remove-Item -Recurse -Force "$env:LOCALAPPDATA\Microsoft\VisualStudio"
+  block:
+    - name: Install local configuration directory
+      ansible.windows.win_file:
+        path: '%USERPROFILE%\.ansible-visual-studio'
+        state: directory
+    - name: Install local settings.xsl
+      ansible.windows.win_copy:
+        src: settings.xsl
+        dest: '%USERPROFILE%\.ansible-visual-studio\settings.xsl'
+    - name: Configure Settings
+      ansible.windows.win_powershell:
+        script: "{{ lookup('file', 'settings.ps1') }}"
