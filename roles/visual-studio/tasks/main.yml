@@ -22,7 +22,9 @@
 
 - name: Install Managed Desktop Component
   win_visual_studio_component:
-    name: Microsoft.VisualStudio.Workload.ManagedDesktop
+    name:
+      - Microsoft.NetCore.Component.DevelopmentTools # Development tools for .NET
+      - Microsoft.VisualStudio.Workload.ManagedDesktop # .NET desktop development
 
 - name: Install Native Desktop Component
   win_visual_studio_component:
