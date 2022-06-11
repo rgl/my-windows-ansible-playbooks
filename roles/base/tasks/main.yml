@@ -483,6 +483,13 @@
     # NB setting the version is moot because the upstream is not versioned.
     name: procmon
 
+- name: Install WinObj
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/winobj
+    # see https://docs.microsoft.com/en-us/sysinternals/downloads/winobj
+    # NB setting the version is moot because the upstream is not versioned.
+    name: winobj
+
 - name: Configure the firewall
   block:
     - name: Allow ICMPv4 Echo (ping)
