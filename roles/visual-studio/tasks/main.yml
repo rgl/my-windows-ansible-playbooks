@@ -14,16 +14,15 @@
     data: 1
     type: dword
 
-- name: Install Visual Studio 2022
+- name: Install Visual Studio
   chocolatey.chocolatey.win_chocolatey:
     name: visualstudio2022community
     version: '{{ vs_version }}'
     state: upgrade
 
-- name: Install Visual Studio 2022 Managed Desktop Workload
-  chocolatey.chocolatey.win_chocolatey:
-    name: visualstudio2022-workload-manageddesktop
-    state: upgrade
+- name: Install Managed Desktop Component
+  win_visual_studio_component:
+    name: Microsoft.VisualStudio.Workload.ManagedDesktop
 
 - name: Install Visual Studio 2022 Windows App SDK C# Templates # for WinUI.
   win_visual_studio_component:
