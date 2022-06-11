@@ -476,6 +476,13 @@
     # NB setting the version is moot because the upstream is not versioned.
     name: procexp
 
+- name: Install Process Monitor
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/procmon
+    # see https://docs.microsoft.com/en-us/sysinternals/downloads/procmon
+    # NB setting the version is moot because the upstream is not versioned.
+    name: procmon
+
 - name: Configure the firewall
   block:
     - name: Allow ICMPv4 Echo (ping)
