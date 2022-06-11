@@ -67,17 +67,17 @@
 - name: Install packages
   win_msys2_pacman:
     name:
-      - diffutils
-      - dos2unix
-      - gnu-netcat
-      - make
-      - p7zip
-      - procps
-      - tar
-      - unzip
-      - vim
-      - xorriso
-      - zip
+      - diffutils   # https://packages.msys2.org/package/diffutils
+      - dos2unix    # https://packages.msys2.org/package/dos2unix
+      - gnu-netcat  # https://packages.msys2.org/package/gnu-netcat
+      - make        # https://packages.msys2.org/package/make
+      - p7zip       # https://packages.msys2.org/package/p7zip
+      - procps      # https://packages.msys2.org/package/procps
+      - tar         # https://packages.msys2.org/package/tar
+      - unzip       # https://packages.msys2.org/package/unzip
+      - vim         # https://packages.msys2.org/package/vim
+      - xorriso     # https://packages.msys2.org/package/xorriso
+      - zip         # https://packages.msys2.org/package/zip
 
 - name: Configure vim
   ansible.windows.win_copy:
