@@ -28,20 +28,19 @@
 
 - name: Install Native Desktop Component
   win_visual_studio_component:
-    name: Microsoft.VisualStudio.Workload.NativeDesktop
+    name: Microsoft.VisualStudio.Workload.NativeDesktop # Desktop development with C++
 
 - name: Install Visual C++ Tools Component
   win_visual_studio_component:
-    name: Microsoft.VisualStudio.Component.VC.Tools.x86.x64
+    name: Microsoft.VisualStudio.Component.VC.Tools.x86.x64 # MSVC v143 - VS 2022 C++ x64/x86 build tools
 
 - name: Install Windows 10 SDK 19041 Component
   win_visual_studio_component:
-    name: Microsoft.VisualStudio.Component.Windows10SDK.19041
+    name: Microsoft.VisualStudio.Component.Windows10SDK.19041 # Windows 10 SDK (10.0.19041.0)
 
 - name: Install Windows App SDK C# Templates Component # for WinUI.
   win_visual_studio_component:
-    # see https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
-    name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs
+    name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs # Windows App SDK C# Templates
 
 - name: Configure Visual Studio
   # NB tracking the .vssettings changes is too hard to implement. mainly,
