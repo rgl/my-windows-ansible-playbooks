@@ -67,6 +67,7 @@
 - name: Install packages
   win_msys2_pacman:
     name:
+      - diffutils
       - dos2unix
       - gnu-netcat
       - make
