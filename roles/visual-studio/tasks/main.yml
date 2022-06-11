@@ -24,7 +24,11 @@
   win_visual_studio_component:
     name: Microsoft.VisualStudio.Workload.ManagedDesktop
 
-- name: Install Visual Studio 2022 Windows App SDK C# Templates # for WinUI.
+- name: Install Native Desktop Component
+  win_visual_studio_component:
+    name: Microsoft.VisualStudio.Workload.NativeDesktop
+
+- name: Install Windows App SDK C# Templates Component # for WinUI.
   win_visual_studio_component:
     # see https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
     name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs
