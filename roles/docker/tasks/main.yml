@@ -1,19 +1,25 @@
 - name: Install Windows Containers (Windows Server)
   when: ansible_os_installation_type != 'Client'
-  ansible.windows.win_feature:
-    name: Containers
-    include_management_tools: yes
-  register: win_containers
+  block:
+    - name: Install Windows Containers (Windows Server)
+      ansible.windows.win_feature:
+        name: Containers
+        include_management_tools: yes
+      register: win_containers
+    - name: Reboot
+      when: win_containers.reboot_required
+      ansible.windows.win_reboot:
 
 - name: Install Windows Containers (Windows Client)
   when: ansible_os_installation_type == 'Client'
-  ansible.windows.win_optional_feature:
-    name: Containers
-  register: win_containers
-
-- name: Reboot
-  when: win_containers.reboot_required
-  ansible.windows.win_reboot:
+  block:
+    - name: Install Windows Containers (Windows Client)
+      ansible.windows.win_optional_feature:
+        name: Containers
+      register: win_containers
+    - name: Reboot
+      when: win_containers.reboot_required
+      ansible.windows.win_reboot:
 
 - name: Create the docker-users local group
   # NB this group can use the docker engine named pipe.
