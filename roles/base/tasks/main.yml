@@ -469,6 +469,13 @@
     # NB setting the version is moot because the upstream is not versioned.
     name: autoruns
 
+- name: Install Process Explorer
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/procexp
+    # see https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer
+    # NB setting the version is moot because the upstream is not versioned.
+    name: procexp
+
 - name: Configure the firewall
   block:
     - name: Allow ICMPv4 Echo (ping)
