@@ -72,6 +72,8 @@
       - gnu-netcat  # https://packages.msys2.org/package/gnu-netcat
       - make        # https://packages.msys2.org/package/make
       - p7zip       # https://packages.msys2.org/package/p7zip
+      - patch       # https://packages.msys2.org/package/patch
+      - patchutils  # https://packages.msys2.org/package/patchutils
       - procps      # https://packages.msys2.org/package/procps
       - tar         # https://packages.msys2.org/package/tar
       - unzip       # https://packages.msys2.org/package/unzip
