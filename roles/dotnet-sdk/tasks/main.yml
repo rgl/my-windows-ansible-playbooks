@@ -23,13 +23,16 @@
       $sources = dotnet nuget list source --format short | ForEach-Object {
         # e.g. E https://api.nuget.org/v3/index.json
         $parts = $_ -split '\s+',2
+        if ($parts.Length -ne 2) {
+          return
+        }
         [PSCustomObject]@{
           Flags = $parts[0]
           SourceUrl = $parts[1]
         }
       }
 
-      if ($sources.SourceUrl -eq $sourceUrl) {
+      if ($sources -and $sources.SourceUrl -eq $sourceUrl) {
         $Ansible.Changed = $false
       } else {
         dotnet nuget add source --name nuget.org $sourceUrl
