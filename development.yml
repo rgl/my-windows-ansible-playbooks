@@ -11,6 +11,7 @@
       when: ansible_os_installation_type == 'Client'
     - docker
     - msys2
+    - gsmartcontrol
     - k8s-client
     - azure-client
     - packer
