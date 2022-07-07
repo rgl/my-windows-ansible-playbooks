@@ -5,7 +5,7 @@ kubectl_version: '1.23.6'
 
 # see https://community.chocolatey.org/packages/k9s
 # see https://github.com/derailed/k9s/releases
-k9s_version: '0.25.18'
+k9s_version: '0.25.21'
 
 # see https://community.chocolatey.org/packages/kubernetes-helm
 # see https://github.com/helm/helm/releases
