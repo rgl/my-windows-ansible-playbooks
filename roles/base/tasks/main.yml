@@ -238,7 +238,7 @@
     # see https://ohmyposh.dev
     # see also https://starship.rs/
     name: oh-my-posh
-    version: '8.3.2'
+    version: '8.12.0'
     package_params: /ALLUSERS
     state: upgrade
 
