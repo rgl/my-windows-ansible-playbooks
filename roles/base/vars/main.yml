@@ -1,4 +1,4 @@
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
-npcap_version: '1.60'
-npcap_checksum: 87d3624772b8272767a3a4ffcceecc3052489cd09e494a6c352dce5e5efa4070
+npcap_version: '1.70'
+npcap_checksum: 53913ee65ac54927c793254d7404d40c57432de18b60feb3bd9cfd554d38dde9
