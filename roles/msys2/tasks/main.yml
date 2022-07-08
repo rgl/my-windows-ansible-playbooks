@@ -30,7 +30,7 @@
     path: 'C:/tools/msys64/{{ item }}'
     regexp: '^#?(MSYS2_PATH_TYPE=).+'
     line: '$1inherit'
-    backrefs: yes
+    backrefs: true
   loop:
     - mingw64.ini
     - msys2.ini
@@ -41,7 +41,7 @@
     path: C:/tools/msys64/etc/nsswitch.conf
     regexp: '^(db_home:).+'
     line: '$1 windows'
-    backrefs: yes
+    backrefs: true
 
 - name: Configure msys2 to mount C:/Users at /home
   community.windows.win_lineinfile:

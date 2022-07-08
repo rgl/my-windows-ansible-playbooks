@@ -4,7 +4,7 @@
     - name: Install Hyper-V (Windows Server)
       ansible.windows.win_feature:
         name: Hyper-V
-        include_management_tools: yes
+        include_management_tools: true
       register: hyper_v
     - name: Reboot
       when: hyper_v.reboot_required

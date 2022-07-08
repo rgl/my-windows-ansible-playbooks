@@ -59,8 +59,8 @@
 - name: Install Windows Updates
   # see https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_updates_module.html
   ansible.windows.win_updates:
-    reboot: yes
-    skip_optional: yes
+    reboot: true
+    skip_optional: true
     category_names:
       - CriticalUpdates
       - DefinitionUpdates
@@ -73,7 +73,7 @@
     location: 193
     format: pt-PT           # date format, number format, etc.
     unicode_language: en-US # UI language.
-    copy_settings: yes
+    copy_settings: true
 
 - name: Set keyboard layout
   ansible.windows.win_powershell:
@@ -503,7 +503,7 @@
     - name: Allow ICMPv4 Echo (ping)
       community.windows.win_firewall_rule:
         name: ICMPv4 Echo Request (ICMPv4-In)
-        enabled: yes
+        enabled: true
         action: allow
         direction: in
         protocol: icmpv4

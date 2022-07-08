@@ -4,7 +4,7 @@
     - name: Install Windows Containers (Windows Server)
       ansible.windows.win_feature:
         name: Containers
-        include_management_tools: yes
+        include_management_tools: true
       register: win_containers
     - name: Reboot
       when: win_containers.reboot_required
