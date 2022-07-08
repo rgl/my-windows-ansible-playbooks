@@ -5,9 +5,9 @@
     - base
     - intel-me-drivers
     - hyper-v
-    - name: wsl
+    - role: wsl
       when: ansible_os_installation_type == 'Client'
-    - name: rancher-desktop
+    - role: rancher-desktop
       when: ansible_os_installation_type == 'Client'
     - docker
     - msys2
