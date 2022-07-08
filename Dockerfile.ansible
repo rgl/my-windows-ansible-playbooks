@@ -15,7 +15,8 @@ apt-get install -y --no-install-recommends \
     python3-yaml \
     pylint \
     openssh-client \
-    sshpass
+    sshpass \
+    git
 rm -rf /var/lib/apt/lists/*
 install -d /etc/bash_completion.d
 activate-global-python-argcomplete3
@@ -29,12 +30,15 @@ RUN <<EOF
 python3 -m pip install -r requirements.txt
 EOF
 
-# install ansible collections.
+# install ansible collections and roles.
 COPY requirements.yml .
 RUN <<EOF
 ansible-galaxy collection install \
     -r requirements.yml \
     -p /usr/share/ansible/collections
+ansible-galaxy role install \
+    -r requirements.yml \
+    -p /usr/share/ansible/roles
 EOF
 
 # set the working directory.

@@ -1,5 +1,7 @@
 # About
 
+[![Build status](https://github.com/rgl/my-windows-ansible-playbooks/workflows/build/badge.svg)](https://github.com/rgl/my-windows-ansible-playbooks/actions?query=workflow%3Abuild)
+
 This is My Windows Ansible Playbooks Playground.
 
 This targets Windows Server 2022 and Windows 11.
