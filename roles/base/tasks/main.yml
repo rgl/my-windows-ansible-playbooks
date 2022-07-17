@@ -355,7 +355,7 @@
       chocolatey.chocolatey.win_chocolatey:
         # https://community.chocolatey.org/packages/git
         name: git
-        version: '2.37.0'
+        version: '2.37.1'
         state: upgrade
         package_params: /GitOnlyOnPath /NoAutoCrlf /SChannel
     - name: Configure Git
