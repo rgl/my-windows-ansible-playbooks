@@ -54,3 +54,10 @@
 - name: Add binaries to PATH
   ansible.builtin.win_path:
     elements: C:\Program Files\docker
+
+- name: Install docker compose
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-docker-compose.ps1') }}"
+    parameters:
+      version: '{{ docker_compose_version }}'
+      checksum: '{{ docker_compose_checksum }}'
