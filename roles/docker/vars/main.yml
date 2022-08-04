@@ -5,5 +5,5 @@ docker_checksum: fb18c87168c5696ff57a656ca7d6ca098a65d76035bbc3d7510f9bd8e5b2c8b
 
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
-docker_compose_version: '2.7.0'
-docker_compose_checksum: e8e0bb6a9c958711d081674ebe39fc31024e6de54fad18fe0b5471092745c440
+docker_compose_version: '2.9.0'
+docker_compose_checksum: d362372e2e46368f16702c192b12e7e349965d3b7d01c5fbb07504a9db732e88
