@@ -476,7 +476,7 @@
       chocolatey.chocolatey.win_chocolatey:
         # https://community.chocolatey.org/packages/wireshark
         name: wireshark
-        version: '3.6.6'
+        version: '3.6.7'
         state: upgrade
     - name: Install Wireshark Desktop shortcut
       community.windows.win_shortcut:
