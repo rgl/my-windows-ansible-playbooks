@@ -1,11 +1,14 @@
 # see https://github.com/ashaduri/gsmartcontrol/releases
 
+param(
+    [string]$version
+)
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '1.1.4'
 $archiveUrl = "https://github.com/ashaduri/gsmartcontrol/releases/download/v$version/gsmartcontrol-$version-win64.zip"
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 $installPath = 'C:\Program Files\GSmartControl'

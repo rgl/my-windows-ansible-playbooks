@@ -1,6 +1,8 @@
 - name: Install GSmartControl
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-gsmartcontrol.ps1') }}"
+    parameters:
+      version: '{{ gsmartcontrol_version }}'
 
 - name: Install GSmartControl Start Menu Shortcut
   community.windows.win_shortcut:
