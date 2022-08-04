@@ -1,11 +1,14 @@
 # see https://github.com/httptoolkit/httptoolkit-desktop/releases
 
+param(
+    [string]$version
+)
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '1.9.0'
 $archiveUrl = "https://github.com/httptoolkit/httptoolkit-desktop/releases/download/v$version/HttpToolkit-win-x64-$version.zip"
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 $installPath = 'C:\Program Files\HTTP Toolkit'

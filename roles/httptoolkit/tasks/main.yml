@@ -1,6 +1,8 @@
 - name: Install HTTP Toolkit
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-httptoolkit.ps1') }}"
+    parameters:
+      version: '{{ httptoolkit_version }}'
 
 - name: Install HTTP Toolkit Start Menu Shortcut
   community.windows.win_shortcut:
