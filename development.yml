@@ -4,6 +4,7 @@
   roles:
     - base
     - intel-me-drivers
+    - wireguard
     - hyper-v
     - role: wsl
       when: ansible_os_installation_type == 'Client'

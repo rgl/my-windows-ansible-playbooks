@@ -1,0 +1,5 @@
+- name: Install wireguard
+  chocolatey.chocolatey.win_chocolatey:
+    name: wireguard
+    version: '{{ wireguard_version }}'
+    state: upgrade
