@@ -2,7 +2,7 @@
 # see https://cloud.google.com/sdk/docs/downloads-versioned-archives
 
 param (
-    [string]$version
+    [string]$version='398.0.0'
 )
 
 Set-StrictMode -Version Latest
@@ -18,7 +18,7 @@ $gcloud = "$installPath\bin\gcloud.ps1"
 # bail when its already installed.
 # TODO there's a VERSION file... use that instead?
 if (Test-Path $gcloud) {
-    # e.g. Google Cloud SDK 394.0.0
+    # e.g. Google Cloud SDK 398.0.0
     if ((&$gcloud --version) -match "Google Cloud SDK $([regex]::Escape($version))") {
         Exit 0
     }
