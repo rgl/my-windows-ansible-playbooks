@@ -5,3 +5,7 @@ firefox_version: '104.0'
 # see https://github.com/nmap/npcap/releases
 npcap_version: '1.70'
 npcap_checksum: 53913ee65ac54927c793254d7404d40c57432de18b60feb3bd9cfd554d38dde9
+
+# see https://community.chocolatey.org/packages/oh-my-posh
+# see https://github.com/JanDeDobbeleer/oh-my-posh
+oh_my_posh_version: '8.33.2'
