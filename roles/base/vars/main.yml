@@ -1,3 +1,6 @@
+# see https://community.chocolatey.org/packages/firefox
+firefox_version: '104.0'
+
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
 npcap_version: '1.70'
