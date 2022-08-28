@@ -115,7 +115,7 @@
 
 - name: Hide the search button
   ansible.windows.win_regedit:
-    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Search
     name: SearchboxTaskbarMode
     data: 0
     type: dword
@@ -137,6 +137,33 @@
     name: TaskbarGlomLevel
     data: 2
     type: dword
+
+- name: Customize the Windows 11 Taskbar
+  when: ansible_distribution_version is version('10.0.22000.0', '>=')
+  block:
+    - name: Align to the left
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        name: TaskbarAl
+        data: 0
+        type: dword
+    - name: Hide the Widgets button
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        name: TaskbarDa
+        data: 0
+        type: dword
+    - name: Hide the Chat button
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        name: TaskbarMn
+        data: 0
+        type: dword
+    - name: Hide the built-in buttons (Edge, Store, etc.)
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband
+        name: Favorites
+        state: absent
 
 - name: Display full path in the title bar
   ansible.windows.win_regedit:
