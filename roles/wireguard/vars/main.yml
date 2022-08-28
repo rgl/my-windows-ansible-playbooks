@@ -1,2 +1,3 @@
 # see https://community.chocolatey.org/packages/wireguard
+# see https://www.wireguard.com/install/
 wireguard_version: '0.5.3'
