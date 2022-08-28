@@ -1,4 +1,5 @@
-- hosts:
+- name: Development
+  hosts:
     - all
   gather_facts: true
   roles:

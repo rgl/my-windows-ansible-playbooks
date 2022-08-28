@@ -36,4 +36,4 @@
       version: '{{ windhcp_version }}'
       checksum: '{{ windhcp_checksum }}'
   notify:
-    - restart WinDHCP
+    - Restart WinDHCP

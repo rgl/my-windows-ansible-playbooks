@@ -1,4 +1,4 @@
-- name: restart docker
+- name: Restart docker
   ansible.windows.win_service:
     name: docker
     state: restarted

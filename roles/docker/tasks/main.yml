@@ -36,7 +36,7 @@
       version: '{{ docker_version }}'
       checksum: '{{ docker_checksum }}'
   notify:
-    - restart docker
+    - Restart docker
 
 - name: Create the configuration directory
   ansible.windows.win_file:
@@ -49,7 +49,7 @@
     src: daemon.json
     dest: C:\Program Data\docker\config\daemon.json
   notify:
-    - restart docker
+    - Restart docker
 
 - name: Add binaries to PATH
   ansible.builtin.win_path:
