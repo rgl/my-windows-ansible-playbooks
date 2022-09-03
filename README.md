@@ -31,6 +31,12 @@ Run an ad-hoc command in the `dm1` machine:
 ./ansible.sh dm1 -m win_shell -a 'Get-PSSessionConfiguration'
 ```
 
+Lint the [`development.yml` playbook](development.yml) playbook:
+
+```bash
+./ansible-lint.sh --offline --parseable development.yml
+```
+
 Run the [`development.yml` playbook](development.yml) against the `dm1` machine:
 
 ```bash
