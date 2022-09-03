@@ -19,6 +19,10 @@
         path: '%LOCALAPPDATA%\Packages\{{ windows_terminal_package_name }}\LocalState'
         state: directory
     - name: Configure the Windows Terminal
+      # TODO once its possible to set environment variables in a windows
+      #      terminal profile modify the way we are configuring mingw64 in the
+      #      windows-terminal-settings.json file.
+      #      see https://github.com/microsoft/terminal/issues/2785
       ansible.windows.win_copy:
         src: windows-terminal-settings.json
         dest: '%LOCALAPPDATA%\Packages\{{ windows_terminal_package_name }}\LocalState\settings.json'
