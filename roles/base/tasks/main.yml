@@ -224,7 +224,7 @@
   # see https://www.programmingfonts.org/#dejavu
   # see https://www.programmingfonts.org/#meslo
   # see https://www.nerdfonts.com
-  # https://community.chocolatey.org/packages/font-nerd-dejavusansmono
+  # see https://community.chocolatey.org/packages/font-nerd-dejavusansmono
   chocolatey.chocolatey.win_chocolatey:
     name: font-nerd-dejavusansmono
     version: '2.1.0'
