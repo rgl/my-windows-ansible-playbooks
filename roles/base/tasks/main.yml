@@ -70,7 +70,7 @@
 
 - name: Set region
   community.windows.win_region:
-    location: 193
+    location: 193           # Portugal (193). See https://docs.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
     format: pt-PT           # date format, number format, etc.
     unicode_language: en-US # UI language.
     copy_settings: true
