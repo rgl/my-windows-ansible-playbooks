@@ -8,7 +8,7 @@ npcap_checksum: 5ccb61296c48e3f8cd20db738784bd7bf0daf8fce630f89892678b6dda4e533c
 
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
-oh_my_posh_version: '8.33.2'
+oh_my_posh_version: '8.36.7'
 
 # see https://community.chocolatey.org/packages/git
 git_version: '2.37.2.2'
