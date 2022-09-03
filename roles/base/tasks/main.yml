@@ -92,6 +92,51 @@
     data: 1
     type: dword
 
+- name: Disable Animation Effects
+  ansible.windows.win_powershell:
+    script: |
+      Set-StrictMode -Version Latest
+      $ErrorActionPreference = 'Stop'
+      $ProgressPreference = 'SilentlyContinue'
+      Add-Type @'
+      using System;
+      using Microsoft.Win32;
+      public static class Animations
+      {
+        private const ulong ValueWhenDisabled = 0x1080071290uL; // 70867423888
+        private const ulong ValueWhenEnabled  = 0x1280071E9EuL; // 79457361566
+        private const ulong ValueMask = ValueWhenDisabled ^ ValueWhenEnabled;
+        private static bool Enabled(ulong value)
+        {
+          return (value & ValueMask) == ValueMask;
+        }
+        private static ulong Enable(ulong value)
+        {
+          return value | ValueMask;
+        }
+        private static ulong Disable(ulong value)
+        {
+          return value & ~ValueMask;
+        }
+        public static bool Set(bool enable)
+        {
+          const string keyName = @"HKEY_CURRENT_USER\Control Panel\Desktop";
+          const string valueName = @"UserPreferencesMask";
+          var valueBytes = (byte[])Registry.GetValue(keyName, valueName, null);
+          var value = BitConverter.ToUInt64(valueBytes, 0);
+          if (Enabled(value) == enable)
+          {
+            return false;
+          }
+          var newValue = enable ? Enable(value) : Disable(value);
+          var newValueBytes = BitConverter.GetBytes(newValue);
+          Registry.SetValue(keyName, valueName, newValueBytes);
+          return true;
+        }
+      }
+      '@
+      $Ansible.Changed = [Animations]::Set($false)
+
 - name: Show hidden files
   ansible.windows.win_regedit:
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
