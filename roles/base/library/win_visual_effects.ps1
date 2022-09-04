@@ -4,6 +4,7 @@
 $spec = @{
     options = @{
         show_window_contents_while_dragging = @{ type = "bool"; default = $false }
+        smooth_edges_of_screen_fonts = @{ type = "bool"; default = $false }
     }
     # TODO supports_check_mode = $true
 }
@@ -19,6 +20,11 @@ $VisualEffects = @{
         Key     = 'HKCU:\Control Panel\Desktop'
         Name    = 'DragFullWindows'
     }
+    SmoothEdgesOfScreenFonts = @{
+        Key     = 'HKCU:\Control Panel\Desktop'
+        Name    = 'FontSmoothing'
+        Value   = 2
+    }
 }
 
 function Set-RegistryValue($key, $name, $value) {
@@ -32,7 +38,8 @@ function Set-RegistryValue($key, $name, $value) {
 
 function Set-VisualEffects {
     param(
-        [switch]$ShowWindowContentsWhileDragging
+        [switch]$ShowWindowContentsWhileDragging,
+        [switch]$SmoothEdgesOfScreenFonts
     )
     $changed = Set-RegistryValue `
         HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects `
@@ -41,7 +48,11 @@ function Set-VisualEffects {
     $PSBoundParameters.GetEnumerator() | ForEach-Object {
         $ve = $VisualEffects[$_.Key]
         $value = if ($_.Value) {
-            1
+            if ($ve.ContainsKey('Value')) {
+                $ve.Value
+            } else {
+                1
+            }
         } else {
             0
         }
@@ -52,5 +63,6 @@ function Set-VisualEffects {
 
 $module.Result.changed = Set-VisualEffects `
     -ShowWindowContentsWhileDragging:$module.Params.show_window_contents_while_dragging `
+    -SmoothEdgesOfScreenFonts:$module.Params.smooth_edges_of_screen_fonts
 
 $module.ExitJson()

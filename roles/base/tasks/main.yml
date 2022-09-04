@@ -88,6 +88,7 @@
 - name: Set visual effects
   win_visual_effects:
     show_window_contents_while_dragging: true
+    smooth_edges_of_screen_fonts: true
 
 - name: Disable Animation Effects
   ansible.windows.win_powershell:
