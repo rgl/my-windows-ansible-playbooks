@@ -85,12 +85,9 @@
   community.windows.win_timezone:
     timezone: GMT Standard Time
 
-- name: Show window content while dragging
-  ansible.windows.win_regedit:
-    path: HKCU:\Control Panel\Desktop
-    name: DragFullWindows
-    data: 1
-    type: dword
+- name: Set visual effects
+  win_visual_effects:
+    show_window_contents_while_dragging: true
 
 - name: Disable Animation Effects
   ansible.windows.win_powershell:
