@@ -68,18 +68,18 @@
       - UpdateRollups
       - Updates
 
+- name: Set preferred languages
+  win_user_languages:
+    languages:
+      - en-US
+      - pt-PT
+
 - name: Set region
   community.windows.win_region:
     location: 193           # Portugal (193). See https://docs.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
     format: pt-PT           # date format, number format, etc.
     unicode_language: en-US # UI language.
     copy_settings: true
-
-- name: Set keyboard layout
-  ansible.windows.win_powershell:
-    script: "{{ lookup('file', 'set-keyboard-layout.ps1') }}"
-    parameters:
-      languageTag: pt-PT
 
 - name: Set timezone
   community.windows.win_timezone:

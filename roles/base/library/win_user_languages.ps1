@@ -1,6 +1,14 @@
-param(
-    [string[]]$languageTag
-)
+#!powershell
+#AnsibleRequires -CSharpUtil Ansible.Basic
+
+$spec = @{
+    options = @{
+        languages = @{ type = "list"; elements = "str"; required = $true }
+    }
+    # TODO supports_check_mode = $true
+}
+
+$module = [Ansible.Basic.AnsibleModule]::Create($args, $spec)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -8,11 +16,12 @@ $ProgressPreference = 'SilentlyContinue'
 
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.InternationalSettings.Commands') | Out-Null
 
-# set the current user keyboard layout.
-# NB you can get the name from the list:
-#      [System.Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | out-gridview
+$languages = $module.Params.languages
+
+# NB you can get the language tags from the list:
+#      [System.Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | Out-GridView
 # NB "HKEY_CURRENT_USER\Keyboard Layout\Preload" will have the keyboard layout list.
-function Set-KeyboardLayout([Microsoft.InternationalSettings.Commands.WinUserLanguage[]]$languageTags) {
+function Set-UserLanguages([Microsoft.InternationalSettings.Commands.WinUserLanguage[]]$languageTags) {
     $changed = $false
     $actualTags = @((Get-WinUserLanguageList).LanguageTag)
     $desiredTags = @($languageTags.LanguageTag)
@@ -24,7 +33,5 @@ function Set-KeyboardLayout([Microsoft.InternationalSettings.Commands.WinUserLan
     return $changed
 }
 
-# set the current user keyboard layout.
-$Ansible.Changed = Set-KeyboardLayout $languageTag
-
-# TODO set the login screen keyboard.
+$module.Result.changed = Set-UserLanguages $languages
+$module.ExitJson()
