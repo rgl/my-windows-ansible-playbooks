@@ -3,6 +3,7 @@
 
 $spec = @{
     options = @{
+        show_translucent_selection_rectangle = @{ type = "bool"; default = $false }
         show_window_contents_while_dragging = @{ type = "bool"; default = $false }
         smooth_edges_of_screen_fonts = @{ type = "bool"; default = $false }
     }
@@ -16,6 +17,10 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
 $VisualEffects = @{
+    ShowTranslucentSelectionRectangle = @{
+        Key     = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+        Name    = 'ListviewAlphaSelect'
+    }
     ShowWindowContentsWhileDragging = @{
         Key     = 'HKCU:\Control Panel\Desktop'
         Name    = 'DragFullWindows'
@@ -38,6 +43,7 @@ function Set-RegistryValue($key, $name, $value) {
 
 function Set-VisualEffects {
     param(
+        [switch]$ShowTranslucentSelectionRectangle,
         [switch]$ShowWindowContentsWhileDragging,
         [switch]$SmoothEdgesOfScreenFonts
     )
@@ -62,6 +68,7 @@ function Set-VisualEffects {
 }
 
 $module.Result.changed = Set-VisualEffects `
+    -ShowTranslucentSelectionRectangle:$module.Params.show_translucent_selection_rectangle `
     -ShowWindowContentsWhileDragging:$module.Params.show_window_contents_while_dragging `
     -SmoothEdgesOfScreenFonts:$module.Params.smooth_edges_of_screen_fonts
 
