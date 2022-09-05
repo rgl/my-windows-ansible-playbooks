@@ -8,6 +8,10 @@ short_description: Manage the current user visual effects
 description:
   - Manage the current user visual effects.
 options:
+  show_shadows_under_windows:
+    description:
+      - Show shadows under windows.
+    type: bool
   show_translucent_selection_rectangle:
    description:
      - Show translucent selection rectangle.
@@ -27,6 +31,7 @@ author:
 EXAMPLES = '''
 - name: Set visual effects
   win_visual_effects:
+    show_shadows_under_windows: true
     show_translucent_selection_rectangle: true
     show_window_contents_while_dragging: true
     smooth_edges_of_screen_fonts: true
