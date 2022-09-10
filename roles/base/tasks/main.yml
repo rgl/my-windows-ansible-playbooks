@@ -389,7 +389,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/meld
     name: meld
-    version: '3.20.4'
+    version: '3.22.0'
     state: upgrade
 
 - name: Install Git
