@@ -74,6 +74,10 @@
       - en-US
       - pt-PT
 
+# - name: Set keyboard layout
+#   win_user_keyboard:
+#     language: pt-PT
+
 - name: Set region
   community.windows.win_region:
     location: 193           # Portugal (193). See https://docs.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
