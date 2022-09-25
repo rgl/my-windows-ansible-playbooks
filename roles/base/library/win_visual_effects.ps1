@@ -42,9 +42,12 @@ $VisualEffects = @{
 }
 
 function Set-RegistryValue($key, $name, $value) {
-    $actual = (Get-ItemProperty $key $name).$name
-    if ($actual -eq $value) {
-        return $false
+    $item = Get-ItemProperty -ErrorAction SilentlyContinue $key $name
+    if ($item) {
+        $actual = $item.$name
+        if ($actual -eq $value) {
+            return $false
+        }
     }
     Set-ItemProperty $key $name $value
     return $true
