@@ -101,16 +101,20 @@ function Set-VisualEffects {
         3
     $PSBoundParameters.GetEnumerator() | ForEach-Object {
         $ve = $VisualEffects[$_.Key]
-        $value = if ($_.Value) {
-            if ($ve.ContainsKey('Value')) {
-                $ve.Value
-            } else {
-                1
-            }
+        if ($ve.ContainsKey('UserPreferencesMask')) {
+            $changed = $changed -or [UserPreferencesMask]::Set($ve.UserPreferencesMask, $_.Value)
         } else {
-            0
+            $value = if ($_.Value) {
+                if ($ve.ContainsKey('Value')) {
+                    $ve.Value
+                } else {
+                    1
+                }
+            } else {
+                0
+            }
+            $changed = $changed -or (Set-RegistryValue $ve.Key $ve.Name $value)
         }
-        $changed = $changed -or (Set-RegistryValue $ve.Key $ve.Name $value)
     }
     return $changed
 }
