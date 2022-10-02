@@ -9,6 +9,13 @@
     windows_terminal_package_name: Microsoft.WindowsTerminal_{{ windows_terminal_package_id }}
     windows_terminal_package_full_name: Microsoft.WindowsTerminal_{{ windows_terminal_version }}_x64__{{ windows_terminal_package_id }}
   block:
+    - name: Install the Visual C++ Universal Runtime Desktop Bridge dependency
+      # see https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/cpp/libraries/c-runtime-packages-desktop-bridge#how-to-install-and-update-desktop-framework-packages
+      # see https://github.com/mkevenaar/chocolatey-packages/issues/124
+      # NB this is required because our Windows Base Image do not have the Windows Store installed.
+      ansible.windows.win_package:
+        product_id: Microsoft.VCLibs.140.00.UWPDesktop
+        path: https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx
     - name: Install the Windows Terminal
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal
