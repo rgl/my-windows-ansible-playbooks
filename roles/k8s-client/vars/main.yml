@@ -9,4 +9,4 @@ k9s_version: '0.26.3'
 
 # see https://community.chocolatey.org/packages/kubernetes-helm
 # see https://github.com/helm/helm/releases
-helm_version: '3.9.4'
+helm_version: '3.10.0'
