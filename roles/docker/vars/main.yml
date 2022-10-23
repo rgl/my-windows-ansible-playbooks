@@ -1,7 +1,7 @@
 # see https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-ce.ps1
-docker_version: '20.10.18'
-docker_checksum: 4c7f8a655a9e434c8a910d5ea315942aca34e9fe14e850a0fffebeff7702b6f9
+docker_version: '20.10.19'
+docker_checksum: 241b3da0952d74688550e960b41589ab965b81bd393bc112d63e0b4500c8e881
 
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
