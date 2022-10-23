@@ -69,7 +69,7 @@
       - Updates
 
 - name: Set preferred languages
-  win_user_languages:
+  win_user_languages: # noqa fqcn[action]
     languages:
       - en-US
       - pt-PT
@@ -90,7 +90,7 @@
     timezone: GMT Standard Time
 
 - name: Set visual effects
-  win_visual_effects:
+  win_visual_effects: # noqa fqcn[action]
     show_shadows_under_windows: true
     show_translucent_selection_rectangle: true
     show_window_contents_while_dragging: true
@@ -345,7 +345,8 @@
         src: Microsoft.PowerShell_profile.ps1
         dest: '%USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1'
 
-- include_tasks: windows-terminal.yml
+- name: Install the Windows Terminal
+  ansible.builtin.include_tasks: windows-terminal.yml
 
 - name: Install Notepad3
   chocolatey.chocolatey.win_chocolatey:
@@ -387,7 +388,8 @@
     version: '1.46.0.20220509'
     state: upgrade
 
-- include_tasks: firefox.yml
+- name: Install Firefox
+  ansible.builtin.include_tasks: firefox.yml
 
 - name: Install Meld
   chocolatey.chocolatey.win_chocolatey:

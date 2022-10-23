@@ -21,25 +21,25 @@
     state: upgrade
 
 - name: Install Managed Desktop Component
-  win_visual_studio_component:
+  win_visual_studio_component: # noqa fqcn[action]
     name:
       - Microsoft.NetCore.Component.DevelopmentTools # Development tools for .NET
       - Microsoft.VisualStudio.Workload.ManagedDesktop # .NET desktop development
 
 - name: Install Native Desktop Component
-  win_visual_studio_component:
+  win_visual_studio_component: # noqa fqcn[action]
     name: Microsoft.VisualStudio.Workload.NativeDesktop # Desktop development with C++
 
 - name: Install Visual C++ Tools Component
-  win_visual_studio_component:
+  win_visual_studio_component: # noqa fqcn[action]
     name: Microsoft.VisualStudio.Component.VC.Tools.x86.x64 # MSVC v143 - VS 2022 C++ x64/x86 build tools
 
 - name: Install Windows 10 SDK 19041 Component
-  win_visual_studio_component:
+  win_visual_studio_component: # noqa fqcn[action]
     name: Microsoft.VisualStudio.Component.Windows10SDK.19041 # Windows 10 SDK (10.0.19041.0)
 
 - name: Install Windows App SDK C# Templates Component # for WinUI.
-  win_visual_studio_component:
+  win_visual_studio_component: # noqa fqcn[action]
     name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs # Windows App SDK C# Templates
 
 - name: Configure Visual Studio

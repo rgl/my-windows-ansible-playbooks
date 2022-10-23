@@ -1,3 +1,8 @@
-- include_tasks: kubectl.yml
-- include_tasks: k9s.yml
-- include_tasks: helm.yml
+- name: Install kubectl
+  ansible.builtin.include_tasks: kubectl.yml
+
+- name: Instakk k9s
+  ansible.builtin.include_tasks: k9s.yml
+
+- name: Install helm
+  ansible.builtin.include_tasks: helm.yml

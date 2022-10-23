@@ -65,7 +65,7 @@
     dest: C:/tools/msys64/etc/inputrc
 
 - name: Install packages
-  win_msys2_pacman:
+  win_msys2_pacman: # noqa fqcn[action]
     name:
       - diffutils   # https://packages.msys2.org/package/diffutils
       - dos2unix    # https://packages.msys2.org/package/dos2unix
