@@ -1,3 +1,3 @@
 # see https://community.chocolatey.org/packages/go
 # see https://github.com/golang/go/tags
-go_version: '1.19.1'
+go_version: '1.19.2'
