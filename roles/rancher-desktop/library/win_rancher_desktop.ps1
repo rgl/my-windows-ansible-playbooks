@@ -1,7 +1,7 @@
 #!powershell
 #AnsibleRequires -CSharpUtil Ansible.Basic
 # NB this installs the binaries at C:\Program Files\Rancher Desktop.
-# NB this also installs an uninstaller named Rancher Desktop 1.3.0.
+# NB this also installs an uninstaller named Rancher Desktop.
 
 $spec = @{
     options = @{
