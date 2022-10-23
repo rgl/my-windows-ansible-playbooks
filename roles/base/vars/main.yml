@@ -1,5 +1,5 @@
 # see https://community.chocolatey.org/packages/firefox
-firefox_version: '105.0.1'
+firefox_version: '106.0.1'
 
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
