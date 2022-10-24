@@ -253,10 +253,22 @@
     # see https://www.powershellgallery.com
     script: |
       Set-StrictMode -Version Latest
-      $ErrorActionPreference = 'Stop'
+      # NB we cannot set this to Stop because something is broken inside
+      #    Get-PSRepository that causes it to fail with:
+      #       PowerShell Gallery is currently unavailable.  Please try again later.
+      $ErrorActionPreference = 'Continue'
       $ProgressPreference = 'SilentlyContinue'
       $Ansible.Changed = $false
       $repository = Get-PSRepository -Name PSGallery
+      if (!$repository) {
+        Unregister-PSRepository PSGallery -ErrorAction SilentlyContinue
+        Register-PSRepository -Default
+        $Ansible.Changed = $true
+        $repository = Get-PSRepository -Name PSGallery
+        if (!$repository) {
+          throw "unknown error getting the PSGallery PSRepository"
+        }
+      }
       if ($repository.InstallationPolicy -ne 'Trusted') {
         Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
         $Ansible.Changed = $true
