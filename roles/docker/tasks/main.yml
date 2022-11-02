@@ -52,7 +52,7 @@
     - Restart docker
 
 - name: Add binaries to PATH
-  ansible.builtin.win_path:
+  ansible.windows.win_path:
     elements: C:\Program Files\docker
 
 - name: Install docker compose

@@ -5,5 +5,5 @@
       version: "{{ gcloud_version }}"
 
 - name: Add to PATH
-  ansible.builtin.win_path:
+  ansible.windows.win_path:
     elements: C:\Program Files\google-cloud-sdk\bin

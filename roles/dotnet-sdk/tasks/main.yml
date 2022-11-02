@@ -1,5 +1,5 @@
 - name: Opt-out of telemetry
-  ansible.builtin.win_environment:
+  ansible.windows.win_environment:
     level: machine
     name: DOTNET_CLI_TELEMETRY_OPTOUT
     value: 1
