@@ -42,3 +42,10 @@ Run the [`development.yml` playbook](development.yml) against the `dm1` machine:
 ```bash
 ./ansible-playbook.sh --limit=dm1 development.yml
 ```
+
+List this repository dependencies (and which have newer versions):
+
+```bash
+export GITHUB_COM_TOKEN='YOUR_GITHUB_PERSONAL_TOKEN'
+./renovate.sh
+```
