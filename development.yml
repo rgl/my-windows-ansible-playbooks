@@ -4,27 +4,27 @@
   gather_facts: true
   roles:
     - base
-    - intel-me-drivers
+    - intel_me_drivers
     - wireguard
-    - hyper-v
+    - hyper_v
     - role: wsl
       when: ansible_os_installation_type == 'Client'
-    - role: rancher-desktop
+    - role: rancher_desktop
       when: ansible_os_installation_type == 'Client'
     - docker
     - msys2
     - gsmartcontrol
-    - k8s-client
-    - azure-client
-    - gcp-client
+    - k8s_client
+    - azure_client
+    - gcp_client
     - packer
     - terraform
     - vagrant
-    - dotnet-sdk
+    - dotnet_sdk
     - go
     - rust
     - cue
     - dagger
     - httptoolkit
-    - visual-studio-code
-    - visual-studio
+    - visual_studio_code
+    - visual_studio
