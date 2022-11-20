@@ -4,7 +4,7 @@ firefox_version: '106.0.5'
 
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
-# renovate: datasource=github-releases depName=nmap/npcap versioning=semver-coerced
+# renovate: datasource=github-releases depName=nmap/npcap
 npcap_version: '1.71'
 npcap_checksum: 5ccb61296c48e3f8cd20db738784bd7bf0daf8fce630f89892678b6dda4e533c
 
