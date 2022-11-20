@@ -1,3 +1,4 @@
 # see https://community.chocolatey.org/packages/terraform
 # see https://github.com/hashicorp/terraform/releases
-terraform_version: '1.3.3'
+# renovate: datasource=nuget depName=terraform
+terraform_version: '1.3.5'
