@@ -14,4 +14,4 @@ all:
     ansible_psrp_message_encryption: never
     ansible_psrp_auth: credssp
     # NB ansible does not yet support PowerShell 7.
-    #ansible_psrp_configuration_name: PowerShell.7 
+    # ansible_psrp_configuration_name: PowerShell.7
