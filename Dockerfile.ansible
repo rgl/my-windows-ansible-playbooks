@@ -42,4 +42,4 @@ ansible-galaxy role install \
 EOF
 
 # set the working directory.
-WORKDIR /playbooks
+WORKDIR /project
