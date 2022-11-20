@@ -1,3 +1,4 @@
 # see https://community.chocolatey.org/packages/dotnet-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+# renovate: datasource=nuget depName=dotnet-sdk
 dotnet_sdk_version: '6.0.402' # dotnet runtime 6.0.10.

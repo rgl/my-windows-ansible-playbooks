@@ -1,3 +1,5 @@
 # see https://community.chocolatey.org/packages/dagger
+# see https://dagger.io
 # see https://github.com/dagger/dagger/releases
+# renovate: datasource=nuget depName=dagger
 dagger_version: '0.2.36'

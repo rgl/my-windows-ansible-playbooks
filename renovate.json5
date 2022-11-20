@@ -16,5 +16,14 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
       "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
     }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["nuget"],
+      "registryUrls": [
+        // see https://docs.chocolatey.org/en-us/faqs#what-is-the-default-package-source-repository-url-community-feed-url
+        "https://community.chocolatey.org/api/v2/"
+      ]
+    }
   ]
 }
