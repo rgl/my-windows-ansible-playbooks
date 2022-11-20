@@ -2,7 +2,7 @@
 # see https://github.com/kubernetes/kubernetes/releases
 # see https://kubernetes.io/releases/
 # renovate: datasource=nuget depName=kubernetes-cli
-kubectl_version: '1.25.3'
+kubectl_version: '1.25.4'
 
 # see https://community.chocolatey.org/packages/k9s
 # see https://github.com/derailed/k9s/releases
