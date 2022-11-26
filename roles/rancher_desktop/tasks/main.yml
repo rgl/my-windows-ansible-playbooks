@@ -1,7 +1,6 @@
 - name: Install Rancher Desktop
-  # see https://github.com/rancher-sandbox/rancher-desktop/releases
   win_rancher_desktop: # noqa fqcn[action]
-    version: '1.6.0'
+    version: '{{ rancher_desktop_version }}'
     container_engine: 'moby'
     kubernetes_enabled: true
-    kubernetes_version: '1.24.6'
+    kubernetes_version: '{{ rancher_desktop_kubernetes_version }}'
