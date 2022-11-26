@@ -4,10 +4,11 @@
   vars:
     # see https://community.chocolatey.org/packages/microsoft-windows-terminal
     # see https://github.com/microsoft/terminal/releases
-    windows_terminal_version: '1.15.2874.0'
+    windows_terminal_version:       '1.15.2874.0'
+    windows_terminal_version_win11: '1.15.2875.0'
     windows_terminal_package_id: 8wekyb3d8bbwe
     windows_terminal_package_name: Microsoft.WindowsTerminal_{{ windows_terminal_package_id }}
-    windows_terminal_package_full_name: Microsoft.WindowsTerminal_{{ windows_terminal_version }}_x64__{{ windows_terminal_package_id }}
+    windows_terminal_package_full_name: Microsoft.WindowsTerminal_{% if ansible_distribution_version is version('10.0.22000.0', '>=') %}{{ windows_terminal_version_win11 }}{% else %}{{ windows_terminal_version }}{% endif %}_x64__{{ windows_terminal_package_id }}
   block:
     - name: Install the Visual C++ Universal Runtime Desktop Bridge dependency
       # see https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/cpp/libraries/c-runtime-packages-desktop-bridge
