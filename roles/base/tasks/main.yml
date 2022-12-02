@@ -494,7 +494,8 @@
       chocolatey.chocolatey.win_chocolatey:
         # https://community.chocolatey.org/packages/wireshark
         name: wireshark
-        version: '3.6.8'
+        # renovate: datasource=nuget depName=wireshark
+        version: '4.0.1'
         state: upgrade
     - name: Install Wireshark Desktop shortcut
       community.windows.win_shortcut:
