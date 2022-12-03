@@ -20,6 +20,7 @@
   "packageRules": [
     {
       "matchDatasources": ["nuget"],
+      "versioning": "nuget",
       "registryUrls": [
         // see https://docs.chocolatey.org/en-us/faqs#what-is-the-default-package-source-repository-url-community-feed-url
         "https://community.chocolatey.org/api/v2/"
