@@ -278,6 +278,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/chocolatey
     name: chocolatey
+    # renovate: datasource=nuget depName=chocolatey
     version: '1.2.0'
     state: upgrade
 
@@ -364,6 +365,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/notepad3
     name: notepad3
+    # renovate: datasource=nuget depName=notepad3
     version: '5.21.1129.1'
     state: upgrade
 
@@ -376,6 +378,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/7zip.install
     name: 7zip.install
+    # renovate: datasource=nuget depName=7zip.install
     version: '22.1'
     state: upgrade
 
@@ -383,6 +386,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/bind-toolsonly
     name: bind-toolsonly
+    # renovate: datasource=nuget depName=bind-toolsonly
     version: '9.16.28'
     state: upgrade
 
@@ -406,6 +410,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/hwmonitor
     name: hwmonitor
+    # renovate: datasource=nuget depName=hwmonitor
     version: '1.46.0.20220509'
     state: upgrade
 
@@ -416,6 +421,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/meld
     name: meld
+    # renovate: datasource=nuget depName=meld
     version: '3.22.0'
     state: upgrade
 
@@ -460,6 +466,7 @@
       chocolatey.chocolatey.win_chocolatey:
         # https://community.chocolatey.org/packages/gitextensions
         name: gitextensions
+        # renovate: datasource=nuget depName=gitextensions
         version: '3.5.4'
         state: upgrade
     - name: Configure Git Extensions
@@ -566,6 +573,7 @@
     # https://community.chocolatey.org/packages/dependencies
     # see https://github.com/lucasg/Dependencies/releases
     name: dependencies
+    # renovate: datasource=nuget depName=dependencies
     version: '1.11.1'
     state: upgrade
 
