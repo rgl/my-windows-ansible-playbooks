@@ -1,2 +1,3 @@
 # see https://community.chocolatey.org/packages/vscode
-vscode_version: '1.72.2'
+# renovate: datasource=nuget depName=vscode
+vscode_version: '1.73.1'
