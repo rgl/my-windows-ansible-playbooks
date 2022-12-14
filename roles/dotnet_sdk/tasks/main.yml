@@ -6,9 +6,12 @@
 
 - name: Install dotnet-sdk
   chocolatey.chocolatey.win_chocolatey:
-    name: dotnet-sdk
-    version: '{{ dotnet_sdk_version }}'
+    name: dotnet-{{ (item | split('.'))[:2] | join('.') }}-sdk
+    version: '{{ item }}'
     state: upgrade
+  loop:
+    - '{{ dotnet_sdk_lts_version }}'
+    - '{{ dotnet_sdk_sts_version }}'
 
 - name: Add the dotnet nuget nuget.org package source
   ansible.windows.win_powershell:

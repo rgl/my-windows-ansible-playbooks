@@ -1,4 +1,11 @@
-# see https://community.chocolatey.org/packages/dotnet-sdk
+# see https://community.chocolatey.org/packages/dotnet-6.0-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/6.0
-# renovate: datasource=nuget depName=dotnet-sdk
-dotnet_sdk_version: '6.0.404' # dotnet runtime 6.0.12.
+# see https://learn.microsoft.com/en-us/dotnet/core/install/windows
+# renovate: datasource=dotnet depName=dotnet-sdk
+dotnet_sdk_lts_version: '6.0.404' # dotnet 6.0.12
+
+# see https://community.chocolatey.org/packages/dotnet-7.0-sdk
+# see https://dotnet.microsoft.com/en-us/download/dotnet/7.0
+# see https://learn.microsoft.com/en-us/dotnet/core/install/windows
+# renovate: datasource=dotnet depName=dotnet-sdk
+dotnet_sdk_sts_version: '7.0.101' # dotnet 7.0.1
