@@ -1,6 +1,6 @@
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget depName=firefox
-firefox_version: '108.0'
+firefox_version: '108.0.1'
 
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
