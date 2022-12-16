@@ -1,8 +1,8 @@
 # see https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-ce.ps1
 # renovate: datasource=github-releases depName=moby/moby
-docker_version: '20.10.21'
-docker_checksum: ec71047cac86d759f92be61c24c0d4b3a36cd0a85dfb269a1bb525fbe1398a2f
+docker_version: '20.10.22'
+docker_checksum: 45cd2733267849937a266a365820bd8255799344cb91411a827dd19d4e6f4930
 
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
