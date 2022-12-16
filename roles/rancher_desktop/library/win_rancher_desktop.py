@@ -36,7 +36,7 @@ author:
 EXAMPLES = '''
 - name: Install Rancher Desktop
   win_rancher_desktop:
-    version: '1.6.2'
+    version: '1.7.0'
     container_engine: 'moby'
     kubernetes_enabled: true
     kubernetes_version: '1.25.4'

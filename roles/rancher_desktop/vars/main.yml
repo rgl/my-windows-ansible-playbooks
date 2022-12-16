@@ -1,5 +1,5 @@
 # see https://github.com/rancher-sandbox/rancher-desktop/releases
 # renovate: datasource=github-releases depName=rancher-sandbox/rancher-desktop
-rancher_desktop_version: '1.6.2'
+rancher_desktop_version: '1.7.0'
 
 rancher_desktop_kubernetes_version: '1.25.4'
