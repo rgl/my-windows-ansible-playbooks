@@ -68,6 +68,15 @@
       - UpdateRollups
       - Updates
 
+- name: Disable Fast Startup
+  ansible.windows.win_regedit:
+    # see powercfg.exe -a
+    # see the Shutdown settings in the Windows Control Panel at Hardware and Sound\Power Options\System Settings.
+    path: HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power
+    name: HiberbootEnabled
+    data: 0
+    type: dword
+
 - name: Set preferred languages
   win_user_languages: # noqa fqcn[action]
     languages:
