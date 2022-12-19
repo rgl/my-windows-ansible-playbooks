@@ -1,0 +1,5 @@
+- name: Install nodejs
+  chocolatey.chocolatey.win_chocolatey:
+    name: nodejs
+    version: '{{ nodejs_version }}'
+    state: upgrade
