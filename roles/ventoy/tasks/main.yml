@@ -1,0 +1,5 @@
+- name: Install ventoy
+  chocolatey.chocolatey.win_chocolatey:
+    name: ventoy
+    version: '{{ ventoy_version }}'
+    state: upgrade
