@@ -1,3 +1,4 @@
 # see https://github.com/rgl/WinDHCP/releases
+# renovate: datasource=github-releases depName=rgl/WinDHCP
 windhcp_version: '0.0.2'
 windhcp_checksum: 872ce8655a8d137624b1d2ca728142b2e9e176a0e148c5286a6d02e0aba7d0db

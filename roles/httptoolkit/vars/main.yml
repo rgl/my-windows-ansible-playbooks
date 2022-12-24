@@ -1,2 +1,3 @@
 # see https://github.com/httptoolkit/httptoolkit-desktop/releases
+# renovate: datasource=github-releases depName=httptoolkit/httptoolkit-desktop
 httptoolkit_version: '1.11.0'
