@@ -19,7 +19,7 @@ $dockerComposePath = "$dockerCliPluginsPath\docker-compose.exe"
 
 # check whether the expected version is already installed.
 $installBinaries = if (Test-Path $dockerComposePath) {
-    # e.g. Docker Compose version v2.14.1
+    # e.g. Docker Compose version v2.14.2
     $actualVersionText = &$dockerComposePath version
     if ($actualVersionText -notmatch '^Docker Compose version v(\d+(\.\d+)+)') {
         throw "unable to parse the docker-compose.exe version from: $actualVersionText"
