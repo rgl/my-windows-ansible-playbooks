@@ -7,9 +7,9 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '2205.15.0.2623'
-$archiveUrl = 'https://ftp.ext.hp.com/pub/softpaq/sp139501-140000/sp139844.exe'
-$archiveHash = '00c63978e0f13673ddf329e6b4619370dd22bb7eb4667d83352b145a873a5051'
+$version = '2227.3.14.0' # Oct 19, 2022.
+$archiveUrl = 'https://ftp.hp.com/pub/softpaq/sp143001-143500/sp143098.exe'
+$archiveHash = 'bd8729ae32f8fa6ac1b2e6dc52d5fb8aeee124d7d01c2bc05bf5f31da56fb300'
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 
 # bail when its already installed.
