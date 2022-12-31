@@ -4,7 +4,7 @@
   vars:
     # see https://community.chocolatey.org/packages/microsoft-windows-terminal
     # see https://github.com/microsoft/terminal/releases
-    # renovate: datasource=nuget depName=microsoft-windows-terminal
+    # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
     windows_terminal_version: '1.15.3465.0'
     windows_terminal_package_publisher_id: 8wekyb3d8bbwe
     windows_terminal_package_name: Microsoft.WindowsTerminal

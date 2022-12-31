@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/vagrant
 # see https://github.com/hashicorp/vagrant/tags
-# renovate: datasource=nuget depName=vagrant
+# renovate: datasource=nuget:chocolatey depName=vagrant
 vagrant_version: '2.3.4'

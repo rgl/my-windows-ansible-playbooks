@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/wireguard
 # see https://www.wireguard.com/install/
-# renovate: datasource=nuget depName=wireguard
+# renovate: datasource=nuget:chocolatey depName=wireguard
 wireguard_version: '0.5.3'

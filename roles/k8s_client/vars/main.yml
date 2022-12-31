@@ -1,15 +1,15 @@
 # see https://community.chocolatey.org/packages/kubernetes-cli
 # see https://github.com/kubernetes/kubernetes/releases
 # see https://kubernetes.io/releases/
-# renovate: datasource=nuget depName=kubernetes-cli
+# renovate: datasource=nuget:chocolatey depName=kubernetes-cli extractVersion=^(?<version>1\.25\..+)
 kubectl_version: '1.25.4'
 
 # see https://community.chocolatey.org/packages/k9s
 # see https://github.com/derailed/k9s/releases
-# renovate: datasource=nuget depName=k9s
+# renovate: datasource=nuget:chocolatey depName=k9s
 k9s_version: '0.26.7'
 
 # see https://community.chocolatey.org/packages/kubernetes-helm
 # see https://github.com/helm/helm/releases
-# renovate: datasource=nuget depName=kubernetes-helm
+# renovate: datasource=nuget:chocolatey depName=kubernetes-helm
 helm_version: '3.10.3'

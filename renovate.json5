@@ -5,26 +5,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "regexManagers": [
+    // default datasources.
     {
       "fileMatch": [
         "^roles/.+\\.yml$",
         "renovate\\.sh"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+        "# renovate: datasource=(?<datasource>[^:]+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
       "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
-    }
-  ],
-  "packageRules": [
+    },
+    // nuget:chocolatey datasource.
     {
-      "matchDatasources": ["nuget"],
-      "versioning": "nuget",
-      "registryUrls": [
-        // see https://docs.chocolatey.org/en-us/faqs#what-is-the-default-package-source-repository-url-community-feed-url
-        "https://community.chocolatey.org/api/v2/"
-      ]
-    }
+      "fileMatch": [
+        "^roles/.+\\.yml$",
+        "renovate\\.sh"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>nuget):chocolatey depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+      ],
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}https://community.chocolatey.org/api/v2{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}nuget{{/if}}",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
+    },
   ]
 }
