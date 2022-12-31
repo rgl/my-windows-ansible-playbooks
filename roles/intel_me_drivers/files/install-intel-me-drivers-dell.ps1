@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '2229.3.16.0'
+$version = '2229.3.16.0' # Oct 10, 2022.
 $archiveUrl = 'https://dl.dell.com/FOLDER09021432M/4/Intel-Management-Engine-Components-Installer_3DC3X_WIN64_2229.3.16.0_A11.EXE'
 $archiveHash = '7d8825c020691f4052ef62a69f9da01c1ba53f5cc9ffc7312a50b8a85c10a872'
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
