@@ -3,3 +3,21 @@
     name: awscli
     version: '{{ aws_version }}'
     state: upgrade
+
+# NB this is uninstalled because it clobbers the AWS.Tools modules.
+- name: Uninstall AWSPowerShell.NetCore PowerShell Module
+  community.windows.win_psmodule:
+    name: AWSPowerShell.NetCore
+    accept_license: true
+    state: absent
+
+- name: Install AWS.Tools PowerShell Modules
+  community.windows.win_psmodule:
+    name: '{{ item }}'
+    required_version: '{{ aws_ps_version }}'
+    accept_license: true
+    state: present
+  loop:
+    - AWS.Tools.SecretsManager
+    - AWS.Tools.EC2
+    - AWS.Tools.S3

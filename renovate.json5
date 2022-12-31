@@ -30,5 +30,18 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}nuget{{/if}}",
       "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
     },
+    // nuget:powershellgallery datasource.
+    {
+      "fileMatch": [
+        "^roles/.+\\.yml$",
+        "renovate\\.sh"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>nuget):powershellgallery depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
+      ],
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}https://www.powershellgallery.com/api/v2{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}nuget{{/if}}",
+      "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
+    }
   ]
 }
