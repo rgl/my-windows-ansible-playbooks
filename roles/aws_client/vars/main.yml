@@ -1,0 +1,4 @@
+# see https://community.chocolatey.org/packages/awscli
+# see https://github.com/aws/aws-cli
+# renovate: datasource=nuget:chocolatey depName=awscli
+aws_version: '2.9.12'

@@ -1,0 +1,5 @@
+- name: Install awscli
+  chocolatey.chocolatey.win_chocolatey:
+    name: awscli
+    version: '{{ aws_version }}'
+    state: upgrade
