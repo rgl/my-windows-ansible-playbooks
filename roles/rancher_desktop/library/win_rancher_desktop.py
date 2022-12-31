@@ -39,7 +39,7 @@ EXAMPLES = '''
     version: '1.7.0'
     container_engine: 'moby'
     kubernetes_enabled: true
-    kubernetes_version: '1.25.4'
+    kubernetes_version: '1.25.5'
 '''
 
 RETURN = '''
