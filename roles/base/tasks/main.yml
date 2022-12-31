@@ -329,6 +329,9 @@
         data: 0x00000190
         type: dword
 
+- name: Install pwsh
+  ansible.builtin.include_tasks: pwsh.yml
+
 - name: Install oh-my-posh
   chocolatey.chocolatey.win_chocolatey:
     # see https://community.chocolatey.org/packages/oh-my-posh
