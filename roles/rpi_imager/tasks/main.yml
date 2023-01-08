@@ -1,0 +1,5 @@
+- name: Install Raspberry Pi Imaging Utility
+  chocolatey.chocolatey.win_chocolatey:
+    name: rpi-imager
+    version: '{{ rpi_imager_version }}'
+    state: upgrade
