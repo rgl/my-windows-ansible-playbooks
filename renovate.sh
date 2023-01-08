@@ -19,7 +19,7 @@ gitea_version='1.18.0'
 
 # see https://hub.docker.com/r/renovate/renovate/tags
 # renovate: datasource=docker depName=renovate/renovate
-renovate_version='34.77.1'
+renovate_version='34.90.0'
 
 # clean.
 echo 'Deleting existing Gitea...'
