@@ -82,9 +82,14 @@
                 $windowsTerminalPath = Join-Path $package.InstallLocation WindowsTerminal.exe
               }
               $Ansible.Result = @{
-                windows_terminal_path = $windowsTerminalPath
+                # NB the "App" part ar the end of this string was obtained with
+                #    the following Windows PowerShell snippet:
+                #     (Get-AppxPackageManifest (Get-AppxPackage Microsoft.WindowsTerminal)).Package.Applications.Application.Id
+                windows_terminal_path = 'shell:AppsFolder\{{ windows_terminal_package_family_name }}!App'
+                windows_terminal_icon_path = "$windowsTerminalPath,0"
               }
         - name: Install the Windows Terminal shortcut
           community.windows.win_shortcut:
             dest: '%USERPROFILE%\Desktop\Windows Terminal.lnk'
             src: '{{ windows_terminal_path_result.result.windows_terminal_path }}'
+            icon: '{{ windows_terminal_path_result.result.windows_terminal_icon_path }}'
