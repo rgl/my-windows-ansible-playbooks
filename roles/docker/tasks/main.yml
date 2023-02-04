@@ -34,7 +34,6 @@
     script: "{{ lookup('file', 'install-docker.ps1') }}"
     parameters:
       version: '{{ docker_version }}'
-      checksum: '{{ docker_checksum }}'
   notify:
     - Restart docker
 

@@ -2,8 +2,7 @@
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-ce.ps1
 
 param(
-    [string]$version,
-    [string]$checksum
+    [string]$version
 )
 
 Set-StrictMode -Version Latest
@@ -45,13 +44,8 @@ if ($installBinaries) {
     $archiveVersion = $version
     $archiveName = "docker-$archiveVersion.zip"
     $archiveUrl = "https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases/download/v$archiveVersion/$archiveName"
-    $archiveHash = $checksum
     $archivePath = "$env:TEMP\$archiveName"
     (New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
-    $archiveActualHash = (Get-FileHash $archivePath -Algorithm SHA256).Hash
-    if ($archiveActualHash -ne $archiveHash) {
-        throw "the $archiveUrl file hash $archiveActualHash does not match the expected $archiveHash"
-    }
     Expand-Archive $archivePath -DestinationPath $env:ProgramFiles
     Remove-Item $archivePath
     $Ansible.Changed = $true
