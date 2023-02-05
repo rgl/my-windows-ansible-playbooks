@@ -1,6 +1,0 @@
-- name: Install Rancher Desktop
-  win_rancher_desktop: # noqa fqcn[action]
-    version: '{{ rancher_desktop_version }}'
-    container_engine: 'moby'
-    kubernetes_enabled: true
-    kubernetes_version: '{{ rancher_desktop_kubernetes_version }}'

@@ -9,8 +9,6 @@
     - hyper_v
     - role: wsl
       when: ansible_os_installation_type == 'Client'
-    - role: rancher_desktop
-      when: ansible_os_installation_type == 'Client'
     - docker
     - msys2
     - gsmartcontrol
