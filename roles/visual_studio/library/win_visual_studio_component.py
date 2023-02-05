@@ -11,7 +11,7 @@ options:
   name:
     description:
       - Name or list of names of the Components to install.
-      - See https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
+      - See https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
     type: list
     elements: str
 notes:

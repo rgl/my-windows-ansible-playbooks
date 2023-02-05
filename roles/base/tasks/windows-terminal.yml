@@ -42,7 +42,7 @@
       # see https://github.com/microsoft/terminal/blob/v1.15.3465.0/src/cascadia/TerminalSettingsModel/DefaultTerminal.cpp#L76-L84
       # see https://github.com/microsoft/terminal/blob/v1.15.3465.0/src/propslib/DelegationConfig.cpp#L158-L174
       # see https://github.com/microsoft/terminal/blob/v1.15.3465.0/src/propslib/DelegationConfig.cpp#L35-L36
-      # see https://docs.microsoft.com/en-us/uwp/api/windows.applicationmodel.appextensions.appextensioncatalog?view=winrt-22621
+      # see https://learn.microsoft.com/en-us/uwp/api/windows.applicationmodel.appextensions.appextensioncatalog?view=winrt-22621
       # see HKEY_CLASSES_ROOT\PackagedCom\ClassIndex\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}\Microsoft.WindowsTerminal_1.15.3465.0_x64__8wekyb3d8bbwe
       # see HKEY_CLASSES_ROOT\PackagedCom\Package\Microsoft.WindowsTerminal_1.15.3465.0_x64__8wekyb3d8bbwe\Class\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}
       block:

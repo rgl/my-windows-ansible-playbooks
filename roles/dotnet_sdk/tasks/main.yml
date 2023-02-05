@@ -15,7 +15,7 @@
 
 - name: Add the dotnet nuget nuget.org package source
   ansible.windows.win_powershell:
-    # see https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-nuget-add-source
+    # see https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-nuget-add-source
     script: |
       Set-StrictMode -Version Latest
       $ErrorActionPreference = 'Stop'

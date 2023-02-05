@@ -1,5 +1,5 @@
 # see https://ubuntu.com/blog/ubuntu-on-wsl-2-is-generally-available
-# see https://docs.microsoft.com/en-us/windows/wsl/wsl-config
+# see https://learn.microsoft.com/en-us/windows/wsl/wsl-config
 # see https://aka.ms/wsl2kernel
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl2.ps1
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.ps1

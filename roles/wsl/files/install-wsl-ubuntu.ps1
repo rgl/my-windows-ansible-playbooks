@@ -1,4 +1,4 @@
-# see https://docs.microsoft.com/en-us/windows/wsl/wsl-config
+# see https://learn.microsoft.com/en-us/windows/wsl/wsl-config
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'

@@ -1,6 +1,6 @@
 # set the visual studio settings.
-# see https://docs.microsoft.com/en-us/visualstudio/ide/reference/resetsettings-devenv-exe?view=vs-2022
-# see https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-fonts-and-colors-in-visual-studio?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/ide/reference/resetsettings-devenv-exe?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/ide/how-to-change-fonts-and-colors-in-visual-studio?view=vs-2022
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-vs.ps1#L55-L70
 
 Set-StrictMode -Version Latest

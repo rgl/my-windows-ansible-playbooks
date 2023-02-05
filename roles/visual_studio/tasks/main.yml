@@ -1,11 +1,11 @@
 # see https://www.visualstudio.com/vs/
 # see https://visualstudio.microsoft.com/downloads/
-# see https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-history
-# see https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes
-# see https://docs.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio
-# see https://docs.microsoft.com/en-us/visualstudio/install/command-line-parameter-examples
-# see https://docs.microsoft.com/en-us/visualstudio/install/workload-and-component-ids
-# see https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history
+# see https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes
+# see https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/install/command-line-parameter-examples?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/install/workload-and-component-ids?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
 
 - name: Enable the Windows Developer Mode
   ansible.windows.win_regedit:
