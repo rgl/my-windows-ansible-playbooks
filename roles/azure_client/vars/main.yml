@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/azure-cli
 # see https://github.com/Azure/azure-cli/releases
 # renovate: datasource=nuget:chocolatey depName=azure-cli
-azure_cli_version: '2.44.1'
+azure_cli_version: '2.45.0'
