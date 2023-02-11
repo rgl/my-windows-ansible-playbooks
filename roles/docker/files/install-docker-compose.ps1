@@ -2,8 +2,7 @@
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
 
 param(
-    [string]$version,
-    [string]$checksum
+    [string]$version
 )
 
 Set-StrictMode -Version Latest
@@ -19,7 +18,7 @@ $dockerComposePath = "$dockerCliPluginsPath\docker-compose.exe"
 
 # check whether the expected version is already installed.
 $installBinaries = if (Test-Path $dockerComposePath) {
-    # e.g. Docker Compose version v2.15.1
+    # e.g. Docker Compose version v2.16.0
     $actualVersionText = &$dockerComposePath version
     if ($actualVersionText -notmatch '^Docker Compose version v(\d+(\.\d+)+)') {
         throw "unable to parse the docker-compose.exe version from: $actualVersionText"
@@ -37,10 +36,6 @@ if ($installBinaries) {
     }
     # install the binaries.
     (New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
-    $archiveActualHash = (Get-FileHash $archivePath -Algorithm SHA256).Hash
-    if ($archiveActualHash -ne $checksum) {
-        throw "the $archiveUrl file hash $archiveActualHash does not match the expected $checksum"
-    }
     mkdir -Force $dockerCliPluginsPath | Out-Null
     Move-Item -Force $archivePath $dockerComposePath
     $Ansible.Changed = $true

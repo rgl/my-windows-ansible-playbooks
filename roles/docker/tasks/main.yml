@@ -59,4 +59,3 @@
     script: "{{ lookup('file', 'install-docker-compose.ps1') }}"
     parameters:
       version: '{{ docker_compose_version }}'
-      checksum: '{{ docker_compose_checksum }}'

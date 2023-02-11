@@ -6,5 +6,4 @@ docker_version: '23.0.0'
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
 # renovate: datasource=github-releases depName=docker/compose
-docker_compose_version: '2.15.1'
-docker_compose_checksum: 538598025dc9ae41298abf859d5b312fba40359c691d9b14527375f4633cbe65
+docker_compose_version: '2.16.0'
