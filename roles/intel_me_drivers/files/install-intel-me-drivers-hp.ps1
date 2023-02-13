@@ -1,4 +1,5 @@
 # see https://support.hp.com/us-en/drivers/selfservice/hp-elitedesk-800-65w-g4-desktop-mini-pc/21353734
+# see https://github.com/rgl/hp-drivers-scraper
 # NB this installs the binaries at C:\Program Files (x86)\Intel\Intel(R) Management Engine Components.
 # NB this also installs an uninstaller named Intel(R) Management Engine Components.
 
