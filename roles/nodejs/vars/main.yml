@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/nodejs
 # see https://nodejs.org/en/
 # renovate: datasource=node depName=node versioning=node
-nodejs_version: '18.14.1'
+nodejs_version: '18.14.2'
