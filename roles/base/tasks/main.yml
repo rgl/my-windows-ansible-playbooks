@@ -378,7 +378,7 @@
     # https://community.chocolatey.org/packages/notepad3
     name: notepad3
     # renovate: datasource=nuget:chocolatey depName=notepad3
-    version: '5.21.1129.1'
+    version: '6.23.203.2'
     state: upgrade
 
 - name: Configure Notepad3
