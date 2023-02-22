@@ -2,7 +2,7 @@
 # see https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
 # renovate: datasource=dotnet depName=dotnet-sdk extractVersion=^(?<version>6\..+)
-dotnet_sdk_lts_version: '6.0.405' # dotnet 6.0.13
+dotnet_sdk_lts_version: '6.0.406' # dotnet 6.0.14
 
 # see https://community.chocolatey.org/packages/dotnet-7.0-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/7.0
