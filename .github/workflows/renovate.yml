@@ -10,9 +10,9 @@ on:
           - lookup
           - full
           - false
-  schedule:
-    #- cron: '0 * * * *' # hourly.
-    - cron: '0 0 * * WED' # every wednesday.
+  # schedule:
+  #   # - cron: '0 * * * *' # hourly.
+  #   - cron: '0 0 * * WED' # every wednesday.
 jobs:
   build:
     name: Build
