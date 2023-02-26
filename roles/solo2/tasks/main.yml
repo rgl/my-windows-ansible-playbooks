@@ -1,0 +1,5 @@
+- name: Install solo2
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-solo2.ps1') }}"
+    parameters:
+      version: '{{ solo2_version }}'

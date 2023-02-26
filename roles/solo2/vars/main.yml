@@ -1,0 +1,3 @@
+# see https://github.com/solokeys/solo2-cli/releases
+# renovate: datasource=github-releases depName=solokeys/solo2-cli
+solo2_version: '0.2.2'
