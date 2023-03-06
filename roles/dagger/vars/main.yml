@@ -2,4 +2,4 @@
 # see https://dagger.io
 # see https://github.com/dagger/dagger/releases
 # renovate: datasource=nuget:chocolatey depName=dagger
-dagger_version: '0.3.12'
+dagger_version: '0.3.13'
