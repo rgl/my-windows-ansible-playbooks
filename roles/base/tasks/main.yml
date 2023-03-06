@@ -423,7 +423,7 @@
     # https://community.chocolatey.org/packages/hwmonitor
     name: hwmonitor
     # renovate: datasource=nuget:chocolatey depName=hwmonitor
-    version: '1.49.0.20230127'
+    version: '1.50.0.20230303'
     state: upgrade
 
 - name: Install Firefox
