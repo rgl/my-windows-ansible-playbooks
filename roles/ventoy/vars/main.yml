@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/ventoy
 # see https://github.com/ventoy/Ventoy/releases
 # renovate: datasource=nuget:chocolatey depName=ventoy
-ventoy_version: '1.0.88'
+ventoy_version: '1.0.89'
