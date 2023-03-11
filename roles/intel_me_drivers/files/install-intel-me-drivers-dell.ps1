@@ -1,5 +1,5 @@
 # see https://www.dell.com/support/home/en-us/product-support/product/optiplex-7060-desktop/drivers
-# see https://github.com/rgl/dell-drivers-scraper
+# see https://github.com/rgl/dell-drivers-scraper/blob/main/data/optiplex-7060-desktop.json
 # NB this installs the binaries at C:\Program Files (x86)\Intel\Intel(R) Management Engine Components.
 # NB this also installs an uninstaller named Intel(R) Management Engine Components.
 
