@@ -8,7 +8,7 @@
     // default datasources.
     {
       "fileMatch": [
-        "^roles/.+\\.yml$",
+        "^(roles|.github)/.+\\.yml$",
         "renovate\\.sh"
       ],
       "matchStrings": [
