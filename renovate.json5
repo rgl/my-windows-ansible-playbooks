@@ -9,7 +9,7 @@
     {
       "fileMatch": [
         "^(roles|.github)/.+\\.yml$",
-        "renovate\\.sh"
+        "\\.sh$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[^:]+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
@@ -21,7 +21,7 @@
     {
       "fileMatch": [
         "^roles/.+\\.yml$",
-        "renovate\\.sh"
+        "\\.sh$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>nuget):chocolatey depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
@@ -34,7 +34,7 @@
     {
       "fileMatch": [
         "^roles/.+\\.yml$",
-        "renovate\\.sh"
+        "\\.sh$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>nuget):powershellgallery depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?( extractVersion=(?<extractVersion>.+?))?( registryUrl=(?<registryUrl>.+?))?\\s.+?[:=]\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
