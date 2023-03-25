@@ -14,7 +14,7 @@ options:
     type: list
     elements: str
 notes:
-  - This assumes MSYS2 is installed at I(%ChocolateyToolsLocation%\msys64).
+  - This assumes MSYS2 is installed at I(%ChocolateyToolsLocation%\\msys64).
   - >
     pacman --query also installs groups and packages that provide other
     packages (like netcat; these can be ambiguous because multiple
