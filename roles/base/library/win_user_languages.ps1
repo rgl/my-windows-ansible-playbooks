@@ -21,7 +21,7 @@ $languages = $module.Params.languages
 # NB you can get the language tags from the list:
 #      [System.Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | Out-GridView
 # NB "HKEY_CURRENT_USER\Keyboard Layout\Preload" will have the keyboard layout list.
-function Set-UserLanguages([Microsoft.InternationalSettings.Commands.WinUserLanguage[]]$languageTags) {
+function Set-UserLanguage([Microsoft.InternationalSettings.Commands.WinUserLanguage[]]$languageTags) {
     $changed = $false
     $actualTags = @((Get-WinUserLanguageList).LanguageTag)
     $desiredTags = @($languageTags.LanguageTag)
@@ -33,5 +33,5 @@ function Set-UserLanguages([Microsoft.InternationalSettings.Commands.WinUserLang
     return $changed
 }
 
-$module.Result.changed = Set-UserLanguages $languages
+$module.Result.changed = Set-UserLanguage $languages
 $module.ExitJson()

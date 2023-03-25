@@ -21,7 +21,7 @@ $installPath = 'C:\Program Files\Microsoft Visual Studio\2022\Community'
 $configPath = "$env:TEMP\visual-studio-2022-config.json"
 $changedSentinel = '**COMPONENTS CHANGED**'
 
-function Install-VisualStudioComponents([string[]]$components) {
+function Install-VisualStudioComponent([string[]]$components) {
     # get the installed components.
     &$setupPath `
         export `
@@ -65,7 +65,7 @@ function Install-VisualStudioComponents([string[]]$components) {
 
 $components = $module.Params.name
 
-if ((Install-VisualStudioComponents $components) -ieq $changedSentinel) {
+if ((Install-VisualStudioComponent $components) -ieq $changedSentinel) {
     $module.Result.changed = $true
 }
 

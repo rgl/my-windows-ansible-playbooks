@@ -88,7 +88,7 @@ public static class UserPreferencesMask
 }
 '@
 
-function Set-VisualEffects {
+function Set-VisualEffect {
     param(
         [switch]$ShowShadowsUnderWindows,
         [switch]$ShowTranslucentSelectionRectangle,
@@ -119,7 +119,7 @@ function Set-VisualEffects {
     return $changed
 }
 
-$module.Result.changed = Set-VisualEffects `
+$module.Result.changed = Set-VisualEffect `
     -ShowShadowsUnderWindows:$module.Params.show_shadows_under_windows `
     -ShowTranslucentSelectionRectangle:$module.Params.show_translucent_selection_rectangle `
     -ShowWindowContentsWhileDragging:$module.Params.show_window_contents_while_dragging `
