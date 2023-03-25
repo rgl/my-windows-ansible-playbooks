@@ -17,5 +17,9 @@ ENABLE_LINTERS:
   - PYTHON_PYRIGHT
   #- SPELL_CSPELL # TODO enable when https://github.com/oxsecurity/megalinter/issues/2473 is fixed.
   - SPELL_MISSPELL
+  - XML_XMLLINT
   - YAML_V8R
   - YAML_YAMLLINT
+XML_XMLLINT_FILE_EXTENSIONS:
+  - .xml
+  - .xsl
