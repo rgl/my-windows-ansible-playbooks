@@ -18,7 +18,7 @@ notes:
   - This requires the Visual Studio Installer.
 author:
   - Rui Lopes (ruilopes.com)
-'''
+'''  # noqa: E501
 
 EXAMPLES = '''
 - name: Install the Windows App SDK C# Templates
