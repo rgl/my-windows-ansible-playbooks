@@ -76,7 +76,8 @@ curl \
     >tmp/renovate-gitea-token.txt
 
 # try the token.
-export RENOVATE_TOKEN="$(cat tmp/renovate-gitea-token.txt)"
+RENOVATE_TOKEN="$(cat tmp/renovate-gitea-token.txt)"
+export RENOVATE_TOKEN
 curl \
     -s \
     -H "Authorization: token $RENOVATE_TOKEN" \
@@ -109,7 +110,8 @@ git push --force "$GIT_PUSH_REPOSITORY"
 # see https://github.com/renovatebot/renovate/blob/main/docs/usage/examples/self-hosting.md
 # see https://github.com/renovatebot/renovate/tree/main/lib/modules/datasource
 # see https://github.com/renovatebot/renovate/tree/main/lib/modules/versioning
-export RENOVATE_TOKEN="$(cat tmp/renovate-gitea-token.txt)"
+RENOVATE_TOKEN="$(cat tmp/renovate-gitea-token.txt)"
+export RENOVATE_TOKEN
 # NB these can also be passed as raw positional arguments to docker run.
 export RENOVATE_REPOSITORIES="$RENOVATE_USERNAME/test"
 # see https://docs.github.com/en/rest/rate-limit#get-rate-limit-status-for-the-authenticated-user
