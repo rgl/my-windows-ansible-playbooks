@@ -18,14 +18,18 @@ $ProgressPreference = 'SilentlyContinue'
 $msys2BasePath = "$env:ChocolateyToolsLocation\msys64"
 $pacmanPath = "$msys2BasePath\usr\bin\pacman.exe"
 
-function Start-Pacman([string[]]$Arguments, [int[]]$SuccessExitCodes=@(0)) {
+function Start-Pacman {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseShouldProcessForStateChangingFunctions', '')]
+    param([string[]]$Arguments, [int[]]$SuccessExitCodes=@(0))
     Start-PacmanProcess $Arguments | ForEach-Object { "$_" }
     if ($SuccessExitCodes -notcontains $LASTEXITCODE) {
         throw "$(@('pacman')+$Arguments | ConvertTo-Json -Compress) failed with exit code $LASTEXITCODE"
     }
 }
 
-function Start-PacmanProcess([string[]]$Arguments) {
+function Start-PacmanProcess {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseShouldProcessForStateChangingFunctions', '')]
+    param([string[]]$Arguments)
     $eap = $ErrorActionPreference
     try {
         $ErrorActionPreference = 'Continue'
@@ -35,7 +39,9 @@ function Start-PacmanProcess([string[]]$Arguments) {
     }
 }
 
-function Start-PacmanProcessCapture([string[]]$Arguments) {
+function Start-PacmanProcessCapture {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseShouldProcessForStateChangingFunctions', '')]
+    param([string[]]$Arguments)
     $stdout = $()
     $stderr = $()
     Start-PacmanProcess $Arguments | ForEach-Object {
