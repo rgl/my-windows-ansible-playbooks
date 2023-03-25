@@ -41,7 +41,9 @@ $VisualEffects = @{
     }
 }
 
-function Set-RegistryValue($key, $name, $value) {
+function Set-RegistryValue {
+    [OutputType([bool])]
+    param($key, $name, $value)
     $item = Get-ItemProperty -ErrorAction SilentlyContinue $key $name
     if ($item) {
         $actual = $item.$name
@@ -89,6 +91,7 @@ public static class UserPreferencesMask
 '@
 
 function Set-VisualEffect {
+    [OutputType([bool])]
     param(
         [switch]$ShowShadowsUnderWindows,
         [switch]$ShowTranslucentSelectionRectangle,
