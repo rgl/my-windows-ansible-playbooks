@@ -11,3 +11,5 @@ jobs:
         run: ./ansible-lint.sh --version
       - name: Lint the development.yml playbook
         run: ./ansible-lint.sh --offline --parseable development.yml
+      - name: Lint
+        run: ./mega-linter.sh
