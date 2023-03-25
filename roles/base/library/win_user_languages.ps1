@@ -23,13 +23,16 @@ $languages = $module.Params.languages
 # NB "HKEY_CURRENT_USER\Keyboard Layout\Preload" will have the keyboard layout list.
 function Set-UserLanguage {
     [OutputType([bool])]
+    [CmdletBinding(SupportsShouldProcess)]
     param([Microsoft.InternationalSettings.Commands.WinUserLanguage[]]$languageTags)
     $changed = $false
     $actualTags = @((Get-WinUserLanguageList).LanguageTag)
     $desiredTags = @($languageTags.LanguageTag)
     $diff = Compare-Object -ReferenceObject $actualTags -DifferenceObject $desiredTags
     if ($diff) {
-        Set-WinUserLanguageList $languageTags -Force
+        if ($PSCmdlet.ShouldProcess('languageTags')) {
+            Set-WinUserLanguageList $languageTags -Force
+        }
         $changed = $true
     }
     return $changed

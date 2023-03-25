@@ -43,6 +43,7 @@ $VisualEffects = @{
 
 function Set-RegistryValue {
     [OutputType([bool])]
+    [CmdletBinding(SupportsShouldProcess)]
     param($key, $name, $value)
     $item = Get-ItemProperty -ErrorAction SilentlyContinue $key $name
     if ($item) {
@@ -51,7 +52,9 @@ function Set-RegistryValue {
             return $false
         }
     }
-    Set-ItemProperty $key $name $value
+    if ($PSCmdlet.ShouldProcess('key')) {
+        Set-ItemProperty $key $name $value
+    }
     return $true
 }
 
@@ -92,6 +95,7 @@ public static class UserPreferencesMask
 
 function Set-VisualEffect {
     [OutputType([bool])]
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         [switch]$ShowShadowsUnderWindows,
         [switch]$ShowTranslucentSelectionRectangle,
