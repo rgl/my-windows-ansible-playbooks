@@ -1,3 +1,6 @@
+[System.Diagnostics.CodeAnalysis.SuppressMessage('PSAvoidUsingInvokeExpression', '')]
+param()
+
 # Configure PSReadLine.
 #Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
