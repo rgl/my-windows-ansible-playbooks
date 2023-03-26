@@ -31,8 +31,8 @@ jobs:
         uses: renovatebot/github-action@v36.0.1
         with:
           # see https://hub.docker.com/r/renovate/renovate/tags
-          # renovate: datasource=docker depName=renovate/renovate
-          renovate-version: '35.17.0'
+          # renovate: datasource=docker depName=renovate/renovate extractVersion=(?<version>.+)-slim$
+          renovate-version: '35.23.2'
           configurationFile: renovate.json5
           token: ${{ steps.renovate_github_app_token.outputs.token }}
         env:
