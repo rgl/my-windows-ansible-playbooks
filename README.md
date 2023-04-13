@@ -35,6 +35,7 @@ Lint the [`development.yml` playbook](development.yml) playbook:
 
 ```bash
 ./ansible-lint.sh --offline --parseable development.yml
+./mega-linter.sh
 ```
 
 Run the [`development.yml` playbook](development.yml) against the `dm1` machine:
