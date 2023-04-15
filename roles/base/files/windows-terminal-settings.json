@@ -2,6 +2,8 @@
     "$help": "https://aka.ms/terminal-profile-settings",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "defaultProfile": "{8db9d5e3-aac3-4aa4-acc4-773ff088ca77}",
+    "showTabsInTitlebar": false,
+    "alwaysShowTabs": false,
     "profiles": {
         "defaults": {
             "font":  {
