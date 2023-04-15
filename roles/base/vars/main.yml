@@ -15,7 +15,7 @@ npcap_checksum: d5b309f7bd628712b3327212d76c631fbfc8f78a4f1ff3d0254f23552329c35d
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
 # renovate: datasource=nuget:chocolatey depName=oh-my-posh
-oh_my_posh_version: '14.29.1'
+oh_my_posh_version: '14.29.3'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
