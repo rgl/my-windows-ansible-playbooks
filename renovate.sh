@@ -121,6 +121,11 @@ export RENOVATE_REPOSITORIES="$RENOVATE_USERNAME/test"
 # see https://github.com/settings/tokens
 # NB this is only used for authentication. the token should not have any scope enabled.
 #export GITHUB_COM_TOKEN='TODO-YOUR-TOKEN'
+# let renovate create all the required pull requests.
+# see https://docs.renovatebot.com/configuration-options/#prhourlylimit
+# see https://docs.renovatebot.com/configuration-options/#prconcurrentlimit
+export RENOVATE_PR_HOURLY_LIMIT='0'
+export RENOVATE_PR_CONCURRENT_LIMIT='0'
 echo 'Running renovate...'
 install -d tmp
 # NB use --dry-run=lookup for not modifying the repository (e.g. for not
@@ -134,6 +139,8 @@ docker run \
   --env RENOVATE_ENDPOINT \
   --env RENOVATE_TOKEN \
   --env RENOVATE_REPOSITORIES \
+  --env RENOVATE_PR_HOURLY_LIMIT \
+  --env RENOVATE_PR_CONCURRENT_LIMIT \
   --env LOG_LEVEL=debug \
   --env LOG_FORMAT=json \
   "renovate/renovate:$renovate_version-slim" \
