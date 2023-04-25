@@ -7,7 +7,7 @@ collections:
     version: 1.4.0
   # see https://galaxy.ansible.com/community/general
   - name: community.general
-    version: 6.5.0
+    version: 6.6.0
   # see https://galaxy.ansible.com/community/windows
   - name: community.windows
     version: 1.12.0
