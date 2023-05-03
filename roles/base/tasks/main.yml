@@ -549,8 +549,6 @@
       ansible.windows.win_get_url:
         dest: '%USERPROFILE%\Desktop\npcap-{{ npcap_version }}.exe'
         url: 'https://npcap.com/dist/npcap-{{ npcap_version }}.exe'
-        checksum: '{{ npcap_checksum }}'
-        checksum_algorithm: sha256
 
 - name: Install Autoruns
   chocolatey.chocolatey.win_chocolatey:

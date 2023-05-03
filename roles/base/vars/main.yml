@@ -9,8 +9,7 @@ firefox_version: '112.0.1'
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
 # renovate: datasource=github-releases depName=nmap/npcap
-npcap_version: '1.73'
-npcap_checksum: d5b309f7bd628712b3327212d76c631fbfc8f78a4f1ff3d0254f23552329c35d
+npcap_version: '1.75'
 
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
