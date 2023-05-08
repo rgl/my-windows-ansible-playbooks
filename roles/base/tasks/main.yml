@@ -59,6 +59,7 @@
 - name: Install Windows Updates
   # see https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_updates_module.html
   ansible.windows.win_updates:
+    log_path: C:\Windows\Temp\ansible_win_updates.log
     reboot: true
     skip_optional: true
     category_names:
