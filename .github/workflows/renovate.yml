@@ -32,7 +32,7 @@ jobs:
         with:
           # see https://hub.docker.com/r/renovate/renovate/tags
           # renovate: datasource=docker depName=renovate/renovate extractVersion=(?<version>.+)-slim$
-          renovate-version: '35.71.7'
+          renovate-version: '35.73.1'
           configurationFile: renovate.json5
           token: ${{ steps.renovate_github_app_token.outputs.token }}
         env:
