@@ -9,4 +9,5 @@
   chocolatey.chocolatey.win_chocolatey:
     name: rust-ms
     version: '{{ rust_version }}'
+    pinned: true
     state: upgrade

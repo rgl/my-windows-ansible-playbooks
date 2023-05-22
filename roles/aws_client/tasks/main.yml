@@ -2,6 +2,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: awscli
     version: '{{ aws_version }}'
+    pinned: true
     state: upgrade
 
 # NB this is uninstalled because it clobbers the AWS.Tools modules.

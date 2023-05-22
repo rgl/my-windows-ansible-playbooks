@@ -2,6 +2,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: vagrant
     version: '{{ vagrant_version }}'
+    pinned: true
     state: upgrade
 
 # TODO install plugins.
