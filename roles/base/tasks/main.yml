@@ -299,6 +299,7 @@
   # see https://community.chocolatey.org/packages/font-nerd-dejavusansmono
   chocolatey.chocolatey.win_chocolatey:
     name: font-nerd-dejavusansmono
+    # renovate: datasource=nuget:chocolatey depName=font-nerd-dejavusansmono
     version: '2.1.0'
     state: upgrade
 

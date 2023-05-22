@@ -10,6 +10,7 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/setdefaultbrowser
     name: setdefaultbrowser
+    # renovate: datasource=nuget:chocolatey depName=setdefaultbrowser
     version: '1.5.0'
     state: upgrade
 
