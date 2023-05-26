@@ -8,7 +8,6 @@
   chocolatey.chocolatey.win_chocolatey:
     name: dotnet-{{ (item | split('.'))[:2] | join('.') }}-sdk
     version: '{{ item }}'
-    pinned: true
     state: upgrade
   loop:
     - '{{ dotnet_sdk_lts_version }}'

@@ -2,5 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: azure-cli
     version: '{{ azure_cli_version }}'
-    pinned: true
     state: upgrade

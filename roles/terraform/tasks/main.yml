@@ -2,5 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: terraform
     version: '{{ terraform_version }}'
-    pinned: true
     state: upgrade

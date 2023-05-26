@@ -290,7 +290,6 @@
     name: chocolatey
     # renovate: datasource=nuget:chocolatey depName=chocolatey
     version: '1.4.0'
-    pinned: true
     state: upgrade
 
 - name: Install DejaVu Mono Nerd Font
@@ -302,7 +301,6 @@
     name: font-nerd-dejavusansmono
     # renovate: datasource=nuget:chocolatey depName=font-nerd-dejavusansmono
     version: '2.1.0'
-    pinned: true
     state: upgrade
 
 - name: Configure the Console Font
@@ -345,7 +343,6 @@
     name: oh-my-posh
     version: '{{ oh_my_posh_version }}'
     package_params: /ALLUSERS
-    pinned: true
     state: upgrade
 
 - name: Configure oh-my-posh
@@ -384,7 +381,6 @@
     name: notepad3
     # renovate: datasource=nuget:chocolatey depName=notepad3
     version: '6.23.203.2'
-    pinned: true
     state: upgrade
 
 - name: Configure Notepad3
@@ -398,7 +394,6 @@
     name: 7zip.install
     # renovate: datasource=nuget:chocolatey depName=7zip.install
     version: '22.1'
-    pinned: true
     state: upgrade
 
 - name: Install dig
@@ -407,7 +402,6 @@
     name: bind-toolsonly
     # renovate: datasource=nuget:chocolatey depName=bind-toolsonly
     version: '9.16.28'
-    pinned: true
     state: upgrade
 
 - name: Install HWiNFO
@@ -416,7 +410,6 @@
     name: hwinfo.install
     # renovate: datasource=nuget:chocolatey depName=hwinfo.install
     version: '7.46'
-    pinned: true
     state: upgrade
 
 - name: Install CPU-Z
@@ -425,7 +418,6 @@
     name: cpu-z.install
     # renovate: datasource=nuget:chocolatey depName=cpu-z.install
     version: '2.5.0.20230314'
-    pinned: true
     state: upgrade
 
 - name: Install HWMonitor
@@ -434,7 +426,6 @@
     name: hwmonitor
     # renovate: datasource=nuget:chocolatey depName=hwmonitor
     version: '1.50.0.20230303'
-    pinned: true
     state: upgrade
 
 - name: Install Firefox
@@ -446,7 +437,6 @@
     name: meld
     # renovate: datasource=nuget:chocolatey depName=meld
     version: '3.22.0'
-    pinned: true
     state: upgrade
 
 - name: Install Git
@@ -456,7 +446,6 @@
         # https://community.chocolatey.org/packages/git
         name: git
         version: '{{ git_version }}'
-        pinned: true
         state: upgrade
         package_params: /GitOnlyOnPath /NoAutoCrlf /SChannel
     - name: Configure Git
@@ -493,7 +482,6 @@
         name: gitextensions
         # renovate: datasource=nuget:chocolatey depName=gitextensions
         version: '4.1.0'
-        pinned: true
         state: upgrade
     - name: Configure Git Extensions
       ansible.windows.win_powershell:
@@ -529,7 +517,6 @@
         name: wireshark
         # renovate: datasource=nuget:chocolatey depName=wireshark
         version: '4.0.6'
-        pinned: true
         state: upgrade
     - name: Install Wireshark Desktop shortcut
       community.windows.win_shortcut:
@@ -600,7 +587,6 @@
     name: dependencies
     # renovate: datasource=nuget:chocolatey depName=dependencies
     version: '1.11.1'
-    pinned: true
     state: upgrade
 
 - name: Configure the firewall

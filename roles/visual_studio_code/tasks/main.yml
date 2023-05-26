@@ -2,7 +2,6 @@
   chocolatey.chocolatey.win_chocolatey:
     name: vscode
     version: '{{ vscode_version }}'
-    pinned: true
     state: upgrade
 
 - name: Create the configuration directory

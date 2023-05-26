@@ -2,5 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: dagger
     version: '{{ dagger_version }}'
-    pinned: true
     state: upgrade

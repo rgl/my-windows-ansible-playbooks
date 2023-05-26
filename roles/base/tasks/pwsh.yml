@@ -10,5 +10,4 @@
     # https://community.chocolatey.org/packages/pwsh
     name: pwsh
     version: '{{ pwsh_version }}'
-    pinned: true
     state: upgrade

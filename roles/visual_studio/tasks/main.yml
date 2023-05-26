@@ -18,7 +18,6 @@
   chocolatey.chocolatey.win_chocolatey:
     name: visualstudio2022community
     version: '{{ vs_version }}'
-    pinned: true
     state: upgrade
 
 - name: Install Managed Desktop Component

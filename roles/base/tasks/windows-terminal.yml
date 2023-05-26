@@ -26,7 +26,6 @@
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal
         version: '{{ windows_terminal_version }}'
-        pinned: true
         state: upgrade
     - name: Create the Windows Terminal LocalState directory
       ansible.windows.win_file:

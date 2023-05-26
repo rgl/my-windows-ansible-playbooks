@@ -2,5 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: kubernetes-cli
     version: '{{ kubectl_version }}'
-    pinned: true
     state: upgrade

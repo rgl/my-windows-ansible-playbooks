@@ -2,5 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: k9s
     version: '{{ k9s_version }}'
-    pinned: true
     state: upgrade
