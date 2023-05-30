@@ -5,16 +5,16 @@
       ansible.windows.win_feature:
         name: Windows-Defender
         state: absent
-      register: win_feature
+      register: base_win_feature
     - name: Reboot
-      when: win_feature.reboot_required
+      when: base_win_feature.reboot_required
       ansible.windows.win_reboot:
 
 - name: Partial disable Windows Defender (Windows Client)
   when: ansible_os_installation_type == 'Client'
   block:
     - name: Exclude Drives
-      register: defender_exclude_drives
+      register: base_defender_exclude_drives
       ansible.windows.win_powershell:
         script: |
           Set-StrictMode -Version Latest
@@ -31,7 +31,7 @@
           # NB Set-MpPreference -DisableRealtimeMonitoring $true does not seem
           #    to work anymore... so we set a policy.
     - name: Disable Realtime Monitoring
-      register: defender_realtime_monitoring
+      register: base_defender_realtime_monitoring
       ansible.windows.win_regedit:
         path: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
         name: DisableRealtimeMonitoring
@@ -52,8 +52,8 @@
     #     type: dword
     - name: Reboot
       when: >
-        defender_exclude_drives.changed or
-        defender_realtime_monitoring.changed
+        base_defender_exclude_drives.changed or
+        base_defender_realtime_monitoring.changed
       ansible.windows.win_reboot:
 
 - name: Install Windows Updates
@@ -545,9 +545,9 @@
           } else {
             $Ansible.Changed = $true
           }
-      register: npcap
+      register: base_npcap
     - name: Download npcap
-      when: npcap.changed
+      when: base_npcap.changed
       ansible.windows.win_get_url:
         dest: '%USERPROFILE%\Desktop\npcap-{{ npcap_version }}.exe'
         url: 'https://npcap.com/dist/npcap-{{ npcap_version }}.exe'

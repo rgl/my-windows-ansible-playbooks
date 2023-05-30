@@ -13,10 +13,10 @@
     name:
       - Microsoft-Windows-Subsystem-Linux
       - VirtualMachinePlatform
-  register: wsl
+  register: wsl_win_optional_feature
 
 - name: Reboot
-  when: wsl.reboot_required
+  when: wsl_win_optional_feature.reboot_required
   ansible.windows.win_reboot:
 
 - name: Install WSL2 kernel

@@ -9,11 +9,11 @@
     # see https://community.chocolatey.org/packages/microsoft-windows-terminal
     # see https://github.com/microsoft/terminal/releases
     # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
-    windows_terminal_version: '1.16.10261.0'
-    windows_terminal_package_publisher_id: 8wekyb3d8bbwe
-    windows_terminal_package_name: Microsoft.WindowsTerminal
-    windows_terminal_package_family_name: '{{ windows_terminal_package_name }}_{{ windows_terminal_package_publisher_id }}'
-    windows_terminal_package_full_name: '{{ windows_terminal_package_name }}_{{ windows_terminal_version }}_x64__{{ windows_terminal_package_publisher_id }}'
+    base_windows_terminal_version: '1.16.10261.0'
+    base_windows_terminal_package_publisher_id: 8wekyb3d8bbwe
+    base_windows_terminal_package_name: Microsoft.WindowsTerminal
+    base_windows_terminal_package_family_name: '{{ base_windows_terminal_package_name }}_{{ base_windows_terminal_package_publisher_id }}'
+    base_windows_terminal_package_full_name: '{{ base_windows_terminal_package_name }}_{{ base_windows_terminal_version }}_x64__{{ base_windows_terminal_package_publisher_id }}' # noqa yaml[line-length]
   block:
     - name: Install the Visual C++ Universal Runtime Desktop Bridge dependency
       # see https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/cpp/libraries/c-runtime-packages-desktop-bridge
@@ -25,11 +25,11 @@
     - name: Install the Windows Terminal
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal
-        version: '{{ windows_terminal_version }}'
+        version: '{{ base_windows_terminal_version }}'
         state: upgrade
     - name: Create the Windows Terminal LocalState directory
       ansible.windows.win_file:
-        path: '%LOCALAPPDATA%\Packages\{{ windows_terminal_package_family_name }}\LocalState'
+        path: '%LOCALAPPDATA%\Packages\{{ base_windows_terminal_package_family_name }}\LocalState'
         state: directory
     - name: Configure the Windows Terminal
       # TODO once its possible to set environment variables in a windows
@@ -38,7 +38,7 @@
       #      see https://github.com/microsoft/terminal/issues/2785
       ansible.windows.win_copy:
         src: windows-terminal-settings.json
-        dest: '%LOCALAPPDATA%\Packages\{{ windows_terminal_package_family_name }}\LocalState\settings.json'
+        dest: '%LOCALAPPDATA%\Packages\{{ base_windows_terminal_package_family_name }}\LocalState\settings.json'
     - name: Set the Windows Terminal as the Default Terminal Application
       # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/doc/specs/%23492%20-%20Default%20Terminal/spec.md
       # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/cascadia/TerminalSettingsModel/CascadiaSettings.h#L139-L145
@@ -65,7 +65,7 @@
     - name: Install the Windows Terminal shortcut
       block:
         - name: Get installed Windows Terminal path
-          register: windows_terminal_path_result
+          register: base_windows_terminal_path_result
           ansible.windows.win_powershell:
             # NB we need to explicitly grab the package version, because, the
             #    windows terminal package seems to be automatically updated,
@@ -75,12 +75,12 @@
               $ErrorActionPreference = 'Stop'
               $ProgressPreference = 'SilentlyContinue'
               $Ansible.Changed = $false
-              $windowsTerminalPath = 'C:\Program Files\WindowsApps\{{ windows_terminal_package_full_name }}\WindowsTerminal.exe'
+              $windowsTerminalPath = 'C:\Program Files\WindowsApps\{{ base_windows_terminal_package_full_name }}\WindowsTerminal.exe'
               $package = Get-AppxPackage `
-                -Name '{{ windows_terminal_package_name }}' `
+                -Name '{{ base_windows_terminal_package_name }}' `
                 -ErrorAction SilentlyContinue `
                 | Where-Object {
-                  $_.PublisherId -eq '{{ windows_terminal_package_publisher_id }}'
+                  $_.PublisherId -eq '{{ base_windows_terminal_package_publisher_id }}'
                 }
               if ($package) {
                 $windowsTerminalPath = Join-Path $package.InstallLocation WindowsTerminal.exe
@@ -89,11 +89,11 @@
                 # NB the "App" part ar the end of this string was obtained with
                 #    the following Windows PowerShell snippet:
                 #     (Get-AppxPackageManifest (Get-AppxPackage Microsoft.WindowsTerminal)).Package.Applications.Application.Id
-                windows_terminal_path = 'shell:AppsFolder\{{ windows_terminal_package_family_name }}!App'
+                windows_terminal_path = 'shell:AppsFolder\{{ base_windows_terminal_package_family_name }}!App'
                 windows_terminal_icon_path = "$windowsTerminalPath,0"
               }
         - name: Install the Windows Terminal shortcut
           community.windows.win_shortcut:
             dest: '%USERPROFILE%\Desktop\Windows Terminal.lnk'
-            src: '{{ windows_terminal_path_result.result.windows_terminal_path }}'
-            icon: '{{ windows_terminal_path_result.result.windows_terminal_icon_path }}'
+            src: '{{ base_windows_terminal_path_result.result.windows_terminal_path }}'
+            icon: '{{ base_windows_terminal_path_result.result.windows_terminal_icon_path }}'
