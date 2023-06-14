@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1.4
 
-# debian 11 (bullseye).
-FROM debian:11-slim
+# debian 12 (bookworm).
+FROM debian:12-slim
 
 # install ansible dependencies.
 # see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip
@@ -19,7 +19,7 @@ apt-get install -y --no-install-recommends \
     git
 rm -rf /var/lib/apt/lists/*
 install -d /etc/bash_completion.d
-activate-global-python-argcomplete3
+activate-global-python-argcomplete
 EOF
 
 # install ansible.
@@ -27,7 +27,7 @@ EOF
 #    messages, those can be ignored.
 COPY requirements.txt .
 RUN <<EOF
-python3 -m pip install -r requirements.txt
+python3 -m pip install --break-system-packages -r requirements.txt
 EOF
 
 # install ansible collections and roles.
