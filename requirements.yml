@@ -1,7 +1,7 @@
 collections:
   # see https://galaxy.ansible.com/ansible/windows
   - name: ansible.windows
-    version: 1.14.0
+    version: 2.0.0
   # see https://galaxy.ansible.com/chocolatey/chocolatey
   - name: chocolatey.chocolatey
     version: 1.4.0
@@ -10,4 +10,4 @@ collections:
     version: 7.0.1
   # see https://galaxy.ansible.com/community/windows
   - name: community.windows
-    version: 1.13.0
+    version: 2.0.0
