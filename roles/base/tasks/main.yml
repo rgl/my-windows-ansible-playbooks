@@ -393,7 +393,7 @@
     # https://community.chocolatey.org/packages/7zip.install
     name: 7zip.install
     # renovate: datasource=nuget:chocolatey depName=7zip.install
-    version: '22.1'
+    version: '23.1.0'
     state: upgrade
 
 - name: Install dig
