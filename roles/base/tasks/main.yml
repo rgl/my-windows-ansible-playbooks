@@ -409,7 +409,7 @@
     # https://community.chocolatey.org/packages/hwinfo.install
     name: hwinfo.install
     # renovate: datasource=nuget:chocolatey depName=hwinfo.install
-    version: '7.46'
+    version: '7.50'
     state: upgrade
 
 - name: Install CPU-Z
