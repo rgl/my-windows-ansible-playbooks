@@ -4,7 +4,7 @@ collections:
     version: 2.0.0
   # see https://galaxy.ansible.com/chocolatey/chocolatey
   - name: chocolatey.chocolatey
-    version: 1.5.0
+    version: 1.5.1
   # see https://galaxy.ansible.com/community/general
   - name: community.general
     version: 7.1.0
