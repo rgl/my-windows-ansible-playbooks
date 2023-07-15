@@ -9,8 +9,6 @@ set -euo pipefail
 export RENOVATE_USERNAME='renovate'
 export RENOVATE_NAME='Renovate Bot'
 export RENOVATE_PASSWORD='password'
-export RENOVATE_ENDPOINT="http://localhost:3000"
-export GIT_PUSH_REPOSITORY="http://$RENOVATE_USERNAME:$RENOVATE_PASSWORD@localhost:3000/$RENOVATE_USERNAME/test.git"
 gitea_container_name="$(basename "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")-renovate-gitea"
 
 # see https://hub.docker.com/r/gitea/gitea/tags
@@ -26,6 +24,7 @@ echo 'Deleting existing Gitea...'
 docker rm --force "$gitea_container_name" >/dev/null 2>&1
 echo 'Deleting existing temporary files...'
 rm -f tmp/renovate-*
+install -d tmp
 
 # start gitea in background.
 # see https://docs.gitea.io/en-us/config-cheat-sheet/
@@ -38,11 +37,17 @@ docker run \
     -v /etc/timezone:/etc/timezone:ro \
     -v /etc/localtime:/etc/localtime:ro \
     -e SECRET_KEY=abracadabra \
-    -p 3000:3000 \
+    -p 3000 \
     "gitea/gitea:$gitea_version" \
     >/dev/null
+gitea_addr="$(docker port "$gitea_container_name" 3000 | head -1)"
+gitea_url="http://$gitea_addr"
+export RENOVATE_ENDPOINT="$gitea_url"
+export GIT_PUSH_REPOSITORY="http://$RENOVATE_USERNAME:$RENOVATE_PASSWORD@$gitea_addr/$RENOVATE_USERNAME/test.git"
+
 # wait for gitea to be ready.
-bash -euc 'while [ -z "$(wget -qO- http://localhost:3000/api/v1/version | jq -r ".version | select(.!=null)")" ]; do sleep 5; done'
+echo 'Waiting for Gitea to be ready...'
+GITEA_URL="$gitea_url" bash -euc 'while [ -z "$(wget -qO- "$GITEA_URL/api/v1/version" | jq -r ".version | select(.!=null)")" ]; do sleep 5; done'
 
 # create user in gitea.
 echo "Creating Gitea $RENOVATE_USERNAME user..."
@@ -58,7 +63,7 @@ curl \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
     -d "{\"full_name\":\"$RENOVATE_NAME\"}" \
-    "http://localhost:3000/api/v1/user/settings" \
+    "$gitea_url/api/v1/user/settings" \
     | jq \
     > /dev/null
 
@@ -67,14 +72,13 @@ curl \
 # see https://docs.gitea.io/en-us/oauth2-provider/#scopes
 # see https://try.gitea.io/api/swagger#/user/userCreateToken
 echo "Creating Gitea $RENOVATE_USERNAME user personal access token..."
-install -d tmp
 curl \
     -s \
     -u "$RENOVATE_USERNAME:$RENOVATE_PASSWORD" \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{"name": "renovate", "scopes": ["repo"]}' \
-    "http://localhost:3000/api/v1/users/$RENOVATE_USERNAME/tokens" \
+    "$gitea_url/api/v1/users/$RENOVATE_USERNAME/tokens" \
     | jq -r .sha1 \
     >tmp/renovate-gitea-token.txt
 
@@ -85,7 +89,7 @@ curl \
     -s \
     -H "Authorization: token $RENOVATE_TOKEN" \
     -H 'Accept: application/json' \
-    "http://localhost:3000/api/v1/user" \
+    "$gitea_url/api/v1/user" \
     | jq \
     > /dev/null
 
@@ -98,7 +102,7 @@ curl \
     -H 'Accept: application/json' \
     -H 'Content-Type: application/json' \
     -d '{"name": "test"}' \
-    http://localhost:3000/api/v1/user/repos \
+    "$gitea_url/api/v1/user/repos" \
     | jq \
     > /dev/null
 
@@ -127,7 +131,6 @@ export RENOVATE_REPOSITORIES="$RENOVATE_USERNAME/test"
 export RENOVATE_PR_HOURLY_LIMIT='0'
 export RENOVATE_PR_CONCURRENT_LIMIT='0'
 echo 'Running renovate...'
-install -d tmp
 # NB use --dry-run=lookup for not modifying the repository (e.g. for not
 #    creating pull requests).
 docker run \
@@ -197,4 +200,4 @@ show-dependencies 'Dependencies' tmp/renovate-dependencies.json
 show-dependencies 'Dependencies Updates' tmp/renovate-dependencies-updates.json
 
 # show the gitea project.
-show-title "See PRs at http://localhost:3000/$RENOVATE_USERNAME/test/pulls (you can login as $RENOVATE_USERNAME:$RENOVATE_PASSWORD)"
+show-title "See PRs at $gitea_url/$RENOVATE_USERNAME/test/pulls (you can login as $RENOVATE_USERNAME:$RENOVATE_PASSWORD)"
