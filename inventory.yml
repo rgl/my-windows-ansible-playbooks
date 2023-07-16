@@ -6,7 +6,7 @@ all:
     # connection configuration.
     # see https://github.com/rgl/terraform-libvirt-ansible-windows-example/blob/master/README.md#windows-management
     # see https://github.com/rgl/infra-toolbox/blob/main/README.md#ansible-windows-example
-    # see https://docs.ansible.com/ansible-core/2.12/collections/ansible/builtin/psrp_connection.html
+    # see https://docs.ansible.com/ansible-core/2.15/collections/ansible/builtin/psrp_connection.html
     ansible_user: Administrator
     ansible_password: vagrant
     ansible_connection: psrp
