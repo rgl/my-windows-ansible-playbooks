@@ -13,7 +13,7 @@ gitea_container_name="$(basename "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")
 
 # see https://hub.docker.com/r/gitea/gitea/tags
 # renovate: datasource=docker depName=gitea/gitea
-gitea_version='1.19.4'
+gitea_version='1.20.1'
 
 # see https://hub.docker.com/r/renovate/renovate/tags
 # renovate: datasource=docker depName=renovate/renovate extractVersion=(?<version>.+)-slim$
@@ -29,7 +29,7 @@ install -d tmp
 # start gitea in background.
 # see https://docs.gitea.io/en-us/config-cheat-sheet/
 # see https://github.com/go-gitea/gitea/releases
-# see https://github.com/go-gitea/gitea/blob/v1.19.4/docker/root/etc/s6/gitea/setup
+# see https://github.com/go-gitea/gitea/blob/v1.20.1/docker/root/etc/s6/gitea/setup
 echo 'Starting Gitea...'
 docker run \
     --detach \
@@ -46,7 +46,7 @@ export RENOVATE_ENDPOINT="$gitea_url"
 export GIT_PUSH_REPOSITORY="http://$RENOVATE_USERNAME:$RENOVATE_PASSWORD@$gitea_addr/$RENOVATE_USERNAME/test.git"
 
 # wait for gitea to be ready.
-echo 'Waiting for Gitea to be ready...'
+echo "Waiting for Gitea to be ready at $gitea_url..."
 GITEA_URL="$gitea_url" bash -euc 'while [ -z "$(wget -qO- "$GITEA_URL/api/v1/version" | jq -r ".version | select(.!=null)")" ]; do sleep 5; done'
 
 # create user in gitea.
@@ -57,7 +57,9 @@ docker exec --user git "$gitea_container_name" gitea admin user create \
     --username "$RENOVATE_USERNAME" \
     --password "$RENOVATE_PASSWORD"
 curl \
-    -s \
+    --silent \
+    --show-error \
+    --fail-with-body \
     -u "$RENOVATE_USERNAME:$RENOVATE_PASSWORD" \
     -X 'PATCH' \
     -H 'Accept: application/json' \
@@ -71,32 +73,41 @@ curl \
 # see https://docs.gitea.io/en-us/api-usage/
 # see https://docs.gitea.io/en-us/oauth2-provider/#scopes
 # see https://try.gitea.io/api/swagger#/user/userCreateToken
+# TODO possibly drop read:misc depending on the outcome of:
+#       https://github.com/go-gitea/gitea/issues/26035
 echo "Creating Gitea $RENOVATE_USERNAME user personal access token..."
 curl \
-    -s \
+    --silent \
+    --show-error \
+    --fail-with-body \
     -u "$RENOVATE_USERNAME:$RENOVATE_PASSWORD" \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"name": "renovate", "scopes": ["repo"]}' \
+    -d '{"name": "renovate", "scopes": ["read:misc", "read:user", "write:issue", "write:repository"]}' \
     "$gitea_url/api/v1/users/$RENOVATE_USERNAME/tokens" \
     | jq -r .sha1 \
     >tmp/renovate-gitea-token.txt
 
 # try the token.
+echo "Trying the Gitea $RENOVATE_USERNAME user personal access token..."
 RENOVATE_TOKEN="$(cat tmp/renovate-gitea-token.txt)"
 export RENOVATE_TOKEN
 curl \
-    -s \
+    --silent \
+    --show-error \
+    --fail-with-body \
     -H "Authorization: token $RENOVATE_TOKEN" \
     -H 'Accept: application/json' \
-    "$gitea_url/api/v1/user" \
+    "$gitea_url/api/v1/version" \
     | jq \
     > /dev/null
 
 # create remote repository in gitea.
 echo "Creating Gitea $RENOVATE_USERNAME test repository..."
 curl \
-    -s \
+    --silent \
+    --show-error \
+    --fail-with-body \
     -u "$RENOVATE_USERNAME:$RENOVATE_PASSWORD" \
     -X POST \
     -H 'Accept: application/json' \
