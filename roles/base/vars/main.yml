@@ -1,6 +1,6 @@
 # see https://community.chocolatey.org/packages/pwsh
 # renovate: datasource=nuget:chocolatey depName=pwsh extractVersion=^(?<version>7\.2\..+)
-pwsh_version: '7.2.12'
+pwsh_version: '7.2.13'
 
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget:chocolatey depName=firefox
