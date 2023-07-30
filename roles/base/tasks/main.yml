@@ -589,6 +589,14 @@
     version: '1.11.1'
     state: upgrade
 
+- name: Install GIMP
+  chocolatey.chocolatey.win_chocolatey:
+    # https://community.chocolatey.org/packages/gimp
+    name: gimp
+    # renovate: datasource=nuget:chocolatey depName=gimp
+    version: '2.10.34'
+    state: upgrade
+
 - name: Configure the firewall
   block:
     - name: Allow ICMPv4 Echo (ping)
