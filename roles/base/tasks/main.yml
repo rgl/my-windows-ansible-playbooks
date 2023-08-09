@@ -289,7 +289,7 @@
     # https://community.chocolatey.org/packages/chocolatey
     name: chocolatey
     # renovate: datasource=nuget:chocolatey depName=chocolatey
-    version: '2.2.0'
+    version: '2.2.2'
     state: upgrade
 
 - name: Install DejaVu Mono Nerd Font
