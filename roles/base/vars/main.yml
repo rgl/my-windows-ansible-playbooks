@@ -4,7 +4,7 @@ pwsh_version: '7.2.13'
 
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget:chocolatey depName=firefox
-firefox_version: '116.0.2'
+firefox_version: '116.0.3'
 
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
