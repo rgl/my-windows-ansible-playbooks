@@ -4,7 +4,7 @@ set -euo pipefail
 image_name='oxsecurity/megalinter'
 # see https://hub.docker.com/r/oxsecurity/megalinter/tags
 # renovate: datasource=docker depName=oxsecurity/megalinter
-image_version='7.2.1'
+image_version='7.3.0'
 
 # see https://megalinter.io/latest/configuration/
 # see https://megalinter.io/latest/descriptors/powershell/
