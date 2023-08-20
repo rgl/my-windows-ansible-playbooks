@@ -1,3 +1,11 @@
+# opt-out of telemetry.
+# see https://developer.hashicorp.com/packer/docs/configure#checkpoint_disable
+- name: Opt-out of telemetry
+  ansible.windows.win_environment:
+    level: machine
+    name: CHECKPOINT_DISABLE
+    value: '1'
+
 - name: Install packer
   chocolatey.chocolatey.win_chocolatey:
     name: packer

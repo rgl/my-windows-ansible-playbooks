@@ -1,3 +1,11 @@
+# opt-out of telemetry.
+# see https://developer.hashicorp.com/terraform/cli/commands#disable_checkpoint
+- name: Opt-out of telemetry
+  ansible.windows.win_environment:
+    level: machine
+    name: CHECKPOINT_DISABLE
+    value: '1'
+
 - name: Install terraform
   chocolatey.chocolatey.win_chocolatey:
     name: terraform
