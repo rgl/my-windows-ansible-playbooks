@@ -6,6 +6,7 @@
     - base
     - intel_me_drivers
     - wireguard
+    - netbird
     - hyper_v
     - role: wsl
       when: ansible_os_installation_type == 'Client'

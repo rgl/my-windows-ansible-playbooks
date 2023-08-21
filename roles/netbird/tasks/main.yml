@@ -1,0 +1,7 @@
+- name: Install netbird
+  async: "{{ '15m' | community.general.to_seconds | int }}"
+  poll: "{{ '5s' | community.general.to_seconds | int }}"
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-netbird.ps1') }}"
+    parameters:
+      version: '{{ netbird_version }}'
