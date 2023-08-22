@@ -12,4 +12,4 @@ k9s_version: '0.27.4'
 # see https://community.chocolatey.org/packages/kubernetes-helm
 # see https://github.com/helm/helm/releases
 # renovate: datasource=nuget:chocolatey depName=kubernetes-helm
-helm_version: '3.12.1'
+helm_version: '3.12.2'
