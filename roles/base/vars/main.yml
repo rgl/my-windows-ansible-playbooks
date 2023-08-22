@@ -18,4 +18,4 @@ oh_my_posh_version: '18.3.5'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
-git_version: '2.41.0'
+git_version: '2.42.0'
