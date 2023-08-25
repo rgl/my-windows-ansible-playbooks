@@ -468,11 +468,11 @@
           Set-GitConfig user.name 'Rui Lopes'
           Set-GitConfig user.email 'rgl@ruilopes.com'
           Set-GitConfig diff.guitool meld
-          Set-GitConfig difftool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
-          Set-GitConfig difftool.meld.cmd '"C:/Program Files (x86)/Meld/Meld.exe" "$LOCAL" "$REMOTE"'
+          Set-GitConfig difftool.meld.path 'C:/Program Files/Meld/Meld.exe'
+          Set-GitConfig difftool.meld.cmd '"C:/Program Files/Meld/Meld.exe" "$LOCAL" "$REMOTE"'
           Set-GitConfig merge.tool meld
-          Set-GitConfig mergetool.meld.path 'C:/Program Files (x86)/Meld/Meld.exe'
-          Set-GitConfig mergetool.meld.cmd '"C:/Program Files (x86)/Meld/Meld.exe" "$LOCAL" "$BASE" "$REMOTE" --auto-merge --output "$MERGED"'
+          Set-GitConfig mergetool.meld.path 'C:/Program Files/Meld/Meld.exe'
+          Set-GitConfig mergetool.meld.cmd '"C:/Program Files/Meld/Meld.exe" "$LOCAL" "$BASE" "$REMOTE" --auto-merge --output "$MERGED"'
 
 - name: Install Git Extensions
   block:
