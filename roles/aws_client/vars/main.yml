@@ -11,4 +11,4 @@ aws_version: '2.13.12'
 #    (e.g. AWS.Tools.EC2), but use the AWSPowerShell.NetCore module version
 #    as the reference version.
 # renovate: datasource=nuget:powershellgallery depName=AWSPowerShell.NetCore
-aws_ps_version: '4.1.399'
+aws_ps_version: '4.1.401'
