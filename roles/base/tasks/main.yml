@@ -331,6 +331,14 @@
         data: 0x00000190
         type: dword
 
+- name: Uninstall PowerShell 2 (Windows Client)
+  when: ansible_os_installation_type == 'Client'
+  ansible.windows.win_optional_feature:
+    name:
+      - MicrosoftWindowsPowerShellV2
+      - MicrosoftWindowsPowerShellV2Root
+    state: absent
+
 - name: Install pwsh
   ansible.builtin.include_tasks: pwsh.yml
 
