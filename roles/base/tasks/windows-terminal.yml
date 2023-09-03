@@ -1,15 +1,15 @@
 - name: Install the Windows Terminal
   # NB Windows Terminal requires Windows 10 1903 build 18362+.
-  # NB The chocolatey package can only be installed in Windows 10.
-  #    see https://github.com/mkevenaar/chocolatey-packages/issues/180
   when:
     - ansible_distribution_version is version('10.0.18362.0', '>=')
-    - ansible_distribution_version is version('10.0.22000.0', '<')
   vars:
+    # see https://www.nuget.org/packages/Microsoft.UI.Xaml
+    # renovate: datasource=nuget depName=Microsoft.UI.Xaml extractVersion=^(?<version>2\.7\..+)
+    windows_terminal_xaml_dependency_version: '2.7.3'
     # see https://community.chocolatey.org/packages/microsoft-windows-terminal
     # see https://github.com/microsoft/terminal/releases
     # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
-    base_windows_terminal_version: '1.16.10261.0'
+    base_windows_terminal_version: '1.17.11461.0'
     base_windows_terminal_package_publisher_id: 8wekyb3d8bbwe
     base_windows_terminal_package_name: Microsoft.WindowsTerminal
     base_windows_terminal_package_family_name: '{{ base_windows_terminal_package_name }}_{{ base_windows_terminal_package_publisher_id }}'
@@ -22,6 +22,11 @@
       ansible.windows.win_package:
         product_id: Microsoft.VCLibs.140.00.UWPDesktop
         path: https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx
+    - name: Install the Windows Terminal dependencies
+      ansible.windows.win_powershell:
+        script: "{{ lookup('file', 'install-windows-terminal-dependencies.ps1') }}"
+        parameters:
+          xaml_dependency_version: '{{ windows_terminal_xaml_dependency_version }}'
     - name: Install the Windows Terminal
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal
@@ -32,23 +37,23 @@
         path: '%LOCALAPPDATA%\Packages\{{ base_windows_terminal_package_family_name }}\LocalState'
         state: directory
     - name: Configure the Windows Terminal
-      # TODO once its possible to set environment variables in a windows
-      #      terminal profile modify the way we are configuring mingw64 in the
-      #      windows-terminal-settings.json file.
+      # TODO when we upgrade to windows terminal v1.18+, modify the way we
+      #      configure the mingw64 terminal profile to set the environment
+      #      variables in the windows-terminal-settings.json file.
       #      see https://github.com/microsoft/terminal/issues/2785
       ansible.windows.win_copy:
         src: windows-terminal-settings.json
         dest: '%LOCALAPPDATA%\Packages\{{ base_windows_terminal_package_family_name }}\LocalState\settings.json'
     - name: Set the Windows Terminal as the Default Terminal Application
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/doc/specs/%23492%20-%20Default%20Terminal/spec.md
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/cascadia/TerminalSettingsModel/CascadiaSettings.h#L139-L145
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/cascadia/TerminalSettingsModel/CascadiaSettings.cpp#L1082-L1085
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/cascadia/TerminalSettingsModel/DefaultTerminal.cpp#L76-L84
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/propslib/DelegationConfig.cpp#L158-L174
-      # see https://github.com/microsoft/terminal/blob/v1.16.10261.0/src/propslib/DelegationConfig.cpp#L35-L36
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/doc/specs/%23492%20-%20Default%20Terminal/spec.md
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/src/cascadia/TerminalSettingsModel/CascadiaSettings.h#L138-L144
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/src/cascadia/TerminalSettingsModel/CascadiaSettings.cpp#L1102-L1105
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/src/cascadia/TerminalSettingsModel/DefaultTerminal.cpp#L76-L84
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/src/propslib/DelegationConfig.cpp#L158-L174
+      # see https://github.com/microsoft/terminal/blob/v1.17.11461.0/src/propslib/DelegationConfig.cpp#L35-L36
       # see https://learn.microsoft.com/en-us/uwp/api/windows.applicationmodel.appextensions.appextensioncatalog?view=winrt-22621
-      # see HKEY_CLASSES_ROOT\PackagedCom\ClassIndex\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}\Microsoft.WindowsTerminal_1.16.10261.0_x64__8wekyb3d8bbwe
-      # see HKEY_CLASSES_ROOT\PackagedCom\Package\Microsoft.WindowsTerminal_1.16.10261.0_x64__8wekyb3d8bbwe\Class\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}
+      # see HKEY_CLASSES_ROOT\PackagedCom\ClassIndex\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}\Microsoft.WindowsTerminal_1.17.11461.0_x64__8wekyb3d8bbwe
+      # see HKEY_CLASSES_ROOT\PackagedCom\Package\Microsoft.WindowsTerminal_1.17.11461.0_x64__8wekyb3d8bbwe\Class\{E12CFF52-A866-4C77-9A90-F570A7AA2C6B}
       block:
         - name: Set the Windows Terminal as the Default Console Application
           ansible.windows.win_regedit:
