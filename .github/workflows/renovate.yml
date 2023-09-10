@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate Renovate GitHub App Token
         id: renovate_github_app_token
-        uses: tibdex/github-app-token@v1
+        uses: tibdex/github-app-token@v2
         with:
           # see https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens
           # see https://docs.renovatebot.com/modules/platform/github/#running-as-a-github-app
