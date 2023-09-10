@@ -14,4 +14,38 @@
     src: settings.json
     dest: '%APPDATA%\Code\User\settings.json'
 
-# TODO install extensions.
+- name: Install extensions
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-extensions.ps1') }}"
+    parameters:
+      extensions:
+        - dotjoshjohnson.xml
+        - golang.go
+        - hashicorp.hcl
+        - hashicorp.terraform
+        - ms-azuretools.vscode-docker
+        - ms-dotnettools.csharp
+        - ms-python.python
+        - ms-vscode-remote.remote-ssh
+        - ms-vscode.powershell
+        # Makefile Tools.
+        # see https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools
+        - ms-vscode.makefile-tools
+        # Jinja Template Highlighting.
+        # see https://github.com/samuelcolvin/jinjahtml-vscode
+        # see https://marketplace.visualstudio.com/items?itemName=samuelcolvin.jinjahtml
+        # NB be aware of https://github.com/microsoft/vscode/issues/49210
+        - samuelcolvin.jinjahtml
+        # Spell checker.
+        # see https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+        - streetsidesoftware.code-spell-checker
+        # Rust language support.
+        # see https://github.com/rust-lang/rust-analyzer
+        # see https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+        - rust-lang.rust-analyzer
+        # Svelte language support.
+        # see https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode
+        - svelte.svelte-vscode
+        # GitHub Actions.
+        # see https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
+        - github.vscode-github-actions
