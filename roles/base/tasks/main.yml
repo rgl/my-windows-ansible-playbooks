@@ -404,6 +404,14 @@
     version: '23.1.0'
     state: upgrade
 
+- name: Install jq
+  chocolatey.chocolatey.win_chocolatey:
+    name: jq
+    # see https://community.chocolatey.org/packages/jq
+    # renovate: datasource=nuget:chocolatey depName=jq
+    version: '1.7.0'
+    state: upgrade
+
 - name: Install dig
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/bind-toolsonly
