@@ -8,4 +8,4 @@ dotnet_sdk_lts_version: '6.0.414' # dotnet 6.0.22
 # see https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
 # renovate: datasource=nuget:chocolatey depName=dotnet-sdk
-dotnet_sdk_sts_version: '7.0.400' # dotnet 7.0.10
+dotnet_sdk_sts_version: '7.0.401' # dotnet 7.0.11
