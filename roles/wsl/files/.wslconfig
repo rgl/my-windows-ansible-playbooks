@@ -1,2 +1,4 @@
+# see https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configuration-setting-for-wslconfig
+
 [wsl2]
 guiApplications=false

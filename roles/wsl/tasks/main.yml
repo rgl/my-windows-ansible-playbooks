@@ -5,8 +5,8 @@
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.ps1
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.sh
 # NB you can remove the distro altogether with:
-#       wsl.exe --unregister Ubuntu-20.04
-#       Remove-Item -Recurse C:\Wsl\Ubuntu-20.04
+#       wsl.exe --unregister Ubuntu-22.04
+#       Remove-Item -Recurse C:\Wsl\Ubuntu-22.04
 
 - name: Install WSL Windows Optional Features
   ansible.windows.win_optional_feature:
@@ -34,7 +34,7 @@
 - name: Configure WSL Host
   # NB we disable wslg because it starts consuming too much cpu.
   #    and because I do not really need/use it.
-  #    see wsl.exe --system -d Ubuntu-20.04 top
+  #    see wsl.exe --system -d Ubuntu-22.04 top
   #    see https://github.com/microsoft/WSL/issues/6982
   #    see https://github.com/microsoft/wslg#wslg-system-distro
   ansible.windows.win_copy:
@@ -47,18 +47,18 @@
       ansible.windows.win_copy:
         # see https://findicons.com/icon/88935/ubuntu
         src: ubuntu.ico
-        dest: C:\Wsl\Ubuntu-20.04\ubuntu.ico
+        dest: C:\Wsl\Ubuntu-22.04\ubuntu.ico
     - name: Install WSL Ubuntu Start Menu Shortcut
       community.windows.win_shortcut:
         dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu.lnk
-        icon: C:\Wsl\Ubuntu-20.04\ubuntu.ico,0
+        icon: C:\Wsl\Ubuntu-22.04\ubuntu.ico,0
         src: wsl.exe
-        arguments: --distribution Ubuntu-20.04
+        arguments: --distribution Ubuntu-22.04
         directory: '%USERPROFILE%'
     - name: Install WSL Ubuntu Desktop Shortcut
       community.windows.win_shortcut:
         dest: '%USERPROFILE%\Desktop\Ubuntu.lnk'
-        icon: C:\Wsl\Ubuntu-20.04\ubuntu.ico,0
+        icon: C:\Wsl\Ubuntu-22.04\ubuntu.ico,0
         src: wsl.exe
-        arguments: --distribution Ubuntu-20.04
+        arguments: --distribution Ubuntu-22.04
         directory: '%USERPROFILE%'

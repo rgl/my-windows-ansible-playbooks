@@ -1,4 +1,6 @@
 # see https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+# see https://github.com/microsoft/WSL
+# see https://github.com/microsoft/WSL2-Linux-Kernel
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -6,9 +8,9 @@ $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
 $distroUser = 'wsl'
-$distroName = 'Ubuntu-20.04'
+$distroName = 'Ubuntu-22.04'
 $distroPath = "C:\Wsl\$distroName"
-$archiveUrl = 'https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-wsl.rootfs.tar.gz'
+$archiveUrl = 'https://cloud-images.ubuntu.com/wsl/jammy/current/ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz'
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 
 function Invoke-WslCommand {

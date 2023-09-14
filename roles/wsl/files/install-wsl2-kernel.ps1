@@ -1,3 +1,6 @@
+# see https://www.catalog.update.microsoft.com/Search.aspx?q=wsl
+# see https://github.com/microsoft/WSL2-Linux-Kernel
+# see https://github.com/microsoft/WSL
 # see https://ubuntu.com/blog/ubuntu-on-wsl-2-is-generally-available
 # see https://aka.ms/wsl2kernel
 
