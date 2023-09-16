@@ -183,6 +183,14 @@ EOF_SUDO
     }
 }
 
+function Install-DebianWslDistro([string]$distroName='Debian') {
+    # see https://salsa.debian.org/debian/WSL
+    # renovate: datasource=gitlab-tags depName=debian/WSL registryUrl=https://salsa.debian.org
+    $version = '1.15.0.0'
+    $archiveUrl = "https://salsa.debian.org/debian/WSL/-/raw/v$version/x64/install.tar.gz"
+    Install-DebianFlavoredWslDistro $distroName $archiveUrl
+}
+
 function Install-UbuntuWslDistro([string]$distroName='Ubuntu') {
     # see https://cloud-images.ubuntu.com/wsl
     $archiveUrl = 'https://cloud-images.ubuntu.com/wsl/jammy/current/ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz'
@@ -190,6 +198,7 @@ function Install-UbuntuWslDistro([string]$distroName='Ubuntu') {
 }
 
 Install-Wsl
+Install-DebianWslDistro
 Install-UbuntuWslDistro
 
 Write-Host "Listing the installed distributions..."

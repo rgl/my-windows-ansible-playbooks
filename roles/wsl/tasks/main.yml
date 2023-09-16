@@ -48,6 +48,20 @@
         src: install.ps1
         dest: C:\Wsl\install.ps1
 
+- name: Install WSL Debian Shortcut
+  block:
+    - name: Copy Debian icon
+      ansible.windows.win_copy:
+        src: debian.ico
+        dest: C:\Wsl\debian.ico
+    - name: Install WSL Debian Start Menu Shortcut
+      community.windows.win_shortcut:
+        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Debian.lnk
+        icon: C:\Wsl\debian.ico,0
+        src: C:\Windows\system32\wsl.exe
+        arguments: --distribution Debian
+        directory: '%USERPROFILE%'
+
 - name: Install WSL Ubuntu Shortcut
   block:
     - name: Copy Ubuntu icon
