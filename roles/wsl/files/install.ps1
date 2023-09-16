@@ -1,5 +1,6 @@
 # see https://devblogs.microsoft.com/commandline/the-windows-subsystem-for-linux-in-the-microsoft-store-is-now-generally-available-on-windows-10-and-11/
 # see https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+# see https://learn.microsoft.com/en-us/windows/wsl/systemd
 # see https://github.com/microsoft/WSL2-Linux-Kernel
 # see https://github.com/microsoft/WSL
 
@@ -168,6 +169,9 @@ if ! grep "default=$distro_user" /etc/wsl.conf >/dev/null 2>&1; then
     cat >/etc/wsl.conf <<EOF
 [user]
 default=$distro_user
+
+[boot]
+systemd=true
 EOF
     echo INSTALLATION CHANGED
 fi
