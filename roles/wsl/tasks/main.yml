@@ -5,41 +5,48 @@
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.ps1
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.sh
 # NB you can remove the distro altogether with:
-#       wsl.exe --unregister Ubuntu-22.04
-#       Remove-Item -Recurse C:\Wsl\Ubuntu-22.04
-
-- name: Install WSL Windows Optional Features
-  ansible.windows.win_optional_feature:
-    name:
-      - Microsoft-Windows-Subsystem-Linux
-      - VirtualMachinePlatform
-  register: wsl_win_optional_feature
-
-- name: Reboot
-  when: wsl_win_optional_feature.reboot_required
-  ansible.windows.win_reboot:
-
-- name: Install WSL2 kernel
-  ansible.windows.win_powershell:
-    script: "{{ lookup('file', 'install-wsl2-kernel.ps1') }}"
-
-- name: Set WSL default version
-  ansible.windows.win_powershell:
-    script: "{{ lookup('file', 'set-wsl-default-version.ps1') }}"
-
-- name: Install WSL Ubuntu
-  ansible.windows.win_powershell:
-    script: "{{ lookup('file', 'install-wsl-ubuntu.ps1') }}"
+#       wsl.exe --unregister Ubuntu
+#       Remove-Item -Recurse C:\Wsl\Ubuntu
 
 - name: Configure WSL Host
   # NB we disable wslg because it starts consuming too much cpu.
   #    and because I do not really need/use it.
-  #    see wsl.exe --system -d Ubuntu-22.04 top
+  #    see wsl.exe --system -d Ubuntu top
   #    see https://github.com/microsoft/WSL/issues/6982
   #    see https://github.com/microsoft/wslg#wslg-system-distro
   ansible.windows.win_copy:
     src: .wslconfig
     dest: '%USERPROFILE%\.wslconfig'
+
+
+- name: Install WSL Dependencies (Windows Client)
+  when: ansible_os_installation_type == 'Client'
+  block:
+    - name: Install Virtual Machine Platform
+      ansible.windows.win_optional_feature:
+        name: VirtualMachinePlatform
+      register: vmf_win_optional_feature
+    - name: Uninstall WSL Windows feature
+      ansible.windows.win_optional_feature:
+        # NB in Windows 11 Client, this is only required for WSL1, which we
+        #    do not use.
+        name: Microsoft-Windows-Subsystem-Linux
+        state: absent
+      register: wsl_win_feature
+    - name: Reboot
+      when: vmf_win_optional_feature.reboot_required or wsl_win_feature.reboot_required
+      ansible.windows.win_reboot:
+
+- name: Copy WSL installation script
+  block:
+    - name: Create the WSL directory
+      ansible.windows.win_file:
+        path: C:\Wsl
+        state: directory
+    - name: Copy WSL installation script
+      ansible.windows.win_copy:
+        src: install.ps1
+        dest: C:\Wsl\install.ps1
 
 - name: Install WSL Ubuntu Shortcut
   block:
@@ -47,18 +54,11 @@
       ansible.windows.win_copy:
         # see https://findicons.com/icon/88935/ubuntu
         src: ubuntu.ico
-        dest: C:\Wsl\Ubuntu-22.04\ubuntu.ico
+        dest: C:\Wsl\ubuntu.ico
     - name: Install WSL Ubuntu Start Menu Shortcut
       community.windows.win_shortcut:
         dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu.lnk
-        icon: C:\Wsl\Ubuntu-22.04\ubuntu.ico,0
-        src: wsl.exe
-        arguments: --distribution Ubuntu-22.04
-        directory: '%USERPROFILE%'
-    - name: Install WSL Ubuntu Desktop Shortcut
-      community.windows.win_shortcut:
-        dest: '%USERPROFILE%\Desktop\Ubuntu.lnk'
-        icon: C:\Wsl\Ubuntu-22.04\ubuntu.ico,0
-        src: wsl.exe
-        arguments: --distribution Ubuntu-22.04
+        icon: C:\Wsl\ubuntu.ico,0
+        src: C:\Windows\system32\wsl.exe
+        arguments: --distribution Ubuntu
         directory: '%USERPROFILE%'
