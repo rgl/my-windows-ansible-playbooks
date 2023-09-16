@@ -18,6 +18,24 @@
     src: .wslconfig
     dest: '%USERPROFILE%\.wslconfig'
 
+- name: Install WSL Dependencies (Windows Server)
+  when: ansible_os_installation_type != 'Client'
+  block:
+    - name: Install Hyper-V
+      ansible.windows.win_feature:
+        name: Hyper-V
+        include_management_tools: true
+      register: hyper_v_win_feature
+    - name: Install WSL Windows feature
+      ansible.windows.win_feature:
+        # NB although in Windows 11 Client this is only required for WSL1, in
+        #    Windows 2022 Server its required, or else, wsl.exe will fail with:
+        #     This application requires the Windows Subsystem for Linux Optional Component.
+        name: Microsoft-Windows-Subsystem-Linux
+      register: wsl_win_feature
+    - name: Reboot
+      when: hyper_v_win_feature.reboot_required or wsl_win_feature.reboot_required
+      ansible.windows.win_reboot:
 
 - name: Install WSL Dependencies (Windows Client)
   when: ansible_os_installation_type == 'Client'
