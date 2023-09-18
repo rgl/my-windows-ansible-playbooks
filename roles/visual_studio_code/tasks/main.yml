@@ -58,3 +58,6 @@
         # GitHub Actions.
         # see https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
         - github.vscode-github-actions
+        # Playwright Test.
+        # see https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
+        - ms-playwright.playwright
