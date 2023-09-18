@@ -46,6 +46,8 @@
         # Spell checker.
         # see https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
         - streetsidesoftware.code-spell-checker
+        # see https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-portuguese
+        - streetsidesoftware.code-spell-checker-portuguese
         # Rust language support.
         # see https://github.com/rust-lang/rust-analyzer
         # see https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
