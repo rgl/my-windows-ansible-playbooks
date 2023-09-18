@@ -30,6 +30,8 @@
         # WSL.
         # see https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
         - ms-vscode-remote.remote-wsl
+        # PowerShell.
+        # see https://marketplace.visualstudio.com/items?itemName=ms-vscode.powershell
         - ms-vscode.powershell
         # Makefile Tools.
         # see https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools
