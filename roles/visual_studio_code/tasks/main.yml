@@ -27,6 +27,9 @@
         - ms-dotnettools.csharp
         - ms-python.python
         - ms-vscode-remote.remote-ssh
+        # WSL.
+        # see https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+        - ms-vscode-remote.remote-wsl
         - ms-vscode.powershell
         # Makefile Tools.
         # see https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools
