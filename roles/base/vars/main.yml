@@ -14,7 +14,7 @@ npcap_version: '1.76'
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
 # renovate: datasource=nuget:chocolatey depName=oh-my-posh
-oh_my_posh_version: '18.9.0'
+oh_my_posh_version: '18.9.1'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
