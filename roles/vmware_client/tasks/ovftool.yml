@@ -1,0 +1,5 @@
+- name: Install ovftool
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-ovftool.ps1') }}"
+    parameters:
+      version: '{{ ovftool_version }}'
