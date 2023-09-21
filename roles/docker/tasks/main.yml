@@ -39,14 +39,14 @@
 
 - name: Create the configuration directory
   ansible.windows.win_file:
-    path: C:\Program Data\docker\config
+    path: C:\ProgramData\docker\config
     state: directory
 
 - name: Create the configuration
   # see https://docs.docker.com/engine/reference/commandline/dockerd/#windows-configuration-file
   ansible.windows.win_copy:
     src: daemon.json
-    dest: C:\Program Data\docker\config\daemon.json
+    dest: C:\ProgramData\docker\config\daemon.json
   notify:
     - Restart docker
 
