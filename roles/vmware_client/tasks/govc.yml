@@ -1,0 +1,5 @@
+- name: Install govc
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-govc.ps1') }}"
+    parameters:
+      version: '{{ govc_version }}'

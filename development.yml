@@ -16,6 +16,7 @@
     - aws_client
     - azure_client
     - gcp_client
+    - vmware_client
     - packer
     - terraform
     - vagrant
