@@ -15,7 +15,12 @@
             {
                 "guid": "{8db9d5e3-aac3-4aa4-acc4-773ff088ca77}",
                 "name": "mingw64",
-                "commandline": "C:/tools/msys64/usr/bin/env.exe MSYS2_PATH_TYPE=inherit MSYSTEM=MINGW64 CHERE_INVOKING=1 /usr/bin/bash.exe --login",
+                "environment": {
+                    "MSYS2_PATH_TYPE": "inherit",
+                    "MSYSTEM": "MINGW64",
+                    "CHERE_INVOKING": "1"
+                },
+                "commandline": "C:/tools/msys64/usr/bin/bash.exe --login",
                 "icon": "C:\\tools\\msys64\\mingw64.ico",
                 "startingDirectory": "%USERPROFILE%",
                 "hidden": false
