@@ -1,5 +1,5 @@
 - name: Install kubectl
   chocolatey.chocolatey.win_chocolatey:
     name: kubernetes-cli
-    version: '{{ kubectl_version }}'
+    version: '{{ k8s_client_kubectl_version }}'
     state: upgrade

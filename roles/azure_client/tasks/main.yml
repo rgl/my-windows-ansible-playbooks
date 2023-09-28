@@ -1,5 +1,5 @@
 - name: Install azure-cli
   chocolatey.chocolatey.win_chocolatey:
     name: azure-cli
-    version: '{{ azure_cli_version }}'
+    version: '{{ azure_client_azure_cli_version }}'
     state: upgrade

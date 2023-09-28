@@ -2,7 +2,7 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-google-cloud-sdk.ps1') }}"
     parameters:
-      version: "{{ gcloud_version }}"
+      version: "{{ gcp_client_gcloud_version }}"
 
 - name: Add to PATH
   ansible.windows.win_path:

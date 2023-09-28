@@ -2,4 +2,4 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-govc.ps1') }}"
     parameters:
-      version: '{{ govc_version }}'
+      version: '{{ vmware_client_govc_version }}'

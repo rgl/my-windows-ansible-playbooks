@@ -33,7 +33,7 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-windhcp.ps1') }}"
     parameters:
-      version: '{{ windhcp_version }}'
-      checksum: '{{ windhcp_checksum }}'
+      version: '{{ hyper_v_windhcp_version }}'
+      checksum: '{{ hyper_v_windhcp_checksum }}'
   notify:
     - Restart WinDHCP

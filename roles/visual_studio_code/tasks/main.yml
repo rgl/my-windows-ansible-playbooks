@@ -1,7 +1,7 @@
 - name: Install vscode
   chocolatey.chocolatey.win_chocolatey:
     name: vscode
-    version: '{{ vscode_version }}'
+    version: '{{ visual_studio_code_vscode_version }}'
     state: upgrade
 
 - name: Create the configuration directory

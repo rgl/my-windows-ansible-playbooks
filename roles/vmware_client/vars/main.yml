@@ -1,7 +1,7 @@
 # see https://github.com/vmware/govmomi/releases
 # renovate: datasource=github-releases depName=vmware/govmomi
-govc_version: '0.31.0'
+vmware_client_govc_version: '0.31.0'
 
 # see https://github.com/rgl/ovftool-binaries
 # renovate: datasource=github-tags depName=rgl/ovftool-binaries versioning=loose
-ovftool_version: '4.6.0.21452615'
+vmware_client_ovftool_version: '4.6.0.21452615'

@@ -1,5 +1,5 @@
 - name: Install k9s
   chocolatey.chocolatey.win_chocolatey:
     name: k9s
-    version: '{{ k9s_version }}'
+    version: '{{ k8s_client_k9s_version }}'
     state: upgrade

@@ -349,7 +349,7 @@
     # see https://ohmyposh.dev
     # see also https://starship.rs/
     name: oh-my-posh
-    version: '{{ oh_my_posh_version }}'
+    version: '{{ base_oh_my_posh_version }}'
     package_params: /ALLUSERS
     state: upgrade
 
@@ -469,7 +469,7 @@
       chocolatey.chocolatey.win_chocolatey:
         # https://community.chocolatey.org/packages/git
         name: git
-        version: '{{ git_version }}'
+        version: '{{ base_git_version }}'
         state: upgrade
         package_params: /GitOnlyOnPath /NoAutoCrlf /SChannel
     - name: Configure Git
@@ -561,7 +561,7 @@
           $ErrorActionPreference = 'Stop'
           $ProgressPreference = 'SilentlyContinue'
           $Ansible.Changed = $false
-          $npcapVersion = '{{ npcap_version }}'
+          $npcapVersion = '{{ base_npcap_version }}'
           $npcapPath = 'C:\Program Files\Npcap\npcap.sys'
           if (Test-Path $npcapPath) {
             $actualVersion = (Get-ChildItem $npcapPath).VersionInfo.ProductVersion
@@ -573,8 +573,8 @@
     - name: Download npcap
       when: base_npcap.changed
       ansible.windows.win_get_url:
-        dest: '%USERPROFILE%\Desktop\npcap-{{ npcap_version }}.exe'
-        url: 'https://npcap.com/dist/npcap-{{ npcap_version }}.exe'
+        dest: '%USERPROFILE%\Desktop\npcap-{{ base_npcap_version }}.exe'
+        url: 'https://npcap.com/dist/npcap-{{ base_npcap_version }}.exe'
 
 - name: Install Autoruns
   chocolatey.chocolatey.win_chocolatey:

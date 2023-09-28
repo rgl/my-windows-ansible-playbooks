@@ -1,7 +1,7 @@
 - name: Install awscli
   chocolatey.chocolatey.win_chocolatey:
     name: awscli
-    version: '{{ aws_version }}'
+    version: '{{ aws_client_aws_version }}'
     state: upgrade
 
 # NB this is uninstalled because it clobbers the AWS.Tools modules.
@@ -14,7 +14,7 @@
 - name: Install AWS.Tools PowerShell Modules
   community.windows.win_psmodule:
     name: '{{ item }}'
-    required_version: '{{ aws_ps_version }}'
+    required_version: '{{ aws_client_aws_ps_version }}'
     accept_license: true
     state: present
   loop:
