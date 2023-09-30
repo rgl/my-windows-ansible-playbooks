@@ -13,7 +13,7 @@ $archiveUrl = "https://github.com/vmware/govmomi/releases/download/v${version}/g
 $govc = "$env:ChocolateyInstall\bin\govc.exe"
 
 # bail when its already installed.
-# e.g. govc 0.31.0
+# e.g. govc 0.32.0
 if ((Test-Path $govc) -and ((&$govc version) -match '^govc (.+)')) {
     $actualVersionValue = $Matches[1]
     if ($actualVersionValue -eq $version) {
