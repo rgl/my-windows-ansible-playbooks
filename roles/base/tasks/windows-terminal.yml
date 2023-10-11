@@ -97,6 +97,7 @@
         - name: Install the Windows Terminal shortcut
           community.windows.win_shortcut:
             dest: '%USERPROFILE%\Desktop\Windows Terminal.lnk'
+            description: Windows Terminal
             src: explorer.exe
             args: '{{ base_windows_terminal_path_result.result.windows_terminal_path }}'
             icon: '{{ base_windows_terminal_path_result.result.windows_terminal_icon_path }}'
