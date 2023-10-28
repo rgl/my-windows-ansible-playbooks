@@ -61,3 +61,7 @@
         # Playwright Test.
         # see https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
         - ms-playwright.playwright
+        # PDF Viewer.
+        # see https://github.com/tomoki1207/vscode-pdfviewer
+        # see https://marketplace.visualstudio.com/items?itemName=tomoki1207.pdf
+        - tomoki1207.pdf
