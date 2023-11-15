@@ -9,9 +9,7 @@
     name: dotnet-{{ (item | split('.'))[:2] | join('.') }}-sdk
     version: '{{ item }}'
     state: upgrade
-  loop:
-    - '{{ dotnet_sdk_lts_version }}'
-    - '{{ dotnet_sdk_sts_version }}'
+  loop: '{{ dotnet_sdk_versions }}'
 
 - name: Add the dotnet nuget nuget.org package source
   ansible.windows.win_powershell:
