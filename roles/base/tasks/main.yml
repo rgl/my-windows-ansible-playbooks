@@ -618,7 +618,7 @@
     # https://community.chocolatey.org/packages/gimp
     name: gimp
     # renovate: datasource=nuget:chocolatey depName=gimp
-    version: '2.10.34.2'
+    version: '2.10.36'
     state: upgrade
 
 - name: Install Inkscape
