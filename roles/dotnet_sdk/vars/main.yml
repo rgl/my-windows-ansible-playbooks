@@ -2,7 +2,7 @@
 # see https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
 # renovate: datasource=nuget:chocolatey depName=dotnet-6.0-sdk
-dotnet_sdk_lts_version: '6.0.416' # dotnet 6.0.24
+dotnet_sdk_lts_version: '6.0.417' # dotnet 6.0.25
 
 # see https://community.chocolatey.org/packages/dotnet-7.0-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/7.0
