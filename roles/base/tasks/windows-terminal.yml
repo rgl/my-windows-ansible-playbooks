@@ -6,7 +6,7 @@
     # see https://www.nuget.org/packages/Microsoft.UI.Xaml
     # see https://github.com/microsoft/terminal/blob/v1.18.3181.0/dep/nuget/packages.config#L10C78-L10C78
     # renovate: datasource=nuget depName=Microsoft.UI.Xaml extractVersion=^(?<version>2\.8\..+)
-    windows_terminal_xaml_dependency_version: '2.8.5'
+    windows_terminal_xaml_dependency_version: '2.8.6'
     # see https://community.chocolatey.org/packages/microsoft-windows-terminal
     # see https://github.com/microsoft/terminal/releases
     # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
