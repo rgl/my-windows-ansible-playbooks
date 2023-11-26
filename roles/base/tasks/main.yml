@@ -417,7 +417,7 @@
     name: yq
     # see https://community.chocolatey.org/packages/yq
     # renovate: datasource=nuget:chocolatey depName=yq
-    version: '4.33.3'
+    version: '4.40.2'
     state: upgrade
 
 - name: Install dig
