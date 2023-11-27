@@ -44,7 +44,7 @@ function Invoke-WslDistroScript([string]$distroName, [string]$script) {
 
 function Install-Wsl {
     # see https://github.com/microsoft/WSL/releases
-    # renovate: datasource=github-releases depName=WSL/releases
+    # renovate: datasource=github-releases depName=microsoft/WSL
     $version = '1.2.5'
     $expectedVersion = Get-NormalizedVersion $version
     $archiveUrl = "https://github.com/microsoft/WSL/releases/download/$version/Microsoft.WSL_${expectedVersion}_x64_ARM64.msixbundle"
