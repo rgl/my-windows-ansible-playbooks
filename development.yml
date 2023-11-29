@@ -26,6 +26,7 @@
     - rust
     - cue
     - dagger
+    - mitmproxy
     - httptoolkit
     - visual_studio_code
     - visual_studio
