@@ -66,31 +66,31 @@
         src: install.ps1
         dest: C:\Wsl\install.ps1
 
-- name: Install WSL Debian Shortcut
+- name: Install WSL Debian-12 Shortcut
   block:
-    - name: Copy Debian icon
+    - name: Copy Debian-12 icon
       ansible.windows.win_copy:
-        src: debian.ico
-        dest: C:\Wsl\debian.ico
-    - name: Install WSL Debian Start Menu Shortcut
+        src: debian-12.ico
+        dest: C:\Wsl\debian-12.ico
+    - name: Install WSL Debian-12 Start Menu Shortcut
       community.windows.win_shortcut:
-        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Debian.lnk
-        icon: C:\Wsl\debian.ico,0
+        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Debian-12.lnk
+        icon: C:\Wsl\debian-12.ico,0
         src: C:\Windows\system32\wsl.exe
-        arguments: --distribution Debian
+        arguments: --distribution Debian-12
         directory: '%USERPROFILE%'
 
-- name: Install WSL Ubuntu Shortcut
+- name: Install WSL Ubuntu-22.04 Shortcut
   block:
-    - name: Copy Ubuntu icon
+    - name: Copy Ubuntu-22.04 icon
       ansible.windows.win_copy:
         # see https://findicons.com/icon/88935/ubuntu
-        src: ubuntu.ico
-        dest: C:\Wsl\ubuntu.ico
-    - name: Install WSL Ubuntu Start Menu Shortcut
+        src: ubuntu-22.04.ico
+        dest: C:\Wsl\ubuntu-22.04.ico
+    - name: Install WSL Ubuntu-22.04 Start Menu Shortcut
       community.windows.win_shortcut:
-        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu.lnk
-        icon: C:\Wsl\ubuntu.ico,0
+        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu-22.04.lnk
+        icon: C:\Wsl\ubuntu-22.04.ico,0
         src: C:\Windows\system32\wsl.exe
-        arguments: --distribution Ubuntu
+        arguments: --distribution Ubuntu-22.04
         directory: '%USERPROFILE%'
