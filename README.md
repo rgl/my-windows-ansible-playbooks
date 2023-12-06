@@ -51,10 +51,6 @@ export GITHUB_COM_TOKEN='YOUR_GITHUB_PERSONAL_TOKEN'
 ./renovate.sh
 ```
 
-## WSL 2
-
-Since WSL 2 moved to a Store application, [it cannot be remotely configured from a SSH/WinRM session (e.g. with Ansible)](https://learn.microsoft.com/en-us/windows/wsl/store-release-notes#known-issues). So the `wsl` Ansible Role only installs the required WSL 2 dependencies, and copies the install script to `C:\Wsl\install.ps1`, which you must manually execute as `PowerShell -File C:\Wsl\install.ps1`.
-
 ## Windows Management
 
 Ansible can use one of the native Windows management protocols: [psrp](https://docs.ansible.com/ansible-core/2.15/collections/ansible/builtin/psrp_connection.html) (recommended) or [winrm](https://docs.ansible.com/ansible-core/2.15/collections/ansible/builtin/winrm_connection.html).

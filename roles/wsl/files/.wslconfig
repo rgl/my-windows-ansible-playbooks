@@ -2,3 +2,6 @@
 
 [wsl2]
 guiApplications=false
+
+# see https://github.com/microsoft/WSL/releases/tag/0.51.2
+#debugShell=true

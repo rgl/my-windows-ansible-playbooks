@@ -55,19 +55,20 @@
       when: vmf_win_optional_feature.reboot_required or wsl_win_feature.reboot_required
       ansible.windows.win_reboot:
 
-- name: Copy WSL installation script
-  block:
-    - name: Create the WSL directory
-      ansible.windows.win_file:
-        path: C:\Wsl
-        state: directory
-    - name: Copy WSL installation script
-      ansible.windows.win_copy:
-        src: install.ps1
-        dest: C:\Wsl\install.ps1
+- name: Install WSL
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-wsl.ps1') }}"
+    parameters:
+      version: '{{ wsl_version }}'
 
-- name: Install WSL Debian-12 Shortcut
+- name: Install WSL Debian-12
   block:
+    - name: Install WSL Debian-12
+      ansible.windows.win_powershell:
+        script: "{{ lookup('file', 'install-wsl-debian-flavor.ps1') }}"
+        parameters:
+          distroName: Debian-12
+          distroUrl: 'https://salsa.debian.org/debian/WSL/-/raw/v{{ wsl_debian_version }}/x64/install.tar.gz'
     - name: Copy Debian-12 icon
       ansible.windows.win_copy:
         src: debian-12.ico
@@ -76,12 +77,19 @@
       community.windows.win_shortcut:
         dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Debian-12.lnk
         icon: C:\Wsl\debian-12.ico,0
-        src: C:\Windows\system32\wsl.exe
+        src: '%ProgramFiles%\WSL\wsl.exe'
         arguments: --distribution Debian-12
         directory: '%USERPROFILE%'
 
-- name: Install WSL Ubuntu-22.04 Shortcut
+- name: Install WSL Ubuntu-22.04
   block:
+    - name: Install WSL Ubuntu-22.04
+      ansible.windows.win_powershell:
+        script: "{{ lookup('file', 'install-wsl-debian-flavor.ps1') }}"
+        parameters:
+          distroName: Ubuntu-22.04
+          # see https://cloud-images.ubuntu.com/wsl
+          distroUrl: 'https://cloud-images.ubuntu.com/wsl/jammy/current/ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz'
     - name: Copy Ubuntu-22.04 icon
       ansible.windows.win_copy:
         # see https://findicons.com/icon/88935/ubuntu
@@ -91,6 +99,6 @@
       community.windows.win_shortcut:
         dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu-22.04.lnk
         icon: C:\Wsl\ubuntu-22.04.ico,0
-        src: C:\Windows\system32\wsl.exe
+        src: '%ProgramFiles%\WSL\wsl.exe'
         arguments: --distribution Ubuntu-22.04
         directory: '%USERPROFILE%'
