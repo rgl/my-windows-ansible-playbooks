@@ -35,7 +35,7 @@ function Get-NormalizedVersion([version]$v) {
 # NB at the time of writting, the Windows Subsystem for Linux Id was
 #    {408A5C50-34F2-4025-968E-A21D6A515D48} which is represented in
 #    the registry as a little-endian guid.
-function Get-InstalledApps {
+function Get-InstalledApp {
     Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* `
         | ForEach-Object {
             if ('DisplayName' -notin $_.PSObject.Properties.Name) {
@@ -73,7 +73,7 @@ $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 # NB and with:
 #       Get-CimInstance Win32_Product -Filter "Name = 'Windows Subsystem for Linux'"
 #       dir HKLM:\SOFTWARE\Classes\Installer\Products
-$msiInstalled = Get-InstalledApps | Where-Object {
+$msiInstalled = Get-InstalledApp | Where-Object {
     ($_.Name -eq 'Windows Subsystem for Linux') `
     -and `
     ($_.Version -eq $expectedVersion)
@@ -96,7 +96,7 @@ if (Test-Path "$env:ProgramFiles\WSL\wsl.exe") {
 }
 
 # uninstall the wsl msi installation.
-Get-InstalledApps | Where-Object Name -eq 'Windows Subsystem for Linux' | ForEach-Object {
+Get-InstalledApp | Where-Object Name -eq 'Windows Subsystem for Linux' | ForEach-Object {
     Write-Host "Uninstalling the WSL msi installation..."
     $logPath = "$archivePath.uninstall.log"
     msiexec `
