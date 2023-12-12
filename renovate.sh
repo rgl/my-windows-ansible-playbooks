@@ -73,8 +73,6 @@ curl \
 # see https://docs.gitea.io/en-us/api-usage/
 # see https://docs.gitea.io/en-us/oauth2-provider/#scopes
 # see https://try.gitea.io/api/swagger#/user/userCreateToken
-# TODO possibly drop read:misc depending on the outcome of:
-#       https://github.com/go-gitea/gitea/issues/26035
 echo "Creating Gitea $RENOVATE_USERNAME user personal access token..."
 curl \
     --silent \
@@ -83,7 +81,7 @@ curl \
     -u "$RENOVATE_USERNAME:$RENOVATE_PASSWORD" \
     -X POST \
     -H "Content-Type: application/json" \
-    -d '{"name": "renovate", "scopes": ["read:misc", "read:user", "write:issue", "write:repository"]}' \
+    -d '{"name": "renovate", "scopes": ["read:user", "write:issue", "write:repository"]}' \
     "$gitea_url/api/v1/users/$RENOVATE_USERNAME/tokens" \
     | jq -r .sha1 \
     >tmp/renovate-gitea-token.txt
