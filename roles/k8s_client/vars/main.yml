@@ -7,7 +7,7 @@ k8s_client_kubectl_version: '1.27.9'
 # see https://community.chocolatey.org/packages/k9s
 # see https://github.com/derailed/k9s/releases
 # renovate: datasource=nuget:chocolatey depName=k9s
-k8s_client_k9s_version: '0.30.4'
+k8s_client_k9s_version: '0.30.6'
 
 # see https://community.chocolatey.org/packages/kubernetes-helm
 # see https://github.com/helm/helm/releases
