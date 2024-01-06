@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/mitmproxy
 # see https://github.com/mitmproxy/mitmproxy/releases
 # renovate: datasource=nuget:chocolatey depName=mitmproxy
-mitmproxy_version: '10.1.6'
+mitmproxy_version: '10.2.0'
