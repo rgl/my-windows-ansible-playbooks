@@ -409,7 +409,7 @@
     name: jq
     # see https://community.chocolatey.org/packages/jq
     # renovate: datasource=nuget:chocolatey depName=jq
-    version: '1.7.0'
+    version: '1.7.1'
     state: upgrade
 
 - name: Install yq
