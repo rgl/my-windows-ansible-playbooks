@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/rpi-imager
 # see https://github.com/raspberrypi/rpi-imager/releases
 # renovate: datasource=nuget:chocolatey depName=rpi-imager
-rpi_imager_version: '1.8.4'
+rpi_imager_version: '1.8.5'
