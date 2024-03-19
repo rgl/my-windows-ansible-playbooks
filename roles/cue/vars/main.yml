@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/cue-cli
 # see https://github.com/cue-lang/cue/releases
 # renovate: datasource=nuget:chocolatey depName=cue-cli
-cue_version: '0.7.1'
+cue_version: '0.8.0'
