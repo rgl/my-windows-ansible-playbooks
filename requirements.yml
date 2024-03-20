@@ -10,4 +10,4 @@ collections:
     version: 8.4.0
   # see https://galaxy.ansible.com/community/windows
   - name: community.windows
-    version: 2.1.0
+    version: 2.2.0
