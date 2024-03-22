@@ -1,3 +1,3 @@
 # see https://community.chocolatey.org/packages/visualstudio2022community
 # renovate: datasource=nuget:chocolatey depName=visualstudio2022community
-visual_studio_vs_version: '117.9.3.0' # Visual Studio 17.9.3.
+visual_studio_vs_version: '117.9.4.0' # Visual Studio 17.9.4.
