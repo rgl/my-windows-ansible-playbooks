@@ -1,0 +1,12 @@
+# see https://bun.sh/docs/runtime/configuration#environment-variables
+- name: Opt-out of telemetry
+  ansible.windows.win_environment:
+    level: machine
+    name: DO_NOT_TRACK
+    value: '1'
+
+- name: Install Bun
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-bun.ps1') }}"
+    parameters:
+      version: '{{ bun_version }}'

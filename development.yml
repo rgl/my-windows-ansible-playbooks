@@ -21,6 +21,7 @@
     - terraform
     - vagrant
     - dotnet_sdk
+    - bun
     - nodejs
     - go
     - rust
