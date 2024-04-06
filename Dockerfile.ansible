@@ -6,6 +6,8 @@ FROM debian:12-slim
 # install ansible dependencies.
 # see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 apt-get update
 apt-get install -y --no-install-recommends \
     python3-argcomplete \
@@ -27,12 +29,16 @@ EOF
 #    messages, those can be ignored.
 COPY requirements.txt .
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 python3 -m pip install --break-system-packages -r requirements.txt
 EOF
 
 # install ansible collections and roles.
 COPY requirements.yml .
 RUN <<EOF
+#!/bin/bash
+set -euxo pipefail
 ansible-galaxy collection install \
     -r requirements.yml \
     -p /usr/share/ansible/collections
