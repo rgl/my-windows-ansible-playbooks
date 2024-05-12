@@ -29,11 +29,9 @@
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'remove-vagrant-vswitch-from-firewall.ps1') }}"
 
-- name: Install WinDHCP
+- name: Install Technitium DNS Server
   ansible.windows.win_powershell:
-    script: "{{ lookup('file', 'install-windhcp.ps1') }}"
+    script: "{{ lookup('file', 'install-technitium-dns-server.ps1') }}"
     parameters:
-      version: '{{ hyper_v_windhcp_version }}'
-      checksum: '{{ hyper_v_windhcp_checksum }}'
-  notify:
-    - Restart WinDHCP
+      version: '{{ hyper_v_technitium_dns_server_version }}'
+      forwarders: '{{ hyper_v_technitium_dns_server_forwarders }}'
