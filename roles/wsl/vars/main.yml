@@ -4,4 +4,4 @@ wsl_version: '2.1.5'
 
 # see https://salsa.debian.org/debian/WSL
 # renovate: datasource=gitlab-tags depName=debian/WSL registryUrl=https://salsa.debian.org
-wsl_debian_version: '1.15.0.0'
+wsl_debian_version: '1.16.0.0'
