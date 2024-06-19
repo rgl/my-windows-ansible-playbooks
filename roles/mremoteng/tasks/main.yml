@@ -1,0 +1,5 @@
+- name: Install mRemoteNG
+  chocolatey.chocolatey.win_chocolatey:
+    name: mremoteng
+    version: '{{ mremoteng_version }}'
+    state: upgrade

@@ -1,0 +1,4 @@
+# see https://community.chocolatey.org/packages/mremoteng
+# see https://github.com/mRemoteNG/mRemoteNG/releases
+# renovate: datasource=nuget:chocolatey depName=mremoteng
+mremoteng_version: '1.76.20.24615'
