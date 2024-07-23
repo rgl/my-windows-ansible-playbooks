@@ -16,7 +16,7 @@ $binaryPath = "$env:ProgramFiles\Netbird\netbird.exe"
 
 # check whether the expected version is already installed.
 $installBinaries = if (Test-Path $binaryPath) {
-    # e.g. 0.28.5
+    # e.g. 0.28.6
     $actualVersionText = &$binaryPath version
     if ($actualVersionText -notmatch '(.+)') {
         throw "unable to parse the netbird.exe version from: $actualVersionText"
