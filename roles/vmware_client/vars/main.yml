@@ -1,6 +1,7 @@
 # see https://github.com/vmware/govmomi/releases
-# renovate: datasource=github-releases depName=vmware/govmomi
-vmware_client_govc_version: '0.39.0'
+# NB do not upgrade to 0.39.0 until https://github.com/vmware/govmomi/issues/3483 is fixed.
+# renovate: datasource=github-releases depName=vmware/govmomi extractVersion=^v?(?<version>0\.37\.)
+vmware_client_govc_version: '0.37.3'
 
 # see https://github.com/rgl/ovftool-binaries
 # renovate: datasource=github-tags depName=rgl/ovftool-binaries versioning=loose
