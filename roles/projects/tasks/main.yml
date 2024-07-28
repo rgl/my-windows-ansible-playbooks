@@ -1,0 +1,17 @@
+- name: Install Project
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-project.ps1') }}"
+    parameters:
+      repo: '{{ item.repo }}'
+      dest: '{{ item.dest }}'
+      version: '{{ item.version }}'
+  loop:
+    - repo: https://github.com/rgl/debian-vagrant.git
+      dest: ~/Projects/debian-vagrant
+      version: master
+    - repo: https://github.com/rgl/ubuntu-vagrant.git
+      dest: ~/Projects/ubuntu-vagrant
+      version: master
+    - repo: https://github.com/rgl/windows-vagrant.git
+      dest: ~/Projects/windows-vagrant
+      version: master
