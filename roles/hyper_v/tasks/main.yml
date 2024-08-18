@@ -21,6 +21,10 @@
       when: hyper_v_win_feature.reboot_required
       ansible.windows.win_reboot:
 
+- name: Enable Enhanced Session Mode
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'enable-enhanced-session-mode.ps1') }}"
+
 - name: Create the Vagrant vSwitch
   ansible.windows.win_powershell:
     script: "{{ lookup('file', 'install-vagrant-vswitch.ps1') }}"
