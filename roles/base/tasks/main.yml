@@ -78,6 +78,10 @@
     data: 0
     type: dword
 
+- name: Set power settings
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'set-power-settings.ps1') }}"
+
 - name: Set preferred languages
   win_user_languages: # noqa fqcn[action]
     languages:
