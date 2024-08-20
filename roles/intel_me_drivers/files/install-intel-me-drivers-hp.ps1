@@ -8,9 +8,9 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '2227.3.14.0' # Oct 19, 2022.
-$archiveUrl = 'https://ftp.hp.com/pub/softpaq/sp143001-143500/sp143098.exe'
-$archiveHash = 'bd8729ae32f8fa6ac1b2e6dc52d5fb8aeee124d7d01c2bc05bf5f31da56fb300'
+$version = '2313.4.16.0' # June 16, 2023.
+$archiveUrl = 'https://ftp.hp.com/pub/softpaq/sp147501-148000/sp147824.exe'
+$archiveHash = '5c02c349b0c57a6abb40aae8372d25ff64ee9c544ad337c0dd17df759f8bbdfd'
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 
 # bail when its already installed.
@@ -24,7 +24,9 @@ if ($actualVersionValue -and $actualVersionValue.Version -eq $version) {
 
 # download.
 Write-Host "Downloading $archiveUrl..."
-(New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
+$webClient = New-Object System.Net.WebClient
+$webClient.Headers["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64)"
+$webClient.DownloadFile($archiveUrl, $archivePath)
 $archiveActualHash = (Get-FileHash -Algorithm SHA256 $archivePath).Hash
 if ($archiveActualHash -ne $archiveHash) {
     throw "the $archiveUrl file hash $archiveActualHash does not match the expected $archiveHash"
