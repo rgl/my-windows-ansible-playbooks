@@ -8,9 +8,9 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
-$version = '2229.3.16.0' # Oct 10, 2022.
-$archiveUrl = 'https://dl.dell.com/FOLDER09021432M/4/Intel-Management-Engine-Components-Installer_3DC3X_WIN64_2229.3.16.0_A11.EXE'
-$archiveHash = '7d8825c020691f4052ef62a69f9da01c1ba53f5cc9ffc7312a50b8a85c10a872'
+$version = '2345.5.42.0' # Jan 29, 2024.
+$archiveUrl = 'https://dl.dell.com/FOLDER10938937M/2/Intel-Management-Engine-Components-Installer_7FHFF_WIN64_2345.5.42.0_A13.EXE'
+$archiveHash = '034fafde87448770c0b016fd8429ce50a93064fe1babb4cfc83bec1e6bddd737'
 $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 
 # bail when its already installed.
@@ -24,7 +24,9 @@ if ($actualVersionValue -and $actualVersionValue.Version -eq $version) {
 
 # download.
 Write-Host "Downloading $archiveUrl..."
-(New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
+$webClient = New-Object System.Net.WebClient
+$webClient.Headers["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64)"
+$webClient.DownloadFile($archiveUrl, $archivePath)
 $archiveActualHash = (Get-FileHash -Algorithm SHA256 $archivePath).Hash
 if ($archiveActualHash -ne $archiveHash) {
     throw "the $archiveUrl file hash $archiveActualHash does not match the expected $archiveHash"
