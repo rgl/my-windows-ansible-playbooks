@@ -48,6 +48,10 @@
         - streetsidesoftware.code-spell-checker
         # see https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker-portuguese
         - streetsidesoftware.code-spell-checker-portuguese
+        # Deno support.
+        # see https://github.com/denoland/vscode_deno
+        # see https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno
+        - denoland.vscode-deno
         # Rust language support.
         # see https://github.com/rust-lang/rust-analyzer
         # see https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer

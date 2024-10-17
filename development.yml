@@ -22,6 +22,7 @@
     - vagrant
     - dotnet_sdk
     - bun
+    - deno
     - nodejs
     - go
     - rust

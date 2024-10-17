@@ -1,0 +1,5 @@
+- name: Install Deno
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-deno.ps1') }}"
+    parameters:
+      version: '{{ deno_version }}'
