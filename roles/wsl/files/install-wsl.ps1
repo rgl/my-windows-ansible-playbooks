@@ -64,9 +64,9 @@ $archivePath = "$env:TEMP\$(Split-Path -Leaf $archiveUrl)"
 # NB at the time of writting, this package details were:
 #       Name:               MicrosoftCorporationII.WindowsSubsystemForLinux
 #       PackageFamilyName:  MicrosoftCorporationII.WindowsSubsystemForLinux_8wekyb3d8bbwe
-#       PackageFullName:    MicrosoftCorporationII.WindowsSubsystemForLinux_2.3.24.0_x64__8wekyb3d8bbwe
+#       PackageFullName:    MicrosoftCorporationII.WindowsSubsystemForLinux_2.3.26.0_x64__8wekyb3d8bbwe
 #       PublisherId:        8wekyb3d8bbwe
-#       InstallLocation:    C:\Program Files\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForLinux_2.3.24.0_x64__8wekyb3d8bbwe
+#       InstallLocation:    C:\Program Files\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForLinux_2.3.26.0_x64__8wekyb3d8bbwe
 # NB we can check the installation with:
 #       Get-AppxPackage -AllUsers | Where-Object { $_.Name -eq 'MicrosoftCorporationII.WindowsSubsystemForLinux' }
 #       Get-AppxPackage | Where-Object { $_.Name -eq 'MicrosoftCorporationII.WindowsSubsystemForLinux' }

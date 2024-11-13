@@ -1,6 +1,6 @@
 # see https://github.com/microsoft/WSL/releases
 # renovate: datasource=github-releases depName=microsoft/WSL
-wsl_version: '2.3.24'
+wsl_version: '2.3.26'
 
 # see https://salsa.debian.org/debian/WSL
 # renovate: datasource=gitlab-tags depName=debian/WSL registryUrl=https://salsa.debian.org
