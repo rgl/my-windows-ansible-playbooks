@@ -32,13 +32,16 @@ function Get-NormalizedVersion([version]$v) {
 #    MSI installed products. but its more complex to parse.
 # NB Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*
 #    returns the generic windows installed application.
-# NB at the time of writting, the Windows Subsystem for Linux Id was
+# NB at the time of writing, the Windows Subsystem for Linux Id was
 #    {408A5C50-34F2-4025-968E-A21D6A515D48} which is represented in
 #    the registry as a little-endian guid.
 function Get-InstalledApp {
     Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* `
         | ForEach-Object {
             if ('DisplayName' -notin $_.PSObject.Properties.Name) {
+                return
+            }
+            if ('DisplayVersion' -notin $_.PSObject.Properties.Name) {
                 return
             }
             New-Object PSObject -Property @{
