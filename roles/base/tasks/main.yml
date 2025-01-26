@@ -509,7 +509,7 @@
         # https://community.chocolatey.org/packages/gitextensions
         name: gitextensions
         # renovate: datasource=nuget:chocolatey depName=gitextensions
-        version: '4.2.1'
+        version: '5.1.1'
         state: upgrade
     - name: Configure Git Extensions
       ansible.windows.win_powershell:
