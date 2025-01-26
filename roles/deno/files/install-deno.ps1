@@ -16,7 +16,7 @@ $binaryPath = "$env:ChocolateyInstall\bin\deno.exe"
 
 # bail when its already installed.
 if (Test-Path $binaryPath) {
-    # e.g. deno 2.1.6 (stable, release, x86_64-pc-windows-msvc)
+    # e.g. deno 2.1.7 (stable, release, x86_64-pc-windows-msvc)
     $versionRe = '^deno ([^ +]+)'
     $actualVersionText = &$binaryPath --version | Where-Object { $_ -match $versionRe }
     if ($actualVersionText -notmatch $versionRe) {
