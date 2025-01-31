@@ -1,0 +1,6 @@
+# see https://community.chocolatey.org/packages/gh
+- name: Install github cli
+  chocolatey.chocolatey.win_chocolatey:
+    name: gh
+    version: '{{ github_client_version }}'
+    state: upgrade

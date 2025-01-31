@@ -12,6 +12,7 @@
     - docker
     - msys2
     - gsmartcontrol
+    - github_client
     - k8s_client
     - aws_client
     - azure_client
