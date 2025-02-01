@@ -1,0 +1,5 @@
+- name: Install opentofu
+  chocolatey.chocolatey.win_chocolatey:
+    name: opentofu
+    version: '{{ opentofu_version }}'
+    state: upgrade

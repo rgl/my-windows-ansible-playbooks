@@ -19,6 +19,7 @@
     - gcp_client
     - vmware_client
     - packer
+    - opentofu
     - terraform
     - vagrant
     - dotnet_sdk
