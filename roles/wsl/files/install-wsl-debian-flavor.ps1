@@ -146,6 +146,38 @@ EOF_SUDO
         wsl --terminate $distroName
     }
 
+    # install docker.
+    Invoke-WslDistroScript $distroName @'
+set -euo pipefail; exec 2>&1; set -x
+sudo bash -euxo pipefail /dev/stdin "$1" <<'EOF_SUDO'
+distro_user="$1"
+
+if ! getent group docker >/dev/null 2>&1; then
+    echo 'adding the docker group...'
+    groupadd --system docker
+    echo INSTALLATION CHANGED
+fi
+
+usermod -a -G docker "$distro_user"
+
+apt-get install -y apt-transport-https software-properties-common wget
+
+# see https://github.com/moby/moby/releases
+# renovate: datasource=github-releases depName=moby/moby
+docker_version='27.5.1'
+dist_name="$(lsb_release -si | tr '[:upper:]' '[:lower:]')"
+wget -qO- "https://download.docker.com/linux/$dist_name/gpg" | gpg --batch --yes --dearmor -o /etc/apt/keyrings/download.docker.com.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/$dist_name $(lsb_release -cs) stable" >/etc/apt/sources.list.d/docker.list
+apt-get update
+docker_package_version="$(apt-cache madison docker-ce | awk "/$docker_version/{print \$3}")"
+apt-get install -y "docker-ce=$docker_package_version" "docker-ce-cli=$docker_package_version" containerd.io
+EOF_SUDO
+'@ $distroUser | Tee-Object -Variable result
+    if ('INSTALLATION CHANGED' -in $result) {
+        Write-Host "Installation changed: configuration changed."
+        $changed = $true
+    }
+
     if ($changed) {
         $Ansible.Changed = $true
     }
