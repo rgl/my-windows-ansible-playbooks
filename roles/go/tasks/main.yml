@@ -1,5 +1,10 @@
-- name: Install go
+- name: Uninstall the go package
   chocolatey.chocolatey.win_chocolatey:
     name: go
+    state: absent
+
+- name: Install the golang package
+  chocolatey.chocolatey.win_chocolatey:
+    name: golang
     version: '{{ go_version }}'
     state: upgrade

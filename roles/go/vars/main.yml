@@ -1,4 +1,4 @@
-# see https://community.chocolatey.org/packages/go
+# see https://community.chocolatey.org/packages/golang
 # see https://github.com/golang/go/tags
-# renovate: datasource=nuget:chocolatey depName=go
+# renovate: datasource=nuget:chocolatey depName=golang
 go_version: '1.23.6'
