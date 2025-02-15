@@ -18,7 +18,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: visualstudio2022community
     version: '{{ visual_studio_vs_version }}'
-    state: upgrade
+    state: downgrade
 
 - name: Install Managed Desktop Component
   win_visual_studio_component: # noqa fqcn[action]

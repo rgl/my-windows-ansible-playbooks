@@ -2,4 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: kubernetes-helm
     version: '{{ k8s_client_helm_version }}'
-    state: upgrade
+    state: downgrade

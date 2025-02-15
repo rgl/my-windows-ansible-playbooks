@@ -2,7 +2,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: awscli
     version: '{{ aws_client_aws_version }}'
-    state: upgrade
+    state: downgrade
 
 # NB this is uninstalled because it clobbers the AWS.Tools modules.
 - name: Uninstall AWSPowerShell.NetCore PowerShell Module

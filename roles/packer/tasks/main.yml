@@ -10,4 +10,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: packer
     version: '{{ packer_version }}'
-    state: upgrade
+    state: downgrade

@@ -32,7 +32,7 @@
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal
         version: '{{ base_windows_terminal_version }}'
-        state: upgrade
+        state: downgrade
     - name: Create the Windows Terminal LocalState directory
       ansible.windows.win_file:
         path: '%LOCALAPPDATA%\Packages\{{ base_windows_terminal_package_family_name }}\LocalState'

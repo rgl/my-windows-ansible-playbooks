@@ -3,4 +3,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: gh
     version: '{{ github_client_version }}'
-    state: upgrade
+    state: downgrade

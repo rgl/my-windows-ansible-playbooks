@@ -2,7 +2,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: vscode
     version: '{{ visual_studio_code_vscode_version }}'
-    state: upgrade
+    state: downgrade
 
 - name: Create the configuration directory
   ansible.windows.win_file:

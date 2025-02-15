@@ -27,4 +27,4 @@
     # https://community.chocolatey.org/packages/powershell-core
     name: powershell-core
     version: '{{ base_pwsh_version }}'
-    state: upgrade
+    state: downgrade

@@ -7,4 +7,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: golang
     version: '{{ go_version }}'
-    state: upgrade
+    state: downgrade

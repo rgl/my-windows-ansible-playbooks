@@ -8,7 +8,7 @@
   chocolatey.chocolatey.win_chocolatey:
     name: dotnet-{{ (item | split('.'))[:2] | join('.') }}-sdk
     version: '{{ item }}'
-    state: upgrade
+    state: downgrade
   loop: '{{ dotnet_sdk_versions }}'
 
 - name: Add the dotnet nuget nuget.org package source

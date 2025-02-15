@@ -3,7 +3,7 @@
     # https://community.chocolatey.org/packages/msys2
     name: msys2
     package_params: /NoPath
-    state: upgrade
+    state: downgrade
 
 - name: Install MSYS2 Start Menu Shortcut
   community.windows.win_shortcut:

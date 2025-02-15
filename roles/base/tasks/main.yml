@@ -294,7 +294,7 @@
     name: chocolatey
     # renovate: datasource=nuget:chocolatey depName=chocolatey
     version: '2.4.2'
-    state: upgrade
+    state: downgrade
 
 - name: Install DejaVu Mono Nerd Font
   # see https://www.programmingfonts.org/#dejavu
@@ -305,7 +305,7 @@
     name: font-nerd-dejavusansmono
     # renovate: datasource=nuget:chocolatey depName=font-nerd-dejavusansmono
     version: '2.1.0'
-    state: upgrade
+    state: downgrade
 
 - name: Configure the Console Font
   # see https://devblogs.microsoft.com/commandline/understanding-windows-console-host-settings/
@@ -355,7 +355,7 @@
     name: oh-my-posh
     version: '{{ base_oh_my_posh_version }}'
     package_params: /ALLUSERS
-    state: upgrade
+    state: downgrade
 
 - name: Configure oh-my-posh
   ansible.windows.win_copy:
@@ -393,7 +393,7 @@
     name: notepad3
     # renovate: datasource=nuget:chocolatey depName=notepad3
     version: '6.23.203.2'
-    state: upgrade
+    state: downgrade
 
 - name: Configure Notepad3
   ansible.windows.win_copy:
@@ -406,7 +406,7 @@
     name: 7zip.install
     # renovate: datasource=nuget:chocolatey depName=7zip.install
     version: '24.9.0'
-    state: upgrade
+    state: downgrade
 
 - name: Install jq
   chocolatey.chocolatey.win_chocolatey:
@@ -414,7 +414,7 @@
     # see https://community.chocolatey.org/packages/jq
     # renovate: datasource=nuget:chocolatey depName=jq
     version: '1.7.1'
-    state: upgrade
+    state: downgrade
 
 - name: Install yq
   chocolatey.chocolatey.win_chocolatey:
@@ -422,7 +422,7 @@
     # see https://community.chocolatey.org/packages/yq
     # renovate: datasource=nuget:chocolatey depName=yq
     version: '4.40.2'
-    state: upgrade
+    state: downgrade
 
 - name: Install dig
   chocolatey.chocolatey.win_chocolatey:
@@ -430,7 +430,7 @@
     name: bind-toolsonly
     # renovate: datasource=nuget:chocolatey depName=bind-toolsonly
     version: '9.16.28'
-    state: upgrade
+    state: downgrade
 
 - name: Install HWiNFO
   chocolatey.chocolatey.win_chocolatey:
@@ -438,7 +438,7 @@
     name: hwinfo.install
     # renovate: datasource=nuget:chocolatey depName=hwinfo.install
     version: '8.20.0'
-    state: upgrade
+    state: downgrade
 
 - name: Install CPU-Z
   chocolatey.chocolatey.win_chocolatey:
@@ -446,7 +446,7 @@
     name: cpu-z.install
     # renovate: datasource=nuget:chocolatey depName=cpu-z.install
     version: '2.14.0'
-    state: upgrade
+    state: downgrade
 
 - name: Install HWMonitor
   chocolatey.chocolatey.win_chocolatey:
@@ -454,7 +454,7 @@
     name: hwmonitor
     # renovate: datasource=nuget:chocolatey depName=hwmonitor
     version: '1.56.0.20250209'
-    state: upgrade
+    state: downgrade
 
 - name: Install Firefox
   ansible.builtin.include_tasks: firefox.yml
@@ -465,7 +465,7 @@
     name: meld
     # renovate: datasource=nuget:chocolatey depName=meld
     version: '3.22.0'
-    state: upgrade
+    state: downgrade
 
 - name: Install Git
   block:
@@ -474,7 +474,7 @@
         # https://community.chocolatey.org/packages/git
         name: git
         version: '{{ base_git_version }}'
-        state: upgrade
+        state: downgrade
         package_params: /GitOnlyOnPath /NoAutoCrlf /SChannel
     - name: Configure Git
       ansible.windows.win_powershell:
@@ -510,7 +510,7 @@
         name: gitextensions
         # renovate: datasource=nuget:chocolatey depName=gitextensions
         version: '5.1.1'
-        state: upgrade
+        state: downgrade
     - name: Configure Git Extensions
       ansible.windows.win_powershell:
         script: |
@@ -545,7 +545,7 @@
         name: wireshark
         # renovate: datasource=nuget:chocolatey depName=wireshark
         version: '4.4.3'
-        state: upgrade
+        state: downgrade
     - name: Install Wireshark Desktop shortcut
       community.windows.win_shortcut:
         src: C:\Program Files\Wireshark\Wireshark.exe
@@ -615,7 +615,7 @@
     name: dependencies
     # renovate: datasource=nuget:chocolatey depName=dependencies
     version: '1.11.1'
-    state: upgrade
+    state: downgrade
 
 - name: Install GIMP
   chocolatey.chocolatey.win_chocolatey:
@@ -623,7 +623,7 @@
     name: gimp
     # renovate: datasource=nuget:chocolatey depName=gimp
     version: '2.10.38.1'
-    state: upgrade
+    state: downgrade
 
 - name: Install Inkscape
   chocolatey.chocolatey.win_chocolatey:
@@ -631,7 +631,7 @@
     name: inkscape
     # renovate: datasource=nuget:chocolatey depName=inkscape
     version: '1.3.2'
-    state: upgrade
+    state: downgrade
 
 - name: Configure the firewall
   block:

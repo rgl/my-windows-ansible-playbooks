@@ -2,4 +2,4 @@
   chocolatey.chocolatey.win_chocolatey:
     name: mitmproxy
     version: '{{ mitmproxy_version }}'
-    state: upgrade
+    state: downgrade

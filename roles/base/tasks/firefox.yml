@@ -4,7 +4,7 @@
     name: firefox
     version: '{{ base_firefox_version }}'
     package_params: /l:en-US
-    state: upgrade
+    state: downgrade
 
 - name: Install SetDefaultBrowser
   chocolatey.chocolatey.win_chocolatey:
@@ -12,7 +12,7 @@
     name: setdefaultbrowser
     # renovate: datasource=nuget:chocolatey depName=setdefaultbrowser
     version: '1.5.0'
-    state: upgrade
+    state: downgrade
 
 - name: Set Firefox as the default browser
   ansible.windows.win_powershell:
