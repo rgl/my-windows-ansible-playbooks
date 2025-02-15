@@ -5,6 +5,8 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $Ansible.Changed = $false
 
+Import-Module Hyper-V
+
 $name = 'Vagrant'
 $netAdapterName = "vEthernet ($name)"
 $ipAddress = '192.168.192.1'
