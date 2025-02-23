@@ -164,7 +164,7 @@ apt-get install -y apt-transport-https software-properties-common wget
 
 # see https://github.com/moby/moby/releases
 # renovate: datasource=github-releases depName=moby/moby
-docker_version='27.5.1'
+docker_version='28.0.0'
 dist_name="$(lsb_release -si | tr '[:upper:]' '[:lower:]')"
 wget -qO- "https://download.docker.com/linux/$dist_name/gpg" | gpg --batch --yes --dearmor -o /etc/apt/keyrings/download.docker.com.gpg
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/$dist_name $(lsb_release -cs) stable" >/etc/apt/sources.list.d/docker.list
