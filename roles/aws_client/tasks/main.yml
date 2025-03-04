@@ -1,7 +1,15 @@
-- name: Install awscli
+- name: Install aws cli
   chocolatey.chocolatey.win_chocolatey:
+    # see https://community.chocolatey.org/packages/awscli
     name: awscli
     version: '{{ aws_client_aws_version }}'
+    state: downgrade
+
+- name: Install aws session-manager-plugin
+  chocolatey.chocolatey.win_chocolatey:
+    # see https://community.chocolatey.org/packages/awscli-session-manager
+    name: awscli-session-manager
+    version: '{{ aws_client_session_manager_plugin_version }}'
     state: downgrade
 
 # NB this is uninstalled because it clobbers the AWS.Tools modules.
