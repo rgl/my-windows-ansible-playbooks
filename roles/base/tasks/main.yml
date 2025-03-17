@@ -493,6 +493,7 @@
               $Ansible.Changed = $true
             }
           }
+          Set-GitConfig core.longpaths true
           Set-GitConfig user.name 'Rui Lopes'
           Set-GitConfig user.email 'rgl@ruilopes.com'
           Set-GitConfig diff.guitool meld
