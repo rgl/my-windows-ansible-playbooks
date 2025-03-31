@@ -623,7 +623,7 @@
     # https://community.chocolatey.org/packages/gimp
     name: gimp
     # renovate: datasource=nuget:chocolatey depName=gimp
-    version: '3.0.0.1'
+    version: '3.0.2.1'
     state: downgrade
 
 - name: Install Inkscape
