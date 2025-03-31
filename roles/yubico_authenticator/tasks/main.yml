@@ -1,0 +1,7 @@
+# see https://community.chocolatey.org/packages/yubico-authenticator
+
+- name: Install Yubico Authenticator
+  chocolatey.chocolatey.win_chocolatey:
+    name: yubico-authenticator
+    version: '{{ yubico_authenticator_version }}'
+    state: downgrade

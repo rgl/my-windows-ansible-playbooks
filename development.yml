@@ -38,4 +38,5 @@
     - rpi_imager
     - mremoteng
     - solo2
+    - yubico_authenticator
     - projects
