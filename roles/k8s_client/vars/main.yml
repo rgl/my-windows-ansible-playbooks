@@ -2,7 +2,7 @@
 # see https://github.com/kubernetes/kubernetes/releases
 # see https://kubernetes.io/releases/
 # renovate: datasource=nuget:chocolatey depName=kubernetes-cli extractVersion=^(?<version>1\.31\..+)
-k8s_client_kubectl_version: '1.31.6'
+k8s_client_kubectl_version: '1.31.7'
 
 # see https://community.chocolatey.org/packages/k9s
 # see https://github.com/derailed/k9s/releases
