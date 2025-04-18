@@ -170,7 +170,13 @@ wget -qO- "https://download.docker.com/linux/$dist_name/gpg" | gpg --batch --yes
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/$dist_name $(lsb_release -cs) stable" >/etc/apt/sources.list.d/docker.list
 apt-get update
 docker_package_version="$(apt-cache madison docker-ce | awk "/$docker_version/{print \$3}")"
-apt-get install -y "docker-ce=$docker_package_version" "docker-ce-cli=$docker_package_version" containerd.io
+apt-get install \
+    -y \
+    --allow-change-held-packages \
+    "docker-ce=$docker_package_version" \
+    "docker-ce-cli=$docker_package_version" \
+    containerd.io
+apt-mark hold docker-ce docker-ce-cli
 EOF_SUDO
 '@ $distroUser | Tee-Object -Variable result
     if ('INSTALLATION CHANGED' -in $result) {
