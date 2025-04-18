@@ -437,7 +437,7 @@
     # https://community.chocolatey.org/packages/hwinfo.install
     name: hwinfo.install
     # renovate: datasource=nuget:chocolatey depName=hwinfo.install
-    version: '8.22.0'
+    version: '8.24.0'
     state: downgrade
 
 - name: Install CPU-Z
