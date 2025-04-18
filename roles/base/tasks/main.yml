@@ -445,7 +445,7 @@
     # https://community.chocolatey.org/packages/cpu-z.install
     name: cpu-z.install
     # renovate: datasource=nuget:chocolatey depName=cpu-z.install
-    version: '2.14.0'
+    version: '2.15.0.20250318'
     state: downgrade
 
 - name: Install HWMonitor
