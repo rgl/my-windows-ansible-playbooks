@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/gh
 # see https://github.com/cli/cli/releases
 # renovate: datasource=nuget:chocolatey depName=gh
-github_client_version: '2.70.0'
+github_client_version: '2.71.2'
