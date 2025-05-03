@@ -9,7 +9,8 @@
             "font":  {
                 "face": "DejaVuSansMono NF",
                 "size": 12
-            }
+            },
+            "icon": "none"
         },
         "list": [
             {

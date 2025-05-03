@@ -80,7 +80,7 @@
                 $windowsTerminalPath = Join-Path $package.InstallLocation WindowsTerminal.exe
               }
               $Ansible.Result = @{
-                # NB the "App" part ar the end of this string was obtained with
+                # NB the "App" part at the end of this string was obtained with
                 #    the following Windows PowerShell snippet:
                 #     (Get-AppxPackageManifest (Get-AppxPackage Microsoft.WindowsTerminal)).Package.Applications.Application.Id
                 windows_terminal_path = 'shell:AppsFolder\{{ base_windows_terminal_package_family_name }}!App'
