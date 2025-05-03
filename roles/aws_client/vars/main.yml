@@ -16,4 +16,4 @@ aws_client_session_manager_plugin_version: '1.2.707.0'
 #    (e.g. AWS.Tools.EC2), but use the AWSPowerShell.NetCore module version
 #    as the reference version.
 # renovate: datasource=nuget:powershellgallery depName=AWSPowerShell.NetCore
-aws_client_aws_ps_version: '4.1.804'
+aws_client_aws_ps_version: '4.1.807'
