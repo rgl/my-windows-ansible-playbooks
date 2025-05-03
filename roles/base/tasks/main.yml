@@ -191,7 +191,7 @@
     type: dword
 
 - name: Never combine the taskbar buttons
-  # possibe values:
+  # possible values:
   #   0: always combine and hide labels (default)
   #   1: combine when taskbar is full
   #   2: never combine
@@ -290,10 +290,9 @@
 
 - name: Install Chocolatey
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/chocolatey
+    # see https://community.chocolatey.org/packages/chocolatey
     name: chocolatey
-    # renovate: datasource=nuget:chocolatey depName=chocolatey
-    version: '2.4.3'
+    version: '{{ base_chocolatey_version }}'
     state: downgrade
 
 - name: Install DejaVu Mono Nerd Font
@@ -303,8 +302,7 @@
   # see https://community.chocolatey.org/packages/font-nerd-dejavusansmono
   chocolatey.chocolatey.win_chocolatey:
     name: font-nerd-dejavusansmono
-    # renovate: datasource=nuget:chocolatey depName=font-nerd-dejavusansmono
-    version: '2.1.0'
+    version: '{{ base_font_nerd_dejavusansmono_version }}'
     state: downgrade
 
 - name: Configure the Console Font
@@ -389,10 +387,9 @@
 
 - name: Install Notepad3
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/notepad3
+    # see https://community.chocolatey.org/packages/notepad3
     name: notepad3
-    # renovate: datasource=nuget:chocolatey depName=notepad3
-    version: '6.23.203.2'
+    version: '{{ base_notepad3_version }}'
     state: downgrade
 
 - name: Configure Notepad3
@@ -402,58 +399,51 @@
 
 - name: Install 7-Zip
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/7zip.install
+    # see https://community.chocolatey.org/packages/7zip.install
     name: 7zip.install
-    # renovate: datasource=nuget:chocolatey depName=7zip.install
-    version: '24.9.0'
+    version: '{{ base_7zip_version }}'
     state: downgrade
 
 - name: Install jq
   chocolatey.chocolatey.win_chocolatey:
-    name: jq
     # see https://community.chocolatey.org/packages/jq
-    # renovate: datasource=nuget:chocolatey depName=jq
-    version: '1.7.1'
+    name: jq
+    version: '{{ base_jq_version }}'
     state: downgrade
 
 - name: Install yq
   chocolatey.chocolatey.win_chocolatey:
-    name: yq
     # see https://community.chocolatey.org/packages/yq
-    # renovate: datasource=nuget:chocolatey depName=yq
-    version: '4.40.2'
+    name: yq
+    version: '{{ base_yq_version }}'
     state: downgrade
 
 - name: Install dig
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/bind-toolsonly
+    # see https://community.chocolatey.org/packages/bind-toolsonly
     name: bind-toolsonly
-    # renovate: datasource=nuget:chocolatey depName=bind-toolsonly
-    version: '9.16.28'
+    version: '{{ base_bind_toolsonly_version }}'
     state: downgrade
 
 - name: Install HWiNFO
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/hwinfo.install
+    # see https://community.chocolatey.org/packages/hwinfo.install
     name: hwinfo.install
-    # renovate: datasource=nuget:chocolatey depName=hwinfo.install
-    version: '8.24.0'
+    version: '{{ base_hwinfo_version }}'
     state: downgrade
 
 - name: Install CPU-Z
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/cpu-z.install
+    # see https://community.chocolatey.org/packages/cpu-z.install
     name: cpu-z.install
-    # renovate: datasource=nuget:chocolatey depName=cpu-z.install
-    version: '2.15.0.20250318'
+    version: '{{ base_cpu_z_version }}'
     state: downgrade
 
 - name: Install HWMonitor
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/hwmonitor
+    # see https://community.chocolatey.org/packages/hwmonitor
     name: hwmonitor
-    # renovate: datasource=nuget:chocolatey depName=hwmonitor
-    version: '1.56.0.20250209'
+    version: '{{ base_hwmonitor_version }}'
     state: downgrade
 
 - name: Install Firefox
@@ -461,17 +451,16 @@
 
 - name: Install Meld
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/meld
+    # see https://community.chocolatey.org/packages/meld
     name: meld
-    # renovate: datasource=nuget:chocolatey depName=meld
-    version: '3.22.0'
+    version: '{{ base_meld_version }}'
     state: downgrade
 
 - name: Install Git
   block:
     - name: Install Git
       chocolatey.chocolatey.win_chocolatey:
-        # https://community.chocolatey.org/packages/git
+        # see https://community.chocolatey.org/packages/git
         name: git
         version: '{{ base_git_version }}'
         state: downgrade
@@ -507,10 +496,9 @@
   block:
     - name: Install Git Extensions
       chocolatey.chocolatey.win_chocolatey:
-        # https://community.chocolatey.org/packages/gitextensions
+        # see https://community.chocolatey.org/packages/gitextensions
         name: gitextensions
-        # renovate: datasource=nuget:chocolatey depName=gitextensions
-        version: '5.2.1'
+        version: '{{ base_gitextensions_version }}'
         state: downgrade
     - name: Configure Git Extensions
       ansible.windows.win_powershell:
@@ -542,10 +530,9 @@
   block:
     - name: Install Wireshark
       chocolatey.chocolatey.win_chocolatey:
-        # https://community.chocolatey.org/packages/wireshark
+        # see https://community.chocolatey.org/packages/wireshark
         name: wireshark
-        # renovate: datasource=nuget:chocolatey depName=wireshark
-        version: '4.4.6'
+        version: '{{ base_wireshark_version }}'
         state: downgrade
     - name: Install Wireshark Desktop shortcut
       community.windows.win_shortcut:
@@ -583,55 +570,52 @@
 
 - name: Install Autoruns
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/autoruns
+    # see https://community.chocolatey.org/packages/autoruns
     # see https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
     # NB setting the version is moot because the upstream is not versioned.
     name: autoruns
 
 - name: Install Process Explorer
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/procexp
+    # see https://community.chocolatey.org/packages/procexp
     # see https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer
     # NB setting the version is moot because the upstream is not versioned.
     name: procexp
 
 - name: Install Process Monitor
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/procmon
+    # see https://community.chocolatey.org/packages/procmon
     # see https://learn.microsoft.com/en-us/sysinternals/downloads/procmon
     # NB setting the version is moot because the upstream is not versioned.
     name: procmon
 
 - name: Install WinObj
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/winobj
+    # see https://community.chocolatey.org/packages/winobj
     # see https://learn.microsoft.com/en-us/sysinternals/downloads/winobj
     # NB setting the version is moot because the upstream is not versioned.
     name: winobj
 
 - name: Install Dependencies
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/dependencies
+    # see https://community.chocolatey.org/packages/dependencies
     # see https://github.com/lucasg/Dependencies/releases
     name: dependencies
-    # renovate: datasource=nuget:chocolatey depName=dependencies
-    version: '1.11.1'
+    version: '{{ base_dependencies_version }}'
     state: downgrade
 
 - name: Install GIMP
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/gimp
+    # see https://community.chocolatey.org/packages/gimp
     name: gimp
-    # renovate: datasource=nuget:chocolatey depName=gimp
-    version: '3.0.2.1'
+    version: '{{ base_gimp_version }}'
     state: downgrade
 
 - name: Install Inkscape
   chocolatey.chocolatey.win_chocolatey:
-    # https://community.chocolatey.org/packages/inkscape
+    # see https://community.chocolatey.org/packages/inkscape
     name: inkscape
-    # renovate: datasource=nuget:chocolatey depName=inkscape
-    version: '1.4.0'
+    version: '{{ base_inkscape_version }}'
     state: downgrade
 
 - name: Configure the firewall

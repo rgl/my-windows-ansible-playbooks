@@ -8,7 +8,7 @@
     // default datasources.
     {
       "fileMatch": [
-        "^(roles|.github)/.+\\.yml$",
+        "\\.ya?ml$",
         "\\.sh$",
         "\\.ps1$"
       ],
@@ -21,7 +21,7 @@
     // nuget:chocolatey datasource.
     {
       "fileMatch": [
-        "^roles/.+\\.yml$",
+        "\\.ya?ml$",
         "\\.sh$",
         "\\.ps1$"
       ],
@@ -35,7 +35,7 @@
     // nuget:powershellgallery datasource.
     {
       "fileMatch": [
-        "^roles/.+\\.yml$",
+        "\\.ya?ml$",
         "\\.sh$",
         "\\.ps1$"
       ],

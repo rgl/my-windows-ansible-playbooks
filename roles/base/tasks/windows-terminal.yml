@@ -3,14 +3,6 @@
   when:
     - ansible_distribution_version is version('10.0.18362.0', '>=')
   vars:
-    # see https://www.nuget.org/packages/Microsoft.UI.Xaml
-    # see https://github.com/microsoft/terminal/blob/v1.19.10821.0/dep/nuget/packages.config#L10C78-L10C78
-    # renovate: datasource=nuget depName=Microsoft.UI.Xaml extractVersion=^(?<version>2\.8\..+)
-    windows_terminal_xaml_dependency_version: '2.8.6'
-    # see https://community.chocolatey.org/packages/microsoft-windows-terminal
-    # see https://github.com/microsoft/terminal/releases
-    # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
-    base_windows_terminal_version: '1.19.10821.0'
     base_windows_terminal_package_publisher_id: 8wekyb3d8bbwe
     base_windows_terminal_package_name: Microsoft.WindowsTerminal
     base_windows_terminal_package_family_name: '{{ base_windows_terminal_package_name }}_{{ base_windows_terminal_package_publisher_id }}'
@@ -27,7 +19,7 @@
       ansible.windows.win_powershell:
         script: "{{ lookup('file', 'install-windows-terminal-dependencies.ps1') }}"
         parameters:
-          xaml_dependency_version: '{{ windows_terminal_xaml_dependency_version }}'
+          xaml_dependency_version: '{{ base_windows_terminal_xaml_dependency_version }}'
     - name: Install the Windows Terminal
       chocolatey.chocolatey.win_chocolatey:
         name: microsoft-windows-terminal

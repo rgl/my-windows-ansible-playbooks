@@ -1,15 +1,39 @@
+# see https://community.chocolatey.org/packages/chocolatey
+# renovate: datasource=nuget:chocolatey depName=chocolatey
+base_chocolatey_version: '2.4.3'
+
 # see https://community.chocolatey.org/packages/powershell-core
 # renovate: datasource=nuget:chocolatey depName=powershell-core extractVersion=^(?<version>7\.4\..+)
 base_pwsh_version: '7.4.7'
+
+# see https://community.chocolatey.org/packages/jq
+# renovate: datasource=nuget:chocolatey depName=jq
+base_jq_version: '1.7.1'
+
+# see https://community.chocolatey.org/packages/yq
+# renovate: datasource=nuget:chocolatey depName=yq
+base_yq_version: '4.40.2'
 
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget:chocolatey depName=firefox
 base_firefox_version: '138.0.0'
 
+# https://community.chocolatey.org/packages/setdefaultbrowser
+# renovate: datasource=nuget:chocolatey depName=setdefaultbrowser
+base_setdefaultbrowser_version: '1.5.0'
+
+# see https://community.chocolatey.org/packages/font-nerd-dejavusansmono
+# renovate: datasource=nuget:chocolatey depName=font-nerd-dejavusansmono
+base_font_nerd_dejavusansmono_version: '2.1.0'
+
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
 # renovate: datasource=github-releases depName=nmap/npcap
 base_npcap_version: '1.82'
+
+# https://community.chocolatey.org/packages/wireshark
+# renovate: datasource=nuget:chocolatey depName=wireshark
+base_wireshark_version: '4.4.6'
 
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
@@ -19,3 +43,58 @@ base_oh_my_posh_version: '25.20.0'
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
 base_git_version: '2.49.0'
+
+# see https://community.chocolatey.org/packages/meld
+# renovate: datasource=nuget:chocolatey depName=meld
+base_meld_version: '3.22.0'
+
+# see https://community.chocolatey.org/packages/gitextensions
+# renovate: datasource=nuget:chocolatey depName=gitextensions
+base_gitextensions_version: '5.2.1'
+
+# see https://community.chocolatey.org/packages/notepad3
+# renovate: datasource=nuget:chocolatey depName=notepad3
+base_notepad3_version: '6.23.203.2'
+
+# see https://community.chocolatey.org/packages/7zip.install
+# renovate: datasource=nuget:chocolatey depName=7zip.install
+base_7zip_version: '24.9.0'
+
+# see https://community.chocolatey.org/packages/bind-toolsonly
+# renovate: datasource=nuget:chocolatey depName=bind-toolsonly
+base_bind_toolsonly_version: '9.16.28'
+
+# see https://community.chocolatey.org/packages/hwinfo.install
+# renovate: datasource=nuget:chocolatey depName=hwinfo.install
+base_hwinfo_version: '8.24.0'
+
+# see https://community.chocolatey.org/packages/cpu-z.install
+# renovate: datasource=nuget:chocolatey depName=cpu-z.install
+base_cpu_z_version: '2.15.0.20250318'
+
+# see https://community.chocolatey.org/packages/hwmonitor
+# renovate: datasource=nuget:chocolatey depName=hwmonitor
+base_hwmonitor_version: '1.56.0.20250209'
+
+# see https://community.chocolatey.org/packages/dependencies
+# see https://github.com/lucasg/Dependencies/releases
+# renovate: datasource=nuget:chocolatey depName=dependencies
+base_dependencies_version: '1.11.1'
+
+# see https://community.chocolatey.org/packages/gimp
+# renovate: datasource=nuget:chocolatey depName=gimp
+base_gimp_version: '3.0.2.1'
+
+# see https://community.chocolatey.org/packages/inkscape
+# renovate: datasource=nuget:chocolatey depName=inkscape
+base_inkscape_version: '1.4.0'
+
+# see https://www.nuget.org/packages/Microsoft.UI.Xaml
+# see https://github.com/microsoft/terminal/blob/v1.19.10821.0/dep/nuget/packages.config#L10C78-L10C78
+# renovate: datasource=nuget depName=Microsoft.UI.Xaml extractVersion=^(?<version>2\.8\..+)
+base_windows_terminal_xaml_dependency_version: '2.8.6'
+
+# see https://community.chocolatey.org/packages/microsoft-windows-terminal
+# see https://github.com/microsoft/terminal/releases
+# renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
+base_windows_terminal_version: '1.19.10821.0'
