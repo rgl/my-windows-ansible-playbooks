@@ -1,13 +1,13 @@
 collections:
-  # see https://galaxy.ansible.com/ansible/windows
+  # see https://galaxy.ansible.com/ui/repo/published/ansible/windows
   - name: ansible.windows
     version: 2.8.0
-  # see https://galaxy.ansible.com/chocolatey/chocolatey
+  # see https://galaxy.ansible.com/ui/repo/published/chocolatey/chocolatey
   - name: chocolatey.chocolatey
     version: 1.5.3
-  # see https://galaxy.ansible.com/community/general
+  # see https://galaxy.ansible.com/ui/repo/published/community/general
   - name: community.general
     version: 10.6.0
-  # see https://galaxy.ansible.com/community/windows
+  # see https://galaxy.ansible.com/ui/repo/published/community/windows
   - name: community.windows
     version: 2.4.0
