@@ -15,6 +15,7 @@ apt-get install -y --no-install-recommends \
     python3-cryptography \
     python3-openssl \
     python3-yaml \
+    python3-paramiko \
     pylint \
     openssh-client \
     sshpass \
@@ -27,6 +28,7 @@ EOF
 # install ansible.
 # NB this pip install will display several "error: invalid command 'bdist_wheel'"
 #    messages, those can be ignored.
+# NB this installs ansible at /usr/local/lib/python3.11/dist-packages/ansible.
 COPY requirements.txt .
 RUN <<EOF
 #!/bin/bash

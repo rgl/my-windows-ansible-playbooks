@@ -1,17 +1,30 @@
 all:
-  hosts:
-    dm1:
-      ansible_host: 192.168.1.77
-  vars:
-    # connection configuration.
-    # see https://github.com/rgl/terraform-libvirt-ansible-windows-example/blob/master/README.md#windows-management
-    # see https://github.com/rgl/infra-toolbox/blob/main/README.md#ansible-windows-example
-    # see https://docs.ansible.com/ansible-core/2.15/collections/ansible/builtin/psrp_connection.html
-    ansible_user: Administrator
-    ansible_password: vagrant
-    ansible_connection: psrp
-    ansible_psrp_protocol: http
-    ansible_psrp_message_encryption: never
-    ansible_psrp_auth: credssp
-    # NB ansible does not yet support PowerShell 7.
-    # ansible_psrp_configuration_name: PowerShell.7
+  children:
+    windows:
+      hosts:
+        dm1:
+          ansible_host: 192.168.1.77
+      vars:
+        # connection configuration.
+        # see https://github.com/rgl/terraform-libvirt-ansible-windows-example/blob/master/README.md#windows-management
+        # see https://github.com/rgl/infra-toolbox/blob/main/README.md#ansible-windows-example
+        # see https://docs.ansible.com/ansible-core/2.18/collections/ansible/builtin/psrp_connection.html
+        ansible_user: Administrator
+        ansible_password: vagrant
+        ansible_connection: psrp
+        ansible_psrp_protocol: http
+        ansible_psrp_message_encryption: never
+        ansible_psrp_auth: credssp
+        # NB ansible does not yet support PowerShell 7.
+        # ansible_psrp_configuration_name: PowerShell.7
+    wsl:
+      hosts:
+        dm1-wsl-ubuntu:
+          ansible_host: 192.168.1.77
+      vars:
+        ansible_connection: community.general.wsl
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_user: Administrator
+        ansible_password: vagrant
+        wsl_distribution: Ubuntu-24.04
+        wsl_user: ubuntu

@@ -1,0 +1,117 @@
+- name: Ensure apt-get can use https repositories
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - gnupg
+    state: present
+
+- name: Download the docker apt key
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/download.docker.com.asc
+    mode: 0444
+    force: true
+
+# see https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+- name: Add the docker repository
+  ansible.builtin.apt_repository:
+    # see https://wiki.debian.org/DebianRepository/Format
+    # see Ubuntu Noble 24.04: https://download.docker.com/linux/ubuntu/dists/noble/Release
+    # see Ubuntu Noble 24.04: https://download.docker.com/linux/ubuntu/dists/noble/stable/binary-amd64/Packages
+    repo: >
+      deb
+      [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.asc]
+      https://download.docker.com/linux/ubuntu
+      {{ ansible_distribution_release }}
+      stable
+    state: present
+
+# see https://github.com/moby/moby/releases
+# NB execute apt-cache madison docker-ce to known the available versions.
+- name: Install docker
+  block:
+    - name: Install docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce=5:{{ wsl_ubuntu_docker_version }}*
+          - docker-ce-cli=5:{{ wsl_ubuntu_docker_version }}*
+        allow_change_held_packages: true
+        state: present
+    - name: Pin docker
+      ansible.builtin.dpkg_selections:
+        name: '{{ item }}'
+        selection: hold
+      loop:
+        - docker-ce
+        - docker-ce-cli
+
+- name: Install docker directory
+  ansible.builtin.file:
+    name: /etc/docker
+    state: directory
+    mode: 0750
+
+- name: Install daemon.json
+  ansible.builtin.copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: 0444
+  notify:
+    - Restart docker
+
+- name: Install docker.service.d directory
+  ansible.builtin.file:
+    name: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: 0755
+
+- name: Install daemon service override
+  ansible.builtin.copy:
+    src: override.conf
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    mode: 0444
+  notify:
+    - Restart docker
+
+- name: Allow user to use docker
+  ansible.builtin.user:
+    name: '{{ wsl_ubuntu_default_user }}'
+    groups: docker
+    append: true
+
+- name: Reset Ansible connection
+  # NB unfortunately we have to always reset the connection due to:
+  #     [WARNING]: reset_connection task does not support when conditional
+  ansible.builtin.meta: reset_connection
+
+- name: Install docker-compose
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      set -euxo pipefail
+
+      # see https://github.com/docker/compose/releases
+      docker_compose_version='v{{ wsl_ubuntu_docker_compose_version }}'
+
+      # bail when already installed.
+      if [ -x /usr/local/lib/docker/cli-plugins/docker-compose ]; then
+        actual_version="$(docker compose version | perl -ne '/^Docker Compose version (v.+)/ && print $1')"
+        if [ "$actual_version" == "$docker_compose_version" ]; then
+          echo 'ANSIBLE CHANGED NO'
+          exit 0
+        fi
+      fi
+
+      # download.
+      # see https://github.com/docker/compose/releases
+      # see https://docs.docker.com/compose/cli-command/#install-on-linux
+      docker_compose_url="https://github.com/docker/compose/releases/download/$docker_compose_version/docker-compose-linux-$(uname -m)"
+      t="$(mktemp -q --suffix=.docker-compose)"
+      wget -qO "$t" "$docker_compose_url"
+
+      # install.
+      install -d /usr/local/lib/docker/cli-plugins
+      install -m 555 "$t" /usr/local/lib/docker/cli-plugins/docker-compose
+      rm "$t"
+  register: result
+  changed_when: "'ANSIBLE CHANGED NO' not in result.stdout_lines"

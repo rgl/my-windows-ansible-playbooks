@@ -18,6 +18,14 @@ Add your machines into the Ansible [`inventory.yml` file](inventory.yml).
 
 Review the [`development.yml` playbook](development.yml).
 
+Show the inventory:
+
+```bash
+./ansible-inventory.sh --yaml --list --limit all
+./ansible-inventory.sh --yaml --list --limit windows
+./ansible-inventory.sh --yaml --list --limit wsl
+```
+
 See the facts about the `dm1` machine:
 
 ```bash

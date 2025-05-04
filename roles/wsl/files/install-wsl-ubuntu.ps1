@@ -64,7 +64,6 @@ function Invoke-WslDistroScript([string]$distroName, [string]$script) {
 }
 
 function Install-WslUbuntu([string]$distroName, [string]$distroUrl) {
-    $distroUser = 'wsl'
     $distroPath = "C:\Wsl\$distroName"
     $archivePath = "$env:TEMP\wsl-$distroName-rootfs.tgz"
     $changed = $false
@@ -83,130 +82,9 @@ function Install-WslUbuntu([string]$distroName, [string]$distroUrl) {
         $changed = $true
     }
 
-    # upgrade the distribution.
-    # NB we must execute with sudo because the default wsl user might
-    #    already be installed.
-    Write-Host "Upgrading $distroName..."
-    Invoke-WslDistroScript $distroName @'
-set -euo pipefail; exec 2>&1; set -x
-sudo bash -euxo pipefail /dev/stdin <<'EOF_SUDO'
-export DEBIAN_FRONTEND=noninteractive
-apt-get update
-apt-get dist-upgrade -y
-apt-get clean -y
-EOF_SUDO
-'@ | Tee-Object -Variable result
-    $resultSummaryRe = '(?<upgraded>\d+) upgraded, (?<newlyInstalled>\d+) newly installed, (?<toRemove>\d+) to remove and (?<notUpgraded>\d+) not upgraded\.'
-    $resultSummary = $result | Where-Object { $_ -match $resultSummaryRe }
-    if ($resultSummary -match $resultSummaryRe) {
-        # NB notUpgraded is not used (it does not count as a change).
-        $changes = [int]$Matches['upgraded'] + [int]$Matches['newlyInstalled'] + [int]$Matches['toRemove']
-        if ($changes -ne 0) {
-            Write-Host "Installation changed: upgrade changed ($changes changes detected)."
-            $changed = $true
-        }
-    } else {
-        throw "failed to parse results from: $result"
-    }
-
-    # add the default wsl user.
-    # NB we must execute with sudo because the default wsl user might
-    #    already be installed.
-    Invoke-WslDistroScript $distroName @'
-set -euo pipefail; exec 2>&1; set -x
-sudo bash -euxo pipefail /dev/stdin "$1" <<'EOF_SUDO'
-distro_user="$1"
-
-if ! getent group admin >/dev/null 2>&1; then
-    echo 'adding the admin group...'
-    groupadd --system admin
-    echo INSTALLATION CHANGED
-fi
-
-s='%admin ALL=(ALL) NOPASSWD:ALL'
-if ! grep "$s" /etc/sudoers >/dev/null 2>&1; then
-    echo 'modifying sudoers...'
-    sed -i -E "s,^%admin.+,$s,g" /etc/sudoers
-    if ! grep "$s" /etc/sudoers >/dev/null 2>&1; then
-        echo "$s" >>/etc/sudoers
-    fi
-    echo INSTALLATION CHANGED
-fi
-
-if ! getent group "$distro_user" >/dev/null 2>&1; then
-    echo 'adding distro user group...'
-    groupadd "$distro_user"
-    echo INSTALLATION CHANGED
-fi
-
-if ! id -u "$distro_user" >/dev/null 2>&1; then
-    echo 'adding distro user...'
-    adduser --disabled-password --gecos '' --ingroup "$distro_user" --force-badname "$distro_user"
-    usermod -a -G admin "$distro_user"
-    echo INSTALLATION CHANGED
-fi
-
-# configure wsl to use the default wsl user by default.
-# TODO compare the whole file.
-if ! grep "default=$distro_user" /etc/wsl.conf >/dev/null 2>&1; then
-    echo 'setting the wsl configuration...'
-    cat >/etc/wsl.conf <<EOF
-[user]
-default=$distro_user
-
-[boot]
-systemd=true
-EOF
-    echo INSTALLATION CHANGED
-fi
-EOF_SUDO
-'@ $distroUser | Tee-Object -Variable result
-    if ('INSTALLATION CHANGED' -in $result) {
-        Write-Host "Installation changed: configuration changed."
-        $changed = $true
-    }
-
     if ($changed) {
         Write-Host "Terminating the $distroName distribution..."
         wsl --terminate $distroName
-    }
-
-    # install docker.
-    Invoke-WslDistroScript $distroName @'
-set -euo pipefail; exec 2>&1; set -x
-sudo bash -euxo pipefail /dev/stdin "$1" <<'EOF_SUDO'
-distro_user="$1"
-
-if ! getent group docker >/dev/null 2>&1; then
-    echo 'adding the docker group...'
-    groupadd --system docker
-    echo INSTALLATION CHANGED
-fi
-
-usermod -a -G docker "$distro_user"
-
-apt-get install -y apt-transport-https software-properties-common wget
-
-# see https://github.com/moby/moby/releases
-# renovate: datasource=github-releases depName=moby/moby
-docker_version='28.1.1'
-dist_name="$(lsb_release -si | tr '[:upper:]' '[:lower:]')"
-wget -qO- "https://download.docker.com/linux/$dist_name/gpg" | gpg --batch --yes --dearmor -o /etc/apt/keyrings/download.docker.com.gpg
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/$dist_name $(lsb_release -cs) stable" >/etc/apt/sources.list.d/docker.list
-apt-get update
-docker_package_version="$(apt-cache madison docker-ce | awk "/$docker_version/{print \$3}")"
-apt-get install \
-    -y \
-    --allow-change-held-packages \
-    "docker-ce=$docker_package_version" \
-    "docker-ce-cli=$docker_package_version" \
-    containerd.io
-apt-mark hold docker-ce docker-ce-cli
-EOF_SUDO
-'@ $distroUser | Tee-Object -Variable result
-    if ('INSTALLATION CHANGED' -in $result) {
-        Write-Host "Installation changed: configuration changed."
-        $changed = $true
     }
 
     if ($changed) {

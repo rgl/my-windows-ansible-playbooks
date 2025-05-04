@@ -1,6 +1,6 @@
 - name: Development
   hosts:
-    - all
+    - windows
   gather_facts: true
   roles:
     - base
@@ -40,3 +40,11 @@
     - solo2
     - yubico_authenticator
     - projects
+
+- name: Development
+  hosts:
+    - wsl
+  gather_facts: true
+  become: true
+  roles:
+    - wsl_ubuntu

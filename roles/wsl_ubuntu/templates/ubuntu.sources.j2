@@ -1,0 +1,29 @@
+{%- set components -%}
+Components:
+  main
+  restricted
+  universe
+  multiverse
+{%- endset -%}
+
+{%- set signed_by -%}
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+{%- endset -%}
+
+# see /etc/cloud/templates/sources.list.ubuntu.deb822.tmpl
+
+Types: deb
+URIs: {{ wsl_ubuntu_apt_sources_url }}
+Suites:
+  {{ ansible_distribution_release }}
+  {{ ansible_distribution_release }}-updates
+  {{ ansible_distribution_release }}-backports
+{{ components }}
+{{ signed_by }}
+
+Types: deb
+URIs: http://security.ubuntu.com/ubuntu
+Suites:
+  {{ ansible_distribution_release }}-security
+{{ components }}
+{{ signed_by }}

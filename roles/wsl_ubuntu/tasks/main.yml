@@ -1,0 +1,149 @@
+- name: Configure ubuntu apt sources
+  block:
+    - name: Prevent cloud-init from configuring ubuntu apt sources
+      ansible.builtin.copy:
+        content: |
+          apt_preserve_sources_list: true
+        dest: /etc/cloud/cloud.cfg.d/99_wsl_ubuntu_sources.cfg
+        mode: 0444
+    - name: Nutter default sources.list
+      ansible.builtin.copy:
+        content: |
+          # see /etc/apt/sources.list.d/ubuntu.sources instead.
+        dest: /etc/apt/sources.list
+        mode: 0444
+      register: wsl_ubuntu_default_ubuntu_apt_sources
+    - name: Configure ubuntu apt sources
+      ansible.builtin.template:
+        src: ubuntu.sources.j2
+        dest: /etc/apt/sources.list.d/ubuntu.sources
+        mode: 0444
+      register: wsl_ubuntu_ubuntu_apt_sources
+    - name: Update cache
+      ansible.builtin.apt:
+        update_cache: true
+      when: >
+        wsl_ubuntu_default_ubuntu_apt_sources.changed
+        or wsl_ubuntu_ubuntu_apt_sources.changed
+
+- name: Set the wsl configuration
+  ansible.builtin.copy:
+    content: |
+      [user]
+      default={{ wsl_ubuntu_default_user }}
+
+      [boot]
+      systemd=true
+    dest: /etc/wsl.conf
+    mode: '0444'
+
+- name: Uninstall wsl-pro-service
+  ansible.builtin.apt:
+    name: wsl-pro-service
+    state: absent
+    purge: true
+
+- name: Disable automatic upgrades
+  ansible.builtin.apt:
+    name: unattended-upgrades
+    state: absent
+    purge: true
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 10800 # 3h
+  changed_when: false
+
+- name: Upgrade system
+  ansible.builtin.apt:
+    upgrade: dist
+
+- name: Check reboot required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot when required
+  ansible.builtin.reboot:
+    boot_time_command: systemctl show -p ActiveEnterTimestamp init.scope
+  when: reboot_required.stat.exists
+
+- name: Remove unneeded packages
+  ansible.builtin.apt:
+    autoremove: true
+    autoclean: true
+
+- name: Install login profile
+  ansible.builtin.copy:
+    src: login.sh
+    dest: /etc/profile.d/login.sh
+    mode: 0444
+
+- name: Install libreadline inputrc
+  ansible.builtin.copy:
+    src: inputrc
+    dest: /etc/inputrc
+    mode: 0444
+
+- name: Install vim
+  block:
+    - name: Install vim
+      ansible.builtin.apt:
+        name: vim
+        install_recommends: false
+    - name: Install vimrc
+      ansible.builtin.copy:
+        src: vimrc.local
+        dest: /etc/vim/vimrc.local
+        mode: 0444
+
+- name: Install htop
+  ansible.builtin.apt:
+    name: htop
+    install_recommends: false
+
+- name: Install git
+  block:
+    - name: Install git
+      ansible.builtin.apt:
+        name: git
+        install_recommends: false
+    - name: Create gitconfig.d directory
+      ansible.builtin.file:
+        name: /etc/gitconfig.d
+        state: directory
+        mode: '0755'
+    - name: Configure git to use the host git-credential-manager
+      ansible.builtin.copy:
+        # see https://github.com/git-ecosystem/git-credential-manager/blob/main/docs/wsl.md
+        content: |
+          [credential]
+          helper =
+          helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+
+          [credential "https://dev.azure.com"]
+          useHttpPath = true
+        # NB you must include this file from the roles/base/files/gitconfig file.
+        dest: /etc/gitconfig.d/git-credential-manager.gitconfig
+        mode: '0444'
+    - name: Install gitconfig
+      ansible.builtin.copy:
+        content: |
+          [user]
+          name = Rui Lopes
+          email = rgl@ruilopes.com
+
+          [push]
+          default = simple
+
+          [core]
+          autocrlf = false
+
+          [include]
+          path = /etc/gitconfig.d/git-credential-manager.gitconfig
+        dest: /etc/gitconfig
+        mode: '0444'
+
+- name: Install docker
+  ansible.builtin.include_tasks: docker.yml

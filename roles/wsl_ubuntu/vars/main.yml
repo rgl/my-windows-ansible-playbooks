@@ -1,0 +1,15 @@
+wsl_ubuntu_default_user: ubuntu
+
+# see https://launchpad.net/ubuntu/+archivemirrors
+# see https://launchpad.net/ubuntu/+mirror/mirrors.up.pt-archive
+# see https://launchpad.net/ubuntu/+mirror/ftp.uni-stuttgart.de-archive
+# wsl_ubuntu_apt_sources_url: http://mirrors.up.pt/ubuntu
+wsl_ubuntu_apt_sources_url: http://ftp.uni-stuttgart.de/ubuntu
+
+# see https://github.com/moby/moby/releases
+# renovate: datasource=github-releases depName=moby/moby
+wsl_ubuntu_docker_version: '28.1.1'
+
+# see https://github.com/docker/compose/releases
+# renovate: datasource=github-releases depName=docker/compose
+wsl_ubuntu_docker_compose_version: '2.35.1'
