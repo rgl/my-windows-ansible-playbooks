@@ -5,8 +5,8 @@
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.ps1
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.sh
 # NB you can remove the distro altogether with:
-#       wsl.exe --unregister Ubuntu-22.04
-#       Remove-Item -Recurse C:\Wsl\Ubuntu-22.04
+#       wsl.exe --unregister Ubuntu-24.04
+#       Remove-Item -Recurse C:\Wsl\Ubuntu-24.04
 
 - name: Configure WSL Host
   # NB we disable wslg because it starts consuming too much cpu.
@@ -61,24 +61,23 @@
     parameters:
       version: '{{ wsl_version }}'
 
-- name: Install WSL Ubuntu-22.04
+- name: Install WSL Ubuntu-24.04
   block:
-    - name: Install WSL Ubuntu-22.04
+    - name: Install WSL Ubuntu-24.04
       ansible.windows.win_powershell:
         script: "{{ lookup('file', 'install-wsl-ubuntu.ps1') }}"
         parameters:
-          distroName: Ubuntu-22.04
+          distroName: Ubuntu-24.04
           # see https://cloud-images.ubuntu.com/wsl
-          distroUrl: 'https://cloud-images.ubuntu.com/wsl/jammy/current/ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz'
-    - name: Copy Ubuntu-22.04 icon
+          distroUrl: https://cloud-images.ubuntu.com/wsl/releases/24.04/current/ubuntu-noble-wsl-amd64-wsl.rootfs.tar.gz
+    - name: Copy Ubuntu-24.04 icon
       ansible.windows.win_copy:
-        # see https://findicons.com/icon/88935/ubuntu
-        src: ubuntu-22.04.ico
-        dest: C:\Wsl\ubuntu-22.04.ico
-    - name: Install WSL Ubuntu-22.04 Start Menu Shortcut
+        src: ubuntu-24.04.ico
+        dest: C:\Wsl\ubuntu-24.04.ico
+    - name: Install WSL Ubuntu-24.04 Start Menu Shortcut
       community.windows.win_shortcut:
-        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu-22.04.lnk
-        icon: C:\Wsl\ubuntu-22.04.ico,0
+        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Ubuntu-24.04.lnk
+        icon: C:\Wsl\ubuntu-24.04.ico,0
         src: '%ProgramFiles%\WSL\wsl.exe'
-        arguments: --distribution Ubuntu-22.04
+        arguments: --distribution Ubuntu-24.04
         directory: '%USERPROFILE%'
