@@ -1,6 +1,6 @@
 # NB you can remove a distro altogether with, e.g.:
-#       wsl --unregister Debian-12
-#       Remove-Item -Recurse C:\Wsl\Debian-12
+#       wsl --unregister Ubuntu-22.04
+#       Remove-Item -Recurse C:\Wsl\Ubuntu-22.04
 
 param(
     [string]$distroName,
@@ -38,7 +38,7 @@ function Invoke-WslDistroScript([string]$distroName, [string]$script) {
     Remove-Item $scriptPath
 }
 
-function Install-WslDebianFlavor([string]$distroName, [string]$distroUrl) {
+function Install-WslUbuntu([string]$distroName, [string]$distroUrl) {
     $distroUser = 'wsl'
     $distroPath = "C:\Wsl\$distroName"
     $archivePath = "$env:TEMP\wsl-$distroName-rootfs.tgz"
@@ -189,6 +189,6 @@ EOF_SUDO
     }
 }
 
-Install-WslDebianFlavor `
+Install-WslUbuntu `
     $distroName `
     $distroUrl

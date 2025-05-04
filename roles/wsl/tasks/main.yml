@@ -5,8 +5,8 @@
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.ps1
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-wsl-ubuntu.sh
 # NB you can remove the distro altogether with:
-#       wsl.exe --unregister Ubuntu
-#       Remove-Item -Recurse C:\Wsl\Ubuntu
+#       wsl.exe --unregister Ubuntu-22.04
+#       Remove-Item -Recurse C:\Wsl\Ubuntu-22.04
 
 - name: Configure WSL Host
   # NB we disable wslg because it starts consuming too much cpu.
@@ -61,31 +61,11 @@
     parameters:
       version: '{{ wsl_version }}'
 
-- name: Install WSL Debian-12
-  block:
-    - name: Install WSL Debian-12
-      ansible.windows.win_powershell:
-        script: "{{ lookup('file', 'install-wsl-debian-flavor.ps1') }}"
-        parameters:
-          distroName: Debian-12
-          distroUrl: 'https://salsa.debian.org/debian/WSL/-/raw/v{{ wsl_debian_version }}/x64/install.tar.gz'
-    - name: Copy Debian-12 icon
-      ansible.windows.win_copy:
-        src: debian-12.ico
-        dest: C:\Wsl\debian-12.ico
-    - name: Install WSL Debian-12 Start Menu Shortcut
-      community.windows.win_shortcut:
-        dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\Debian-12.lnk
-        icon: C:\Wsl\debian-12.ico,0
-        src: '%ProgramFiles%\WSL\wsl.exe'
-        arguments: --distribution Debian-12
-        directory: '%USERPROFILE%'
-
 - name: Install WSL Ubuntu-22.04
   block:
     - name: Install WSL Ubuntu-22.04
       ansible.windows.win_powershell:
-        script: "{{ lookup('file', 'install-wsl-debian-flavor.ps1') }}"
+        script: "{{ lookup('file', 'install-wsl-ubuntu.ps1') }}"
         parameters:
           distroName: Ubuntu-22.04
           # see https://cloud-images.ubuntu.com/wsl
