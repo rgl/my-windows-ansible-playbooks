@@ -93,14 +93,14 @@
 #     language: pt-PT
 
 - name: Set region
-  community.windows.win_region:
+  ansible.windows.win_region:
     location: 193           # Portugal (193). See https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
     format: pt-PT           # date format, number format, etc.
     unicode_language: en-US # UI language.
     copy_settings: true
 
 - name: Set timezone
-  community.windows.win_timezone:
+  ansible.windows.win_timezone:
     timezone: GMT Standard Time
 
 - name: Set visual effects
