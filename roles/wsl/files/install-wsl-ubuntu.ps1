@@ -1,6 +1,9 @@
 # NB you can remove a distro altogether with, e.g.:
 #       wsl --unregister Ubuntu-24.04
 #       Remove-Item -Recurse C:\Wsl\Ubuntu-24.04
+# NB we can configure ubuntu using cloud-init.
+#    see https://documentation.ubuntu.com/wsl/en/stable/howto/cloud-init/
+#    see https://cloudinit.readthedocs.io/en/latest/reference/datasources/wsl.html
 
 param(
     [string]$distroName,
@@ -38,8 +41,8 @@ function wsl {
     }
 }
 
-function Invoke-WslDistroScript([string]$distroName, [string]$script) {
-    $scriptPath = 'C:\Windows\Temp\invoke-wsl-script.sh'
+function Invoke-WslDistroScript([string]$distroName, [string]$script, [int[]]$validExitCodes=@(0)) {
+    $scriptPath = "C:\Windows\Temp\$distroName-invoke-wsl-script.sh"
     Set-Content -NoNewline -Encoding ascii -Path $scriptPath -Value $script
     # NB we have to change the preference (and 2>&1) because wsl.exe writes to
     #    stderr and that trips powershell into thinking the command failed...
@@ -53,11 +56,11 @@ function Invoke-WslDistroScript([string]$distroName, [string]$script) {
         $PSNativeCommandUseErrorActionPreference = $false
     }
     &"$env:ProgramFiles\WSL\wsl.exe" --distribution $distroName -- `
-        /mnt/c/Windows/Temp/invoke-wsl-script.sh `
+        "/mnt/c/Windows/Temp/$(Split-Path -Leaf "$scriptPath")" `
         @Args `
         2>&1
     $ErrorActionPreference = 'Stop'
-    if ($LASTEXITCODE) {
+    if ($LASTEXITCODE -notin $validExitCodes) {
         throw "failed to execute $scriptPath inside the $distroName wsl distro with exit code $LASTEXITCODE"
     }
     Remove-Item $scriptPath
@@ -82,9 +85,21 @@ function Install-WslUbuntu([string]$distroName, [string]$distroUrl) {
         $changed = $true
     }
 
+    # start the wsl distribution.
     if ($changed) {
         Write-Host "Terminating the $distroName distribution..."
         wsl --terminate $distroName
+        Write-Host "Starting the $distroName distribution and waiting for cloud-init to finish..."
+        # NB the valid exit codes are:
+        #       0 - success
+        #       1 - unrecoverable error
+        #       2 - recoverable error
+        # see https://cloudinit.readthedocs.io/en/latest/explanation/failure_states.html#cloud-init-error-codes
+        Invoke-WslDistroScript -validExitCodes @(0, 2) $distroName @'
+#!/bin/bash
+set -euo pipefail
+cloud-init status --long --wait
+'@
     }
 
     if ($changed) {

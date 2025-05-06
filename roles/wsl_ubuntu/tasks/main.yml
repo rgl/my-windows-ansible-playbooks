@@ -1,3 +1,27 @@
+- name: Wait for cloud-init to finish
+  ansible.builtin.shell:
+    executable: /bin/bash
+    cmd: |
+      set -euxo pipefail
+      function wait_for_cloud_init {
+        set +e
+        # NB the valid exit codes are:
+        #       0 - success
+        #       1 - unrecoverable error
+        #       2 - recoverable error
+        # see https://cloudinit.readthedocs.io/en/latest/explanation/failure_states.html#cloud-init-error-codes
+        cloud-init status --long --wait
+        local exit_code=$?
+        set -e
+        if [[ $exit_code -ne 0 && $exit_code -ne 2 ]]; then
+          echo "ERROR: cloud-init failed with code $exit_code" >&2
+          return $exit_code
+        fi
+        return 0
+      }
+      wait_for_cloud_init
+  changed_when: false
+
 - name: Configure ubuntu apt sources
   block:
     - name: Prevent cloud-init from configuring ubuntu apt sources
