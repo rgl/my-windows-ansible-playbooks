@@ -9,7 +9,7 @@
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/download.docker.com.asc
-    mode: 0444
+    mode: '0444'
     force: true
 
 # see https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
@@ -49,13 +49,13 @@
   ansible.builtin.file:
     name: /etc/docker
     state: directory
-    mode: 0750
+    mode: '0750'
 
 - name: Install daemon.json
   ansible.builtin.copy:
     src: daemon.json
     dest: /etc/docker/daemon.json
-    mode: 0444
+    mode: '0444'
   notify:
     - Restart docker
 
@@ -63,13 +63,13 @@
   ansible.builtin.file:
     name: /etc/systemd/system/docker.service.d
     state: directory
-    mode: 0755
+    mode: '0755'
 
 - name: Install daemon service override
   ansible.builtin.copy:
     src: override.conf
     dest: /etc/systemd/system/docker.service.d/override.conf
-    mode: 0444
+    mode: '0444'
   notify:
     - Restart docker
 

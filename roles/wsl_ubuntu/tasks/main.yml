@@ -5,19 +5,19 @@
         content: |
           apt_preserve_sources_list: true
         dest: /etc/cloud/cloud.cfg.d/99_wsl_ubuntu_sources.cfg
-        mode: 0444
+        mode: '0444'
     - name: Nutter default sources.list
       ansible.builtin.copy:
         content: |
           # see /etc/apt/sources.list.d/ubuntu.sources instead.
         dest: /etc/apt/sources.list
-        mode: 0444
+        mode: '0444'
       register: wsl_ubuntu_default_ubuntu_apt_sources
     - name: Configure ubuntu apt sources
       ansible.builtin.template:
         src: ubuntu.sources.j2
         dest: /etc/apt/sources.list.d/ubuntu.sources
-        mode: 0444
+        mode: '0444'
       register: wsl_ubuntu_ubuntu_apt_sources
     - name: Update cache
       ansible.builtin.apt:
@@ -78,13 +78,13 @@
   ansible.builtin.copy:
     src: login.sh
     dest: /etc/profile.d/login.sh
-    mode: 0444
+    mode: '0444'
 
 - name: Install libreadline inputrc
   ansible.builtin.copy:
     src: inputrc
     dest: /etc/inputrc
-    mode: 0444
+    mode: '0444'
 
 - name: Install vim
   block:
@@ -96,7 +96,7 @@
       ansible.builtin.copy:
         src: vimrc.local
         dest: /etc/vim/vimrc.local
-        mode: 0444
+        mode: '0444'
 
 - name: Install htop
   ansible.builtin.apt:
