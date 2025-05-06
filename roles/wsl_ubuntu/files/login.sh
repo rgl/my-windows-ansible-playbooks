@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 [[ "$-" != *i* ]] && return
 
 export EDITOR=vim
