@@ -87,7 +87,7 @@ base_gimp_version: '3.0.2.1'
 
 # see https://community.chocolatey.org/packages/inkscape
 # renovate: datasource=nuget:chocolatey depName=inkscape
-base_inkscape_version: '1.4.0'
+base_inkscape_version: '1.4.2'
 
 # see https://www.nuget.org/packages/Microsoft.UI.Xaml
 # see https://github.com/microsoft/terminal/blob/v1.22.11141.0/dep/nuget/packages.config#L10C78-L10C78
