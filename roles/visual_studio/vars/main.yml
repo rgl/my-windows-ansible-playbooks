@@ -3,4 +3,4 @@
 #    specific version, so this chocolatey package version is used as a
 #    workaround for forcing the user to upgrade to the latest version.
 # renovate: datasource=nuget:chocolatey depName=visualstudio2022community
-visual_studio_vs_version: '117.13.6' # Visual Studio 17.13.6.
+visual_studio_vs_version: '117.14.0' # Visual Studio 17.14.0.
