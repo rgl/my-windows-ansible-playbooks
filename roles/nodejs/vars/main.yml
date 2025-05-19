@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/nodejs
 # see https://nodejs.org/en/
 # renovate: datasource=nuget:chocolatey depName=nodejs versioning=node
-nodejs_version: '22.15.0'
+nodejs_version: '22.15.1'
