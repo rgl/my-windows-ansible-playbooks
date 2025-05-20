@@ -1,13 +1,13 @@
-# see https://community.chocolatey.org/packages/dotnet-6.0-sdk
+# see https://community.chocolatey.org/packages/dotnet-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
-# renovate: datasource=nuget:chocolatey depName=dotnet-6.0-sdk
+# renovate: datasource=nuget:chocolatey depName=dotnet-6.0-sdk extractVersion=(?<version>6\.0\..+)
 dotnet_sdk_6_version: '6.0.428' # dotnet 6.0.36
 
-# see https://community.chocolatey.org/packages/dotnet-8.0-sdk
+# see https://community.chocolatey.org/packages/dotnet-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
-# renovate: datasource=nuget:chocolatey depName=dotnet-sdk
+# renovate: datasource=nuget:chocolatey depName=dotnet-sdk extractVersion=(?<version>8\.0\..+)
 dotnet_sdk_8_version: '8.0.408' # dotnet 8.0.16
 
 dotnet_sdk_versions:
