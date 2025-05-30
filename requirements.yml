@@ -1,7 +1,7 @@
 collections:
   # see https://galaxy.ansible.com/ui/repo/published/ansible/windows
   - name: ansible.windows
-    version: 3.0.0
+    version: 3.1.0
   # see https://galaxy.ansible.com/ui/repo/published/chocolatey/chocolatey
   - name: chocolatey.chocolatey
     version: 1.5.3
