@@ -12,11 +12,15 @@ image_version='8.7.0'
 # see https://github.com/PowerShell/PSScriptAnalyzer#readme
 # see https://github.com/oxsecurity/megalinter#docker-container
 # see https://github.com/oxsecurity/megalinter/blob/main/docs/descriptors/powershell_powershell.md
+install -d "$PWD"/tmp/megalinter-{home,reports}
 exec docker run \
     --rm \
     --net=host \
+    -u "$(id -u):$(id -g)" \
     -v "$PWD:/project:ro" \
     -v "$PWD/tmp/megalinter-reports:/megalinter-reports:rw" \
+    -v "$PWD/tmp/megalinter-home:/megalinter-home:rw" \
+    -e HOME=/megalinter-home \
     -e DEFAULT_WORKSPACE=/project \
     -e REPORT_OUTPUT_FOLDER=/megalinter-reports \
     -e CLEAR_REPORT_FOLDER=true \
