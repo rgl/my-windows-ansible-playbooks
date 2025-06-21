@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1.16
+# syntax=docker.io/docker/dockerfile:1.17
 
 # debian 12 (bookworm).
 FROM debian:12-slim
