@@ -1,7 +1,7 @@
 # see https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-ce.ps1
 # renovate: datasource=github-releases depName=rgl/docker-ce-windows-binaries-vagrant
-docker_version: '28.3.0'
+docker_version: '28.3.1'
 
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
