@@ -42,7 +42,7 @@ Run an ad-hoc command in the `dm1` machine:
 Lint the [`development.yml` playbook](development.yml) playbook:
 
 ```bash
-./ansible-lint.sh --offline --parseable development.yml
+./ansible-lint.sh --offline --parseable development.yml || echo 'ERROR linting'
 ./mega-linter.sh
 ```
 
