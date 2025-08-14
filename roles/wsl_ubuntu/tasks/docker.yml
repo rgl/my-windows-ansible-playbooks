@@ -113,5 +113,5 @@
       install -d /usr/local/lib/docker/cli-plugins
       install -m 555 "$t" /usr/local/lib/docker/cli-plugins/docker-compose
       rm "$t"
-  register: result
-  changed_when: "'ANSIBLE CHANGED NO' not in result.stdout_lines"
+  register: wsl_ubuntu_result
+  changed_when: "'ANSIBLE CHANGED NO' not in wsl_ubuntu_result.stdout_lines"

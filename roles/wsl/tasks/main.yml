@@ -25,7 +25,7 @@
       ansible.windows.win_feature:
         name: Hyper-V
         include_management_tools: true
-      register: hyper_v_win_feature
+      register: wsl_hyper_v_win_feature
     - name: Install WSL Windows feature
       ansible.windows.win_feature:
         # NB although in Windows 11 Client this is only required for WSL1, in
@@ -34,7 +34,7 @@
         name: Microsoft-Windows-Subsystem-Linux
       register: wsl_win_feature
     - name: Reboot
-      when: hyper_v_win_feature.reboot_required or wsl_win_feature.reboot_required
+      when: wsl_hyper_v_win_feature.reboot_required or wsl_win_feature.reboot_required
       ansible.windows.win_reboot:
 
 - name: Install WSL Dependencies (Windows Client)
@@ -43,7 +43,7 @@
     - name: Install Virtual Machine Platform
       ansible.windows.win_optional_feature:
         name: VirtualMachinePlatform
-      register: vmf_win_optional_feature
+      register: wsl_vmf_win_optional_feature
     - name: Uninstall WSL Windows feature
       ansible.windows.win_optional_feature:
         # NB in Windows 11 Client, this is only required for WSL1, which we
@@ -52,7 +52,7 @@
         state: absent
       register: wsl_win_feature
     - name: Reboot
-      when: vmf_win_optional_feature.reboot_required or wsl_win_feature.reboot_required
+      when: wsl_vmf_win_optional_feature.reboot_required or wsl_win_feature.reboot_required
       ansible.windows.win_reboot:
 
 - name: Install WSL
