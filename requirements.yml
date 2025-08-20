@@ -7,7 +7,7 @@ collections:
     version: 1.5.3
   # see https://galaxy.ansible.com/ui/repo/published/community/general
   - name: community.general
-    version: 11.2.0
+    version: 11.2.1
   # see https://galaxy.ansible.com/ui/repo/published/community/windows
   - name: community.windows
     version: 3.0.1
