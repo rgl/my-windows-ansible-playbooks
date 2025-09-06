@@ -8,7 +8,7 @@ base_pwsh_version: '7.4.11'
 
 # see https://community.chocolatey.org/packages/jq
 # renovate: datasource=nuget:chocolatey depName=jq
-base_jq_version: '1.7.1'
+base_jq_version: '1.8.1'
 
 # see https://community.chocolatey.org/packages/yq
 # renovate: datasource=nuget:chocolatey depName=yq
