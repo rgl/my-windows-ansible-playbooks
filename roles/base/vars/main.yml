@@ -1,6 +1,6 @@
 # see https://community.chocolatey.org/packages/chocolatey
 # renovate: datasource=nuget:chocolatey depName=chocolatey
-base_chocolatey_version: '2.4.3'
+base_chocolatey_version: '2.5.1'
 
 # see https://community.chocolatey.org/packages/powershell-core
 # renovate: datasource=nuget:chocolatey depName=powershell-core extractVersion=^(?<version>7\.4\..+)
