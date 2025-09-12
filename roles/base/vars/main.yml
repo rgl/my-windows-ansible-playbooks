@@ -54,7 +54,7 @@ base_gitextensions_version: '5.2.1'
 
 # see https://community.chocolatey.org/packages/notepad3
 # renovate: datasource=nuget:chocolatey depName=notepad3
-base_notepad3_version: '6.25.714.1'
+base_notepad3_version: '6.25.822.1'
 
 # see https://community.chocolatey.org/packages/7zip.install
 # renovate: datasource=nuget:chocolatey depName=7zip.install
