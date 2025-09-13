@@ -13,7 +13,7 @@
     value: 'Off'
 
 # NB we will replace the virtual pwsh package with powershell-core.
-#    because the virtual pwsh 7.4.11 chocolatey failed to be published, and it
+#    because the virtual pwsh 7.4.12 chocolatey failed to be published, and it
 #    actually justs depends on powershell-core, which is successfully
 #    published.
 - name: Uninstall pwsh
