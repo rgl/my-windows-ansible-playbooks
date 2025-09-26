@@ -38,7 +38,7 @@ base_wireshark_version: '4.4.9'
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
 # renovate: datasource=nuget:chocolatey depName=oh-my-posh
-base_oh_my_posh_version: '26.23.8'
+base_oh_my_posh_version: '26.25.0'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
