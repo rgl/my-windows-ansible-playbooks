@@ -90,11 +90,11 @@ base_gimp_version: '3.0.4'
 base_inkscape_version: '1.4.2'
 
 # see https://www.nuget.org/packages/Microsoft.UI.Xaml
-# see https://github.com/microsoft/terminal/blob/v1.23.12371.0/dep/nuget/packages.config#L10C78-L10C78
+# see https://github.com/microsoft/terminal/blob/v1.23.12681.0/dep/nuget/packages.config#L10C78-L10C78
 # renovate: datasource=nuget depName=Microsoft.UI.Xaml extractVersion=^(?<version>2\.8\..+)
 base_windows_terminal_xaml_dependency_version: '2.8.7'
 
 # see https://community.chocolatey.org/packages/microsoft-windows-terminal
 # see https://github.com/microsoft/terminal/releases
 # renovate: datasource=nuget:chocolatey depName=microsoft-windows-terminal
-base_windows_terminal_version: '1.23.12371.0'
+base_windows_terminal_version: '1.23.12681.0'
