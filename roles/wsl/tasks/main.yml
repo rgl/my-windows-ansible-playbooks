@@ -26,7 +26,15 @@
         name: Hyper-V
         include_management_tools: true
       register: wsl_hyper_v_win_feature
+    - name: Install Windows Containers feature
+      # NB only required on windows 2025 or newer.
+      when: ansible_distribution_version is version('10.0.26100.0', '>=')
+      ansible.windows.win_feature:
+        name: Containers
+      register: wsl_containers_win_feature
     - name: Install WSL Windows feature
+      # NB only required on windows older than windows 2025.
+      when: ansible_distribution_version is version('10.0.26100.0', '<')
       ansible.windows.win_feature:
         # NB although in Windows 11 Client this is only required for WSL1, in
         #    Windows 2022 Server its required, or else, wsl.exe will fail with:
@@ -34,7 +42,10 @@
         name: Microsoft-Windows-Subsystem-Linux
       register: wsl_win_feature
     - name: Reboot
-      when: wsl_hyper_v_win_feature.reboot_required or wsl_win_feature.reboot_required
+      when: >
+        wsl_hyper_v_win_feature.reboot_required
+        or ('reboot_required' in wsl_containers_win_feature and wsl_containers_win_feature.reboot_required)
+        or ('reboot_required' in wsl_win_feature and wsl_win_feature.reboot_required)
       ansible.windows.win_reboot:
 
 - name: Install WSL Dependencies (Windows Client)
@@ -56,7 +67,18 @@
       ansible.windows.win_reboot:
 
 - name: Install WSL
+  # NB on windows 2025+, use pwsh, otherwise use powershell.
+  # NB on windows 2025, powershell fails with:
+  #       Could not load file or assembly 'System.Numerics.Vectors,
+  #       Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+  #       or one of its dependencies. The system cannot find the file
+  #       specified.
+  # NB on previous windows versions, pwsh fails with:
+  #       'Get-AppxPackage' command was found in the module 'Appx', but the
+  #       module could not be loaded due to the following error: [Operation
+  #       is not supported on this platform. (0x80131539)]
   ansible.windows.win_powershell:
+    executable: "{{ ansible_distribution_version is version('10.0.26100.0', '>=') and 'pwsh' or 'powershell' }}"
     script: "{{ lookup('file', 'install-wsl.ps1') }}"
     parameters:
       version: '{{ wsl_version }}'
