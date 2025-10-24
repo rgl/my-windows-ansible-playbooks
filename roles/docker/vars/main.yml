@@ -6,4 +6,4 @@ docker_version: '28.5.1'
 # see https://github.com/docker/compose/releases
 # see https://github.com/rgl/gitlab-ci-vagrant/blob/master/windows/provision-docker-compose.ps1
 # renovate: datasource=github-releases depName=docker/compose
-docker_compose_version: '2.40.0'
+docker_compose_version: '2.40.2'
