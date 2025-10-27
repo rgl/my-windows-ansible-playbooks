@@ -16,7 +16,7 @@ base_yq_version: '4.48.1'
 
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget:chocolatey depName=firefox
-base_firefox_version: '143.0.1'
+base_firefox_version: '144.0.0'
 
 # https://community.chocolatey.org/packages/setdefaultbrowser
 # renovate: datasource=nuget:chocolatey depName=setdefaultbrowser
