@@ -12,7 +12,7 @@ base_jq_version: '1.8.1'
 
 # see https://community.chocolatey.org/packages/yq
 # renovate: datasource=nuget:chocolatey depName=yq
-base_yq_version: '4.47.1'
+base_yq_version: '4.48.1'
 
 # see https://community.chocolatey.org/packages/firefox
 # renovate: datasource=nuget:chocolatey depName=firefox
