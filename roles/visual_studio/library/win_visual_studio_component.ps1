@@ -17,8 +17,8 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
 $setupPath = 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe'
-$installPath = 'C:\Program Files\Microsoft Visual Studio\2022\Community'
-$configPath = "$env:TEMP\visual-studio-2022-config.json"
+$installPath = 'C:\Program Files\Microsoft Visual Studio\18\Community'
+$configPath = "$env:TEMP\visual-studio-18-config.json"
 $changedSentinel = '**COMPONENTS CHANGED**'
 
 function Install-VisualStudioComponent([string[]]$components) {

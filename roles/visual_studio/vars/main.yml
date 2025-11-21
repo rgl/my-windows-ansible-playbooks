@@ -1,6 +1,6 @@
-# see https://community.chocolatey.org/packages/visualstudio2022community
+# see https://community.chocolatey.org/packages/visualstudio2026community
 # NB visual studio community does not really allow the installation of a
 #    specific version, so this chocolatey package version is used as a
 #    workaround for forcing the user to upgrade to the latest version.
-# renovate: datasource=nuget:chocolatey depName=visualstudio2022community
-visual_studio_vs_version: '117.14.19' # Visual Studio 17.14.19.
+# renovate: datasource=nuget:chocolatey depName=visualstudio2026community
+visual_studio_vs_version: '118.0.0' # Visual Studio 18.0.0.

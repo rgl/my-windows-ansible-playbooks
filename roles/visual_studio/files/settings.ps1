@@ -1,13 +1,13 @@
 # set the visual studio settings.
-# see https://learn.microsoft.com/en-us/visualstudio/ide/reference/resetsettings-devenv-exe?view=vs-2022
-# see https://learn.microsoft.com/en-us/visualstudio/ide/how-to-change-fonts-and-colors-in-visual-studio?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/ide/reference/resetsettings-devenv-exe?view=visualstudio
+# see https://learn.microsoft.com/en-us/visualstudio/ide/how-to-change-fonts-and-colors-in-visual-studio?view=visualstudio
 # see https://github.com/rgl/visual-studio-community-vagrant/blob/master/provision-vs.ps1#L55-L70
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
-$vsHome = 'C:\Program Files\Microsoft Visual Studio\2022\Community'
+$vsHome = 'C:\Program Files\Microsoft Visual Studio\18\Community'
 $devenv = "$vsHome\Common7\IDE\devenv.com"
 $settingsHomePath = "$env:LOCALAPPDATA\Microsoft\VisualStudio"
 $changed = $false

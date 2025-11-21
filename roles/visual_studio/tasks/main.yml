@@ -1,11 +1,11 @@
 # see https://www.visualstudio.com/vs/
 # see https://visualstudio.microsoft.com/downloads/
-# see https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history
-# see https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes
-# see https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022
-# see https://learn.microsoft.com/en-us/visualstudio/install/command-line-parameter-examples?view=vs-2022
-# see https://learn.microsoft.com/en-us/visualstudio/install/workload-and-component-ids?view=vs-2022
-# see https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=vs-2022
+# see https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-history
+# see https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes
+# see https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=visualstudio
+# see https://learn.microsoft.com/en-us/visualstudio/install/command-line-parameter-examples?view=visualstudio
+# see https://learn.microsoft.com/en-us/visualstudio/install/workload-and-component-ids?view=visualstudio
+# see https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=visualstudio
 
 - name: Enable the Windows Developer Mode
   ansible.windows.win_regedit:
@@ -16,7 +16,7 @@
 
 - name: Install Visual Studio
   chocolatey.chocolatey.win_chocolatey:
-    name: visualstudio2022community
+    name: visualstudio2026community
     version: '{{ visual_studio_vs_version }}'
     state: downgrade
 
@@ -38,9 +38,10 @@
   win_visual_studio_component: # noqa fqcn[action]
     name: Microsoft.VisualStudio.Component.Windows10SDK.19041 # Windows 10 SDK (10.0.19041.0)
 
-- name: Install Windows App SDK C# Templates Component # for WinUI.
+# see https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-community?view=visualstudio#winui-application-development
+- name: Install WinUI application development Component
   win_visual_studio_component: # noqa fqcn[action]
-    name: Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs # Windows App SDK C# Templates
+    name: Microsoft.VisualStudio.Workload.Universal
 
 - name: Configure Visual Studio
   # NB tracking the .vssettings changes is too hard to implement. mainly,
