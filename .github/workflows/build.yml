@@ -6,7 +6,7 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Build the ansible execution environment
         run: ./ansible-lint.sh --version
       - name: Lint the development.yml playbook
