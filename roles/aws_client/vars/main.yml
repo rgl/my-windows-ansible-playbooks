@@ -1,7 +1,7 @@
 # see https://community.chocolatey.org/packages/awscli
 # see https://github.com/aws/aws-cli
 # renovate: datasource=nuget:chocolatey depName=awscli
-aws_client_aws_version: '2.32.1'
+aws_client_aws_version: '2.32.6'
 
 # see https://community.chocolatey.org/packages/awscli-session-manager
 # see https://github.com/aws/session-manager-plugin
