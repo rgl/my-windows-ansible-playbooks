@@ -446,6 +446,13 @@
     version: '{{ base_hwmonitor_version }}'
     state: downgrade
 
+- name: Install WinDirStat
+  chocolatey.chocolatey.win_chocolatey:
+    # see https://community.chocolatey.org/packages/windirstat
+    name: windirstat
+    version: '{{ base_windirstat_version }}'
+    state: downgrade
+
 - name: Install Firefox
   ansible.builtin.include_tasks: firefox.yml
 
