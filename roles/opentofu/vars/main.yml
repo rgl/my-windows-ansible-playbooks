@@ -1,4 +1,4 @@
 # see https://community.chocolatey.org/packages/opentofu
 # see https://github.com/opentofu/opentofu/releases
 # renovate: datasource=nuget:chocolatey depName=opentofu
-opentofu_version: '1.11.1'
+opentofu_version: '1.11.2'
