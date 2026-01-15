@@ -35,6 +35,7 @@
         name:
           - docker-ce=5:{{ wsl_ubuntu_docker_version }}*
           - docker-ce-cli=5:{{ wsl_ubuntu_docker_version }}*
+          - containerd.io={{ wsl_ubuntu_containerd_version }}*
         allow_change_held_packages: true
         state: present
     - name: Pin docker
@@ -44,6 +45,7 @@
       loop:
         - docker-ce
         - docker-ce-cli
+        - containerd.io
 
 - name: Install docker directory
   ansible.builtin.file:
