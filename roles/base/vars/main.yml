@@ -70,7 +70,7 @@ base_hwinfo_version: '8.30.0'
 
 # see https://community.chocolatey.org/packages/cpu-z.install
 # renovate: datasource=nuget:chocolatey depName=cpu-z.install
-base_cpu_z_version: '2.18.0'
+base_cpu_z_version: '2.18.0.20260109'
 
 # see https://community.chocolatey.org/packages/hwmonitor
 # renovate: datasource=nuget:chocolatey depName=hwmonitor
