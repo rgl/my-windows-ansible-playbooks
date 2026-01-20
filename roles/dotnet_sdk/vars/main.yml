@@ -2,7 +2,7 @@
 # see https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 # see https://learn.microsoft.com/en-us/dotnet/core/install/windows
 # renovate: datasource=nuget:chocolatey depName=dotnet-sdk extractVersion=(?<version>8\.0\..+)
-dotnet_sdk_8_version: '8.0.416' # dotnet 8.0.22
+dotnet_sdk_8_version: '8.0.417' # dotnet 8.0.23
 
 # see https://community.chocolatey.org/packages/dotnet-sdk
 # see https://dotnet.microsoft.com/en-us/download/dotnet/10.0
