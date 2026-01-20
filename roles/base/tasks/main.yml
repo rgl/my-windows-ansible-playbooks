@@ -64,10 +64,8 @@
     skip_optional: true
     category_names:
       - CriticalUpdates
-      - DefinitionUpdates
       - SecurityUpdates
       - UpdateRollups
-      - Updates
 
 - name: Disable Fast Startup
   ansible.windows.win_regedit:
