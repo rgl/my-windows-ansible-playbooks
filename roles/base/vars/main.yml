@@ -33,7 +33,7 @@ base_npcap_version: '1.86'
 
 # https://community.chocolatey.org/packages/wireshark
 # renovate: datasource=nuget:chocolatey depName=wireshark
-base_wireshark_version: '4.6.2'
+base_wireshark_version: '4.6.3'
 
 # see https://community.chocolatey.org/packages/oh-my-posh
 # see https://github.com/JanDeDobbeleer/oh-my-posh
