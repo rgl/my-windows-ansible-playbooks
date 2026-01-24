@@ -16,4 +16,4 @@ wsl_ubuntu_containerd_version: '2.2.1'
 
 # see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose
-wsl_ubuntu_docker_compose_version: '5.0.1'
+wsl_ubuntu_docker_compose_version: '5.0.2'
