@@ -8,7 +8,7 @@ wsl_ubuntu_apt_sources_url: http://ftp.uni-stuttgart.de/ubuntu
 
 # see https://github.com/moby/moby/releases
 # renovate: datasource=github-releases depName=moby/moby
-wsl_ubuntu_docker_version: '29.1.4'
+wsl_ubuntu_docker_version: '29.2.0'
 
 # see https://github.com/containerd/containerd/releases
 # renovate: datasource=github-releases depName=containerd/containerd
