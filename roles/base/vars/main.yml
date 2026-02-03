@@ -42,7 +42,7 @@ base_oh_my_posh_version: '29.1.0'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
-base_git_version: '2.52.0'
+base_git_version: '2.53.0'
 
 # see https://community.chocolatey.org/packages/meld
 # renovate: datasource=nuget:chocolatey depName=meld
