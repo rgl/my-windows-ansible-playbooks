@@ -4,5 +4,18 @@
     "editor.fontWeight": 400,
     "files.associations": {
         "Vagrantfile": "ruby"
+    },
+    "terminal.integrated.defaultProfile.windows": "bash (mingw64)",
+    "terminal.integrated.profiles.windows": {
+        "bash (mingw64)": {
+            "path": "C:\\tools\\msys64\\usr\\bin\\bash.exe",
+            "args": ["--login"],
+            "env": {
+                "MSYS2_PATH_TYPE": "inherit",
+                "MSYSTEM": "MINGW64",
+                "CHERE_INVOKING": "1"
+            },
+            "icon": "terminal-bash"
+        }
     }
 }
