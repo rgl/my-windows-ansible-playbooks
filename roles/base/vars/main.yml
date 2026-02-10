@@ -29,7 +29,7 @@ base_font_nerd_dejavusansmono_version: '2.1.0'
 # see https://nmap.org/npcap/#download
 # see https://github.com/nmap/npcap/releases
 # renovate: datasource=github-releases depName=nmap/npcap
-base_npcap_version: '1.86'
+base_npcap_version: '1.87'
 
 # https://community.chocolatey.org/packages/wireshark
 # renovate: datasource=nuget:chocolatey depName=wireshark
