@@ -423,6 +423,13 @@
     version: '{{ base_bind_toolsonly_version }}'
     state: downgrade
 
+- name: Install upx
+  chocolatey.chocolatey.win_chocolatey:
+    # see https://community.chocolatey.org/packages/upx
+    name: upx
+    version: '{{ base_upx_version }}'
+    state: downgrade
+
 - name: Install HWiNFO
   chocolatey.chocolatey.win_chocolatey:
     # see https://community.chocolatey.org/packages/hwinfo.install
