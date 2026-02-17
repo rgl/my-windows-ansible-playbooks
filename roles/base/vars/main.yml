@@ -78,7 +78,7 @@ base_cpu_z_version: '2.18.0.20260109'
 
 # see https://community.chocolatey.org/packages/hwmonitor
 # renovate: datasource=nuget:chocolatey depName=hwmonitor
-base_hwmonitor_version: '1.61.0'
+base_hwmonitor_version: '1.62.0'
 
 # see https://community.chocolatey.org/packages/windirstat
 # renovate: datasource=nuget:chocolatey depName=windirstat
