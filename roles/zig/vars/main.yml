@@ -1,0 +1,3 @@
+# see https://community.chocolatey.org/packages/zig
+# renovate: datasource=nuget:chocolatey depName=zig
+zig_version: '0.15.2'

@@ -1,0 +1,7 @@
+# see https://community.chocolatey.org/packages/zig
+
+- name: Install zig
+  chocolatey.chocolatey.win_chocolatey:
+    name: zig
+    version: '{{ zig_version }}'
+    state: downgrade
