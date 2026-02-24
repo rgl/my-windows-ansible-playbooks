@@ -13,7 +13,7 @@ $Ansible.Changed = $false
 $archiveUrl = "https://github.com/docker/compose/releases/download/v$version/docker-compose-windows-x86_64.exe"
 $archiveName = Split-Path -Leaf $archiveUrl
 $archivePath = "$env:TEMP\$archiveName"
-$dockerCliPluginsPath = "$env:ProgramData\docker\cli-plugins"
+$dockerCliPluginsPath = "$env:ProgramFiles\Docker\cli-plugins"
 $dockerComposePath = "$dockerCliPluginsPath\docker-compose.exe"
 
 # check whether the expected version is already installed.
