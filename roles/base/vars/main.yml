@@ -66,7 +66,7 @@ base_bind_toolsonly_version: '9.16.28'
 
 # see https://community.chocolatey.org/packages/upx
 # renovate: datasource=nuget:chocolatey depName=upx
-base_upx_version: '5.1.0'
+base_upx_version: '5.1.1'
 
 # see https://community.chocolatey.org/packages/hwinfo.install
 # renovate: datasource=nuget:chocolatey depName=hwinfo.install
