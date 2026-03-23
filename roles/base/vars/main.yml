@@ -91,7 +91,7 @@ base_dependencies_version: '1.11.1'
 
 # see https://community.chocolatey.org/packages/gimp
 # renovate: datasource=nuget:chocolatey depName=gimp
-base_gimp_version: '3.0.8.2'
+base_gimp_version: '3.2.0'
 
 # see https://community.chocolatey.org/packages/inkscape
 # renovate: datasource=nuget:chocolatey depName=inkscape
