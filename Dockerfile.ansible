@@ -1,4 +1,4 @@
-# syntax=docker.io/docker/dockerfile:1.22
+# syntax=docker.io/docker/dockerfile:1.23
 
 # debian 13 (trixie).
 FROM debian:13-slim
