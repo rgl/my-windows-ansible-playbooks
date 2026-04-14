@@ -1,0 +1,5 @@
+- name: Install hadris-iso-cli-wasm
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-hadris-iso-cli-wasm.ps1') }}"
+    parameters:
+      version: '{{ hadris_iso_cli_wasm_version }}'

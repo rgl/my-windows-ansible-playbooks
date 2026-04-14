@@ -23,6 +23,7 @@
     - terraform
     - vagrant
     - wasmtime
+    - hadris_iso_cli_wasm
     - dotnet_sdk
     - bun
     - deno

@@ -1,0 +1,3 @@
+# see https://github.com/rgl/hadris-iso-cli-wasm/releases
+# renovate: datasource=github-releases depName=rgl/hadris-iso-cli-wasm
+hadris_iso_cli_wasm_version: '1.1.20260412'
