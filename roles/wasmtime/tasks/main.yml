@@ -1,0 +1,5 @@
+- name: Install wasmtime
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-wasmtime.ps1') }}"
+    parameters:
+      version: '{{ wasmtime_version }}'
