@@ -12,7 +12,7 @@ wsl_ubuntu_docker_version: '29.4.0'
 
 # see https://github.com/containerd/containerd/releases
 # renovate: datasource=github-releases depName=containerd/containerd
-wsl_ubuntu_containerd_version: '2.2.2'
+wsl_ubuntu_containerd_version: '2.2.3'
 
 # see https://github.com/docker/compose/releases
 # renovate: datasource=github-releases depName=docker/compose
