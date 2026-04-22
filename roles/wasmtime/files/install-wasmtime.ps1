@@ -13,7 +13,7 @@ $archiveUrl = "https://github.com/bytecodealliance/wasmtime/releases/download/v$
 $binaryPath = "$env:ChocolateyInstall\bin\wasmtime.exe"
 
 # bail when its already installed.
-# e.g. wasmtime 43.0.1 (cd4b6ed9b 2026-04-09)
+# e.g. wasmtime 44.0.0 (cd4b6ed9b 2026-04-09)
 if ((Test-Path $binaryPath) -and ((&$binaryPath --version) -match '^wasmtime ([^ ]+)')) {
     $actualVersionValue = $Matches[1]
     if ($actualVersionValue -eq $version) {
