@@ -23,8 +23,18 @@ $forceInstall = $false
 # see https://github.com/microsoft/WSL/issues/4607
 $env:WSL_UTF8 = '1'
 
-function Get-NormalizedVersion([version]$v) {
-    [version]"$(if ($v.Major -ge 0) {$v.Major} else {0}).$(if ($v.Minor -ge 0) {$v.Minor} else {0}).$(if ($v.Build -ge 0) {$v.Build} else {0}).$(if ($v.Revision -ge 0) {$v.Revision} else {0})"
+function Get-NormalizedVersion([string]$v) {
+    $p = ($v -split '\.') | ForEach-Object {
+        try {
+            [int]$_
+        } catch [System.Management.Automation.PSInvalidCastException] {
+            0
+        }
+    }
+    while ($p.Count -lt 4) {
+        $p += 0
+    }
+    [Version]::new($p[0], $p[1], $p[2], $p[3])
 }
 
 # NB this is faster then using Get-CimInstance Win32_Product.
