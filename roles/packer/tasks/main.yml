@@ -6,8 +6,13 @@
     name: CHECKPOINT_DISABLE
     value: '1'
 
-- name: Install packer
+- name: Uninstall packer chocolatey package
   chocolatey.chocolatey.win_chocolatey:
     name: packer
-    version: '{{ packer_version }}'
-    state: downgrade
+    state: absent
+
+- name: Install packer
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-packer.ps1') }}"
+    parameters:
+      version: '{{ packer_version }}'
