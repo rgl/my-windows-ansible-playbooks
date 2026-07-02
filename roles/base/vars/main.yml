@@ -82,7 +82,7 @@ base_hwmonitor_version: '1.64.0'
 
 # see https://community.chocolatey.org/packages/windirstat
 # renovate: datasource=nuget:chocolatey depName=windirstat
-base_windirstat_version: '2.6.2'
+base_windirstat_version: '2.7.0'
 
 # see https://community.chocolatey.org/packages/dependencies
 # see https://github.com/lucasg/Dependencies/releases
