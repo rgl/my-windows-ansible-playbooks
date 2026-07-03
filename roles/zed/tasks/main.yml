@@ -1,0 +1,32 @@
+- name: Install Zed
+  # NB winget.exe is only available in-the-box in windows 2025/11+.
+  when: ansible_distribution_version is version('10.0.22000.0', '>=')
+  ansible.windows.win_powershell:
+    script: |
+      Set-StrictMode -Version Latest
+      $ErrorActionPreference = 'Stop'
+      $ProgressPreference = 'SilentlyContinue'
+      $Ansible.Changed = $false
+      $version = '{{ zed_version }}'
+      $result = winget.exe list `
+        --disable-interactivity `
+        --source winget `
+        --exact `
+        --id ZedIndustries.Zed
+      $actualVersion = if ($LASTEXITCODE) {
+        $null
+      } else {
+        ($result | Select-Object -Last 1) -split '\s+' | Select-Object -Last 1
+      }
+      if ($version -ne $actualVersion) {
+        winget.exe install `
+          --silent `
+          --disable-interactivity `
+          --source winget `
+          --id ZedIndustries.Zed `
+          --version $version
+        if ($LASTEXITCODE) {
+          throw "winget.exe install failed with exit code $LASTEXITCODE"
+        }
+        $Ansible.Changed = $true
+      }

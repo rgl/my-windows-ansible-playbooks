@@ -35,6 +35,7 @@
     - dagger
     - mitmproxy
     - httptoolkit
+    - zed
     - visual_studio_code
     - visual_studio
     - ventoy
