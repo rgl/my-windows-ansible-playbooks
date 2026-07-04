@@ -41,3 +41,10 @@
       checksum: '{{ hyper_v_windhcp_checksum }}'
   notify:
     - Restart WinDHCP
+
+- name: Install egs-tool
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'install-egs-tool.ps1') }}"
+    parameters:
+      version: '{{ hyper_v_egs_tool_version }}'
+      checksum: '{{ hyper_v_egs_tool_checksum }}'

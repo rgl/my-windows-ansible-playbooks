@@ -2,3 +2,9 @@
 # renovate: datasource=github-releases depName=rgl/WinDHCP
 hyper_v_windhcp_version: '0.0.2'
 hyper_v_windhcp_checksum: 872ce8655a8d137624b1d2ca728142b2e9e176a0e148c5286a6d02e0aba7d0db
+
+# see https://releases.dbosoft.eu/eryph/guest-services/
+# see https://github.com/eryph-org/guest-services/releases
+# renovate: datasource=github-releases depName=eryph-org/guest-services
+hyper_v_egs_tool_version: '0.6.0'
+hyper_v_egs_tool_checksum: 2b143cb7004d6d9884af35bcbe8e5964bd51ac1ed9c5b68caf23c3a896f83f22
