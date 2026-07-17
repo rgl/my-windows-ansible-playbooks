@@ -8,6 +8,12 @@
       $ProgressPreference = 'SilentlyContinue'
       $Ansible.Changed = $false
       $version = '{{ zed_version }}'
+      $result = winget.exe source update `
+        --disable-interactivity `
+        --name winget
+      if ($LASTEXITCODE) {
+        throw "winget.exe source update failed with exit code $LASTEXITCODE. execute winget.exe --open-logs to show the logs."
+      }
       $result = winget.exe list `
         --disable-interactivity `
         --source winget `
@@ -26,7 +32,7 @@
           --id ZedIndustries.Zed `
           --version $version
         if ($LASTEXITCODE) {
-          throw "winget.exe install failed with exit code $LASTEXITCODE"
+          throw "winget.exe install failed with exit code $LASTEXITCODE. execute winget.exe --open-logs to show the logs."
         }
         $Ansible.Changed = $true
       }
