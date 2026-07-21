@@ -89,6 +89,11 @@ base_windirstat_version: '2.7.0'
 # renovate: datasource=nuget:chocolatey depName=dependencies
 base_dependencies_version: '1.11.1'
 
+# see https://community.chocolatey.org/packages/reshack
+# see https://www.angusj.com/resourcehacker/
+# renovate: datasource=nuget:chocolatey depName=reshack
+base_resource_hacker_version: '5.2.8'
+
 # see https://community.chocolatey.org/packages/gimp
 # renovate: datasource=nuget:chocolatey depName=gimp
 base_gimp_version: '3.2.4'

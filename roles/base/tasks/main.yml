@@ -616,6 +616,14 @@
     version: '{{ base_dependencies_version }}'
     state: downgrade
 
+- name: Install Resource Hacker
+  chocolatey.chocolatey.win_chocolatey:
+    # see https://community.chocolatey.org/packages/reshack
+    # see https://www.angusj.com/resourcehacker/
+    name: reshack
+    version: '{{ base_resource_hacker_version }}'
+    state: downgrade
+
 - name: Install GIMP
   chocolatey.chocolatey.win_chocolatey:
     # see https://community.chocolatey.org/packages/gimp
