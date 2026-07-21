@@ -3,6 +3,7 @@
     # https://community.chocolatey.org/packages/msys2
     name: msys2
     package_params: /NoPath
+    version: '{{ msys2_version }}'
     state: downgrade
 
 - name: Install MSYS2 Start Menu Shortcut
