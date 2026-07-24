@@ -1,5 +1,5 @@
-# see https://zed.dev/releases/stable/1.11.3
+# see https://zed.dev/releases/stable/1.12.0
 # see https://github.com/zed-industries/zed/releases
-# see https://github.com/microsoft/winget-pkgs/blob/master/manifests/z/ZedIndustries/Zed/1.11.3/ZedIndustries.Zed.installer.yaml
+# see https://github.com/microsoft/winget-pkgs/blob/master/manifests/z/ZedIndustries/Zed/1.12.0/ZedIndustries.Zed.installer.yaml
 # renovate: datasource=github-releases depName=zed-industries/zed
-zed_version: '1.11.3'
+zed_version: '1.12.0'
