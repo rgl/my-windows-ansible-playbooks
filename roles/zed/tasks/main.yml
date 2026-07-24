@@ -12,7 +12,7 @@
         --disable-interactivity `
         --name winget
       if ($LASTEXITCODE) {
-        throw "winget.exe source update failed with exit code $LASTEXITCODE. execute winget.exe --open-logs to show the logs."
+        throw "winget.exe source update failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8'))). execute winget.exe --open-logs to show the logs."
       }
       $result = winget.exe list `
         --disable-interactivity `
@@ -32,7 +32,7 @@
           --id ZedIndustries.Zed `
           --version $version
         if ($LASTEXITCODE) {
-          throw "winget.exe install failed with exit code $LASTEXITCODE. execute winget.exe --open-logs to show the logs."
+          throw "winget.exe install failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8'))). execute winget.exe --open-logs to show the logs."
         }
         $Ansible.Changed = $true
       }

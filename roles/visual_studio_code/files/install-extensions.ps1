@@ -32,7 +32,7 @@ $missing | ForEach-Object {
             }
         }
         if ($LASTEXITCODE) {
-            throw "$_ installation failed with exit code $LASTEXITCODE"
+            throw "$_ installation failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
         }
         $Ansible.Changed = $true
     } finally {

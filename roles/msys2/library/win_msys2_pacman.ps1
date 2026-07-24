@@ -23,7 +23,7 @@ function Start-Pacman {
     param([string[]]$Arguments, [int[]]$SuccessExitCodes=@(0))
     Start-PacmanProcess $Arguments | ForEach-Object { "$_" }
     if ($SuccessExitCodes -notcontains $LASTEXITCODE) {
-        throw "$(@('pacman')+$Arguments | ConvertTo-Json -Compress) failed with exit code $LASTEXITCODE"
+        throw "$(@('pacman')+$Arguments | ConvertTo-Json -Compress) failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
 }
 

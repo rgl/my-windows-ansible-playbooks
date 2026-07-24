@@ -36,7 +36,7 @@ if ($archiveActualHash -ne $archiveHash) {
 Write-Host "Installing..."
 &$archivePath /s | Out-String -Stream
 if ($LASTEXITCODE) {
-    throw "installation failed with exit code $LASTEXITCODE. see the logs at C:\System.sav\logs."
+    throw "installation failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8'))). see the logs at C:\System.sav\logs."
 }
 Remove-Item $archivePath
 

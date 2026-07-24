@@ -65,7 +65,7 @@ function Get-InstalledApp {
 function wsl {
     &"$env:ProgramFiles\WSL\wsl.exe" @Args
     if ($LASTEXITCODE) {
-        throw "failed with exit code $LASTEXITCODE"
+        throw "failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
 }
 
@@ -119,7 +119,7 @@ Get-InstalledApp | Where-Object Name -eq 'Windows Subsystem for Linux' | ForEach
         /L*v $logPath `
         | Out-String -Stream
     if ($LASTEXITCODE) {
-        throw "uninstallation failed with exit code $LASTEXITCODE. See $logPath."
+        throw "uninstallation failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8'))). See $logPath."
     }
 }
 
@@ -144,7 +144,7 @@ msiexec `
     /L*v "$archivePath.log" `
     | Out-String -Stream
 if ($LASTEXITCODE) {
-    throw "installation failed with exit code $LASTEXITCODE. See $archivePath.log."
+    throw "installation failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8'))). See $archivePath.log."
 }
 
 # remove the downloaded archive.

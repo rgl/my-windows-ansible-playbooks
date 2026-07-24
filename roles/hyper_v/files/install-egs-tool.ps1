@@ -49,7 +49,7 @@ if ($installBinaries) {
 # see https://github.com/eryph-org/guest-services/blob/v0.6.0/src/Eryph.GuestServices.Tool/Commands/InitializeCommand.cs
 $result = &$appPath initialize
 if ($LASTEXITCODE) {
-    throw "failed to initialize with exit code $LASTEXITCODE"
+    throw "failed to initialize with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
 }
 if ($result -notcontains 'The SSH key already exists.') {
     $Ansible.Changed = $true

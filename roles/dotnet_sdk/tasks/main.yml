@@ -38,7 +38,7 @@
       } else {
         dotnet nuget add source --name nuget.org $sourceUrl
         if ($LASTEXITCODE) {
-          throw "failed with exit code $LASTEXITCODE"
+          throw "failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
         }
         $Ansible.Changed = $true
       }

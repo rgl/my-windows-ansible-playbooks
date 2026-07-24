@@ -489,7 +489,7 @@
             if ($LASTEXITCODE -or $currentValue -cne $value) {
               git config --global $name ($value -replace '\\','\\' -replace '"','\"')
               if ($LASTEXITCODE) {
-                throw "failed to execute git config with exit code $LASTEXITCODE"
+                throw "failed to execute git config with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
               }
               $Ansible.Changed = $true
             }

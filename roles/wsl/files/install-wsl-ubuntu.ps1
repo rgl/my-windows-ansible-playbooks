@@ -37,7 +37,7 @@ function wsl {
     &"$env:ProgramFiles\WSL\wsl.exe" @Args 2>&1
     $ErrorActionPreference = 'Stop'
     if ($LASTEXITCODE) {
-        throw "failed with exit code $LASTEXITCODE"
+        throw "failed with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
 }
 
@@ -61,7 +61,7 @@ function Invoke-WslDistroScript([string]$distroName, [string]$script, [int[]]$va
         2>&1
     $ErrorActionPreference = 'Stop'
     if ($LASTEXITCODE -notin $validExitCodes) {
-        throw "failed to execute $scriptPath inside the $distroName wsl distro with exit code $LASTEXITCODE"
+        throw "failed to execute $scriptPath inside the $distroName wsl distro with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
     Remove-Item $scriptPath
 }

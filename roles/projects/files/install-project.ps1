@@ -24,7 +24,7 @@ try {
         "$_"
     }
     if ($LASTEXITCODE) {
-        throw "failed to clone with exit code $LASTEXITCODE"
+        throw "failed to clone with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
 } finally {
     $ErrorActionPreference = $eap

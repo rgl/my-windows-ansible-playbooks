@@ -32,7 +32,7 @@ if ($installBinaries) {
         Stop-Service $serviceName
         &"$serviceHome\dockerd.exe" --unregister-service
         if ($LASTEXITCODE) {
-            throw "failed to unregister the docker service with exit code $LASTEXITCODE"
+            throw "failed to unregister the docker service with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
         }
         $Ansible.Changed = $true
     }
@@ -55,7 +55,7 @@ if ($installBinaries) {
 if (!(Get-Service -ErrorAction SilentlyContinue $serviceName)) {
     &"$serviceHome\dockerd.exe" --register-service
     if ($LASTEXITCODE) {
-        throw "failed to register the docker service with exit code $LASTEXITCODE"
+        throw "failed to register the docker service with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
     }
     $Ansible.Changed = $true
 }
