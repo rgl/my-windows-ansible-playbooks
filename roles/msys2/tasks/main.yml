@@ -26,7 +26,7 @@
     src: C:\tools\msys64\mingw64.exe
     dest: '%USERPROFILE%\Desktop\MINGW64.lnk'
 
-- name: Configure the msys2 launcher to let the shell inherith the PATH
+- name: Configure the msys2 launcher to let the shell inherit the PATH
   community.windows.win_lineinfile:
     path: 'C:/tools/msys64/{{ item }}'
     regexp: '^#?(MSYS2_PATH_TYPE=).+'
