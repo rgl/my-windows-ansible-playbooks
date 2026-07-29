@@ -17,7 +17,7 @@ $binaryPath = "$env:ChocolateyInstall\bin\packer.exe"
 
 # bail when its already installed.
 if (Test-Path $binaryPath) {
-    # e.g. Packer v1.14.1
+    # e.g. Packer v1.16.0
     $actualVersionText = &$binaryPath --version
     if ($actualVersionText -notmatch 'Packer v(.+)') {
         throw "unable to parse the packer.exe version from: $actualVersionText"
@@ -37,7 +37,7 @@ if (Test-Path $tempPath) {
 mkdir $tempPath | Out-Null
 (New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
 Expand-Archive $archivePath $tempPath
-Move-Item "$tempPath\packer.exe" $binaryPath
+Move-Item -Force "$tempPath\packer.exe" $binaryPath
 Remove-Item -Recurse $tempPath
 
 $Ansible.Changed = $true
