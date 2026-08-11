@@ -26,7 +26,7 @@
         # e.g.:
         #   Name Id                Version Available
         #   ----------------------------------------
-        #   Zed  ZedIndustries.Zed 1.12.0  1.13.2
+        #   Zed  ZedIndustries.Zed 1.12.0  1.14.2
         $name, $id, $version, $availableVersion, $rest = ($result | Select-Object -Last 1) -split '\s+'
         $version
       }
