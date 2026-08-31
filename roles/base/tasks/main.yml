@@ -342,22 +342,6 @@
 - name: Install pwsh
   ansible.builtin.include_tasks: pwsh.yml
 
-- name: Install oh-my-posh
-  chocolatey.chocolatey.win_chocolatey:
-    # see https://community.chocolatey.org/packages/oh-my-posh
-    # see https://github.com/JanDeDobbeleer/oh-my-posh
-    # see https://ohmyposh.dev
-    # see also https://starship.rs/
-    name: oh-my-posh
-    version: '{{ base_oh_my_posh_version }}'
-    package_params: /ALLUSERS
-    state: downgrade
-
-- name: Configure oh-my-posh
-  ansible.windows.win_copy:
-    src: rgl.omp.json
-    dest: '%USERPROFILE%\.rgl.omp.json'
-
 - name: Configure Windows PowerShell
   block:
     - name: Create the Windows PowerShell profile directory
