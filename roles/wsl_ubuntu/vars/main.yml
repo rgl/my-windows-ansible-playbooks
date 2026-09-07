@@ -7,11 +7,11 @@ wsl_ubuntu_default_user: ubuntu
 wsl_ubuntu_apt_sources_url: http://ftp.uni-stuttgart.de/ubuntu
 
 # see https://github.com/moby/moby/releases
-# renovate: datasource=github-releases depName=moby/moby
+# renovate: datasource=deb:docker depName=docker-ce
 wsl_ubuntu_docker_version: '29.8.0'
 
 # see https://github.com/containerd/containerd/releases
-# renovate: datasource=github-releases depName=containerd/containerd
+# renovate: datasource=deb:docker depName=containerd.io
 wsl_ubuntu_containerd_version: '2.3.4'
 
 # see https://github.com/docker/compose/releases
