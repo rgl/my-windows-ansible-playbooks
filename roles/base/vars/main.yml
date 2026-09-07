@@ -53,7 +53,7 @@ base_notepad3_version: '7.26.602.1'
 
 # see https://community.chocolatey.org/packages/7zip.install
 # renovate: datasource=nuget:chocolatey depName=7zip.install
-base_7zip_version: '26.2.0'
+base_7zip_version: '26.3.0'
 
 # see https://community.chocolatey.org/packages/bind-toolsonly
 # renovate: datasource=nuget:chocolatey depName=bind-toolsonly
