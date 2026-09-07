@@ -45,7 +45,7 @@ base_meld_version: '3.22.2'
 
 # see https://community.chocolatey.org/packages/gitextensions
 # renovate: datasource=nuget:chocolatey depName=gitextensions
-base_gitextensions_version: '7.2.0'
+base_gitextensions_version: '7.2.1'
 
 # see https://community.chocolatey.org/packages/notepad3
 # renovate: datasource=nuget:chocolatey depName=notepad3
