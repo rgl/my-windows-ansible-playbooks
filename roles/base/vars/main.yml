@@ -91,7 +91,7 @@ base_resource_hacker_version: '5.2.8'
 
 # see https://community.chocolatey.org/packages/gimp
 # renovate: datasource=nuget:chocolatey depName=gimp
-base_gimp_version: '3.2.4'
+base_gimp_version: '3.2.6'
 
 # see https://community.chocolatey.org/packages/inkscape
 # renovate: datasource=nuget:chocolatey depName=inkscape
