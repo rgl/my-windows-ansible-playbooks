@@ -8,7 +8,7 @@ wsl_ubuntu_apt_sources_url: http://ftp.uni-stuttgart.de/ubuntu
 
 # see https://github.com/moby/moby/releases
 # renovate: datasource=deb:docker depName=docker-ce
-wsl_ubuntu_docker_version: '29.8.0'
+wsl_ubuntu_docker_version: '29.8.1'
 
 # see https://github.com/containerd/containerd/releases
 # renovate: datasource=deb:docker depName=containerd.io
