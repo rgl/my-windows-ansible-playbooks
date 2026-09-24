@@ -17,7 +17,7 @@ $binaryPath = "$env:ChocolateyInstall\bin\packer.exe"
 
 # bail when its already installed.
 if (Test-Path $binaryPath) {
-    # e.g. Packer v1.16.0
+    # e.g. Packer v1.16.1
     $actualVersionText = &$binaryPath --version
     if ($actualVersionText -notmatch 'Packer v(.+)') {
         throw "unable to parse the packer.exe version from: $actualVersionText"

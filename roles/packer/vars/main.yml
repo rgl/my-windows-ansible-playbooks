@@ -1,4 +1,4 @@
 # see https://github.com/hashicorp/packer/releases
 # see https://releases.hashicorp.com/packer
 # renovate: datasource=github-releases depName=hashicorp/packer
-packer_version: '1.16.0'
+packer_version: '1.16.1'
