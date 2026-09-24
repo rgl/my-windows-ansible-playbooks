@@ -21,7 +21,7 @@ EOF
 # execute command (e.g. ansible-playbook).
 # NB the GITHUB_ prefixed environment variables are used to trigger ansible-lint
 #    to annotate the GitHub Actions Workflow with the linting violations.
-#    see https://github.com/ansible/ansible-lint/blob/v26.8.0/src/ansiblelint/app.py#L110-L115
+#    see https://github.com/ansible/ansible-lint/blob/v26.9.0/src/ansiblelint/app.py#L112-L117
 #    see https://ansible-lint.readthedocs.io/en/latest/usage/#ci-cd
 exec docker run \
     --rm \
