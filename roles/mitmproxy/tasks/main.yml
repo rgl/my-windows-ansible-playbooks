@@ -1,3 +1,13 @@
+# NB to use this proxy, e.g., in msys2 bash:
+#     export http_proxy=http://127.0.0.1:8080
+#     export https_proxy=http://127.0.0.1:8080
+#     export no_proxy=
+#     export SSL_CERT_FILE=c:/Users/vagrant/.mitmproxy/mitmproxy-ca-cert.pem
+#     install c:/Users/vagrant/.mitmproxy/mitmproxy-ca-cert.pem /etc/pki/ca-trust/source/anchors
+#     update-ca-trust
+#     curl https://ruilopes.com
+#     rm /etc/pki/ca-trust/source/anchors/mitmproxy-ca-cert.pem
+#     update-ca-trust
 - name: Install mitmproxy
   chocolatey.chocolatey.win_chocolatey:
     name: mitmproxy
