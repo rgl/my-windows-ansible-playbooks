@@ -37,7 +37,7 @@ base_wireshark_version: '4.6.9'
 
 # see https://community.chocolatey.org/packages/git
 # renovate: datasource=nuget:chocolatey depName=git
-base_git_version: '2.55.0.5'
+base_git_version: '2.56.0'
 
 # see https://community.chocolatey.org/packages/meld
 # renovate: datasource=nuget:chocolatey depName=meld
