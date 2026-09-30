@@ -2,4 +2,4 @@
 # see https://github.com/chocolatey-community/chocolatey-packages/tree/master/automatic/msys2
 # see https://github.com/msys2/msys2-installer/tags
 # renovate: datasource=nuget:chocolatey depName=msys2
-msys2_version: '20260611.0.0'
+msys2_version: '20260927.0.0'
