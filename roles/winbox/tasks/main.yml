@@ -1,0 +1,5 @@
+- name: Install WinBox
+  chocolatey.chocolatey.win_chocolatey:
+    name: winbox
+    version: '{{ winbox_version }}'
+    state: downgrade

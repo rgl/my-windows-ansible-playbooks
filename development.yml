@@ -43,6 +43,7 @@
     - mremoteng
     - solo2
     - yubico_authenticator
+    - winbox
     - projects
 
 - name: Development
