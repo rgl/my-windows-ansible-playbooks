@@ -14,7 +14,7 @@ $binaryPath = "$env:ChocolateyInstall\bin\hadris-iso-cli.wasm"
 
 # bail when its already installed.
 if (Test-Path $binaryPath) {
-    # e.g. hadris-iso 2.4.20260920
+    # e.g. hadris-iso 2.5.20261011
     $actualVersionText = wasmtime.exe $binaryPath --version
     if ($actualVersionText -notmatch '^hadris-iso (.+)') {
         throw "unable to parse the hadris-iso-cli.wasm version from: $actualVersionText"
