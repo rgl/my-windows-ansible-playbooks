@@ -6,5 +6,5 @@ hyper_v_windhcp_checksum: 872ce8655a8d137624b1d2ca728142b2e9e176a0e148c5286a6d02
 # see https://releases.dbosoft.eu/eryph/guest-services/
 # see https://github.com/eryph-org/guest-services/releases
 # renovate: datasource=github-releases depName=eryph-org/guest-services
-hyper_v_egs_tool_version: '0.6.0'
-hyper_v_egs_tool_checksum: 2b143cb7004d6d9884af35bcbe8e5964bd51ac1ed9c5b68caf23c3a896f83f22
+hyper_v_egs_tool_version: '0.7.0'
+hyper_v_egs_tool_checksum: 6468c03ada0d2bacb43ece47c2f003b6b26d0a159a81ad055cb94d7460cc3a13

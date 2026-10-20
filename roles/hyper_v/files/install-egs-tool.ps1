@@ -46,7 +46,7 @@ if ($installBinaries) {
 }
 
 # initialize.
-# see https://github.com/eryph-org/guest-services/blob/v0.6.0/src/Eryph.GuestServices.Tool/Commands/InitializeCommand.cs
+# see https://github.com/eryph-org/guest-services/blob/v0.7.0/src/Eryph.GuestServices.Tool/Commands/InitializeCommand.cs
 $result = &$appPath initialize
 if ($LASTEXITCODE) {
     throw "failed to initialize with exit code $LASTEXITCODE (0x$($LASTEXITCODE.ToString('X8')))"
