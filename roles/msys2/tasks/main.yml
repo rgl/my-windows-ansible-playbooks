@@ -2,9 +2,13 @@
   chocolatey.chocolatey.win_chocolatey:
     # https://community.chocolatey.org/packages/msys2
     name: msys2
-    package_params: /NoPath
+    package_params: /NoPath /NoUpdate
     version: '{{ msys2_version }}'
     state: downgrade
+
+- name: Upgrade MSYS2
+  ansible.windows.win_powershell:
+    script: "{{ lookup('file', 'upgrade.ps1') }}"
 
 - name: Install MSYS2 Start Menu Shortcut
   community.windows.win_shortcut:
@@ -16,6 +20,11 @@
     src: C:\tools\msys64\mingw64.exe
     dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\MINGW64.lnk
 
+- name: Install UCRT64 Start Menu Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\ucrt64.exe
+    dest: C:\Users\All Users\Microsoft\Windows\Start Menu\Programs\UCRT64.lnk
+
 - name: Install MSYS2 Desktop Shortcut
   community.windows.win_shortcut:
     src: C:\tools\msys64\msys2.exe
@@ -26,6 +35,11 @@
     src: C:\tools\msys64\mingw64.exe
     dest: '%USERPROFILE%\Desktop\MINGW64.lnk'
 
+- name: Install UCRT64 Desktop Shortcut
+  community.windows.win_shortcut:
+    src: C:\tools\msys64\ucrt64.exe
+    dest: '%USERPROFILE%\Desktop\UCRT64.lnk'
+
 - name: Configure the msys2 launcher to let the shell inherit the PATH
   community.windows.win_lineinfile:
     path: 'C:/tools/msys64/{{ item }}'
@@ -33,8 +47,11 @@
     line: '$1inherit'
     backrefs: true
   loop:
+    - clang64.ini
+    - mingw32.ini
     - mingw64.ini
     - msys2.ini
+    - ucrt64.ini
 
 - name: Configure msys2 to get the user home from Windows
   # see https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-home
