@@ -5,13 +5,6 @@
     name: POWERSHELL_TELEMETRY_OPTOUT
     value: '1'
 
-- name: Disable update notifications
-  # see https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_update_notifications?view=powershell-7.4
-  ansible.windows.win_environment:
-    level: machine
-    name: POWERSHELL_UPDATECHECK
-    value: 'Off'
-
 # NB we will replace the virtual pwsh package with powershell-core.
 #    because the virtual pwsh 7.4.12 chocolatey failed to be published, and it
 #    actually justs depends on powershell-core, which is successfully
