@@ -1,0 +1,66 @@
+{
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+        "anthropic_retention": false
+    },
+    "title_bar": {
+        "show_sign_in": false
+    },
+    "project_panel": {
+        "dock": "left"
+    },
+    "outline_panel": {
+        "dock": "left"
+    },
+    "collaboration_panel": {
+        "dock": "left"
+    },
+    "git_panel": {
+        "dock": "left"
+    },
+    "agent": {
+        "dock": "right"
+    },
+    "auto_install_extensions": {
+        "ansible": true,
+        "dockerfile": true,
+        "git-firefly": true,
+        "html": true
+    },
+    "file_types": {
+        "Dockerfile": [
+            "Dockerfile.*"
+        ],
+        "Ansible": [
+            "**.ansible.yml",
+            "**.ansible.yaml",
+            "**/defaults/*.yml",
+            "**/defaults/*.yaml",
+            "**/meta/*.yml",
+            "**/meta/*.yaml",
+            "**/tasks/*.yml",
+            "**/tasks/*.yaml",
+            "**/handlers/*.yml",
+            "**/handlers/*.yaml",
+            "**/group_vars/*.yml",
+            "**/group_vars/*.yaml",
+            "**/playbooks/*.yaml",
+            "**/playbooks/*.yml",
+            "**playbook*.yaml",
+            "**playbook*.yml"
+        ]
+    },
+    "lsp": {
+        "ansible": {
+            "settings": {
+                "validation": {
+                    "lint": {
+                        "enabled": false
+                    },
+                    "enabled": false
+                }
+            }
+        }
+    }
+}

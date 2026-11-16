@@ -43,3 +43,16 @@
         }
         $Ansible.Changed = $true
       }
+
+# see https://zed.dev/docs/reference/all-settings
+# see https://zed.dev/extensions
+- name: Configure Zed
+  block:
+    - name: Create the Zed configuration directory
+      ansible.windows.win_file:
+        path: '%APPDATA%\Zed'
+        state: directory
+    - name: Configure Zed
+      ansible.windows.win_copy:
+        src: settings.json
+        dest: '%APPDATA%\Zed\settings.json'
