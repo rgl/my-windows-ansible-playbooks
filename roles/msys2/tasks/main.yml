@@ -92,7 +92,7 @@
       - p7zip       # https://packages.msys2.org/package/p7zip
       - patch       # https://packages.msys2.org/package/patch
       - patchutils  # https://packages.msys2.org/package/patchutils
-      - procps      # https://packages.msys2.org/package/procps
+      - procps-ng   # https://packages.msys2.org/package/procps-ng
       - tar         # https://packages.msys2.org/package/tar
       - unzip       # https://packages.msys2.org/package/unzip
       - vim         # https://packages.msys2.org/package/vim
