@@ -10,6 +10,13 @@ dotnet_sdk_8_version: '8.0.428' # dotnet 8.0.34
 # renovate: datasource=nuget:chocolatey depName=dotnet-sdk extractVersion=^(?<version>10\.0\..+)
 dotnet_sdk_10_version: '10.0.404' # dotnet 10.0.15
 
+# see https://community.chocolatey.org/packages/dotnet-sdk
+# see https://dotnet.microsoft.com/en-us/download/dotnet/11.0
+# see https://learn.microsoft.com/en-us/dotnet/core/install/windows
+# renovate: datasource=nuget:chocolatey depName=dotnet-sdk extractVersion=^(?<version>11\.0\..+)
+dotnet_sdk_11_version: '11.0.100' # dotnet 11.0.0
+
 dotnet_sdk_versions:
   - '{{ dotnet_sdk_8_version }}'
   - '{{ dotnet_sdk_10_version }}'
+  - '{{ dotnet_sdk_11_version }}'
